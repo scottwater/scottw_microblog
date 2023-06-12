@@ -7,6 +7,46 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/06/12/can-we-just.html",
+				
+				"content_html": "<p>Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be.</p>\n<!-- raw HTML omitted -->\n",
+				"content_text": "Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be. \n\n<img src=\"uploads/2023/daf19f91db.png\" width=\"600\" height=\"143\" alt=\"No Upgradablity Headline\">\n",
+				"date_published": "2023-06-12T15:42:30-04:00",
+				"url": "https://blog.scottw.com/2023/06/12/can-we-just.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/06/09/instagrams-twitter-competitor.html",
+				
+				"content_html": "<p><a href=\"https://www.theverge.com/2023/6/8/23754304/instagram-meta-twitter-competitor-threads-activitypub\">Instagram&rsquo;s Twitter Competitor</a></p>\n<p>The cost of switching for many is very high, especially for those on Twitter just to follow their favorite celebs. Getting some celebs on board is an interesting strategy, but a second app handicaps them.</p>\n<p>If you could start writing and replying on Instagram today, I could see this being a much more viable alternative.</p>\n<p>I have only dabbled in ActivityPub, but a handful of celebs with millions of followers feels like it could be criplling for many Mastodon instances.</p>\n",
+				"content_text": "[Instagram's Twitter Competitor](https://www.theverge.com/2023/6/8/23754304/instagram-meta-twitter-competitor-threads-activitypub)\r\n\r\nThe cost of switching for many is very high, especially for those on Twitter just to follow their favorite celebs. Getting some celebs on board is an interesting strategy, but a second app handicaps them. \r\n\r\nIf you could start writing and replying on Instagram today, I could see this being a much more viable alternative.\r\n\r\nI have only dabbled in ActivityPub, but a handful of celebs with millions of followers feels like it could be criplling for many Mastodon instances.\n",
+				"date_published": "2023-06-09T10:49:44-04:00",
+				"url": "https://blog.scottw.com/2023/06/09/instagrams-twitter-competitor.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/06/07/while-reading-john.html",
+				
+				"content_html": "<p>While reading <a href=\"https://daringfireball.net/2023/06/first_impressions_of_vision_pro_and_visionos\">John Gruber&rsquo;s initial experience with Vision Pro</a>, the following stood out to me regarding our AI gold rush:</p>\n<blockquote>\n<p>&hellip;you don’t make compelling products — let alone entire platforms — starting from advanced technology and working backward. You start with a vision for the product and platform experience and then create new technology to make it real.</p>\n</blockquote>\n<p>There is a rush of apps. Some useful (co-pilot) and interesting. But most are obstructed API calls to data that is far from complete.</p>\n",
+				"content_text": "While reading [John Gruber's initial experience with Vision Pro](https://daringfireball.net/2023/06/first_impressions_of_vision_pro_and_visionos), the following stood out to me regarding our AI gold rush:\r\n\r\n>  ...you don’t make compelling products — let alone entire platforms — starting from advanced technology and working backward. You start with a vision for the product and platform experience and then create new technology to make it real.\r\n\r\nThere is a rush of apps. Some useful (co-pilot) and interesting. But most are obstructed API calls to data that is far from complete.\n",
+				"date_published": "2023-06-07T15:46:01-04:00",
+				"url": "https://blog.scottw.com/2023/06/07/while-reading-john.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/06/06/other-interesting-things.html",
+				
+				"content_html": "<p>Other interesting things from the 2023 announcements</p>\n<ol>\n<li>Displaying your real-time workout details back on your phone is great. I do a lot of zone training these days, and not having to look at my watch will be great.</li>\n<li>The custom stickers via photos are going to be another item that makes those on Android feel left out</li>\n<li>See #2 for contact cards (NameDrop&hellip;.great name!)</li>\n<li>iPhone horizontal mode is excellent but feels many years behind.</li>\n<li>Smart to see things like crash detection be repurposed for your gold swing.</li>\n<li>Smarter AirPod noise canceling (Adaptive Audio) - true noise canceling and being outside can be dangerous.</li>\n<li>Family Password Protection - A good step forward. See <a href=\"https://daringfireball.net/linked/2023/03/27/apple-passwords-deserve-an-app\">Apple Passwords Deserve an App</a></li>\n</ol>\n",
+				"content_text": "Other interesting things from the 2023 announcements\n\n1. Displaying your real-time workout details back on your phone is great. I do a lot of zone training these days, and not having to look at my watch will be great. \n1. The custom stickers via photos are going to be another item that makes those on Android feel left out\n1. See #2 for contact cards (NameDrop....great name!)\n1. iPhone horizontal mode is excellent but feels many years behind. \n1. Smart to see things like crash detection be repurposed for your gold swing. \n1. Smarter AirPod noise canceling (Adaptive Audio) - true noise canceling and being outside can be dangerous.\n1. Family Password Protection - A good step forward. See [Apple Passwords Deserve an App](https://daringfireball.net/linked/2023/03/27/apple-passwords-deserve-an-app)\n",
+				"date_published": "2023-06-06T10:30:33-04:00",
+				"url": "https://blog.scottw.com/2023/06/06/other-interesting-things.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/06/06/apples-app-marketplace.html",
+				
+				"content_html": "<p>Apple&rsquo;s app marketplace is such a massive competitive advantage for Vision Pro. The day it is released, having access to everything iOS (and iPadOS) is an enormous barrier to entry. I am trying to understand how anyone else remotely competes.</p>\n<p>Coupled with access to the apps on your Mac and it feels like it is already game over. The price to start is steep, and there is that dangling cord in the back, but I am betting in the short run, this leads to even more Macs being sold as well.</p>\n",
+				"content_text": "Apple's app marketplace is such a massive competitive advantage for Vision Pro. The day it is released, having access to everything iOS (and iPadOS) is an enormous barrier to entry. I am trying to understand how anyone else remotely competes. \n\nCoupled with access to the apps on your Mac and it feels like it is already game over. The price to start is steep, and there is that dangling cord in the back, but I am betting in the short run, this leads to even more Macs being sold as well.\n",
+				"date_published": "2023-06-06T10:17:43-04:00",
+				"url": "https://blog.scottw.com/2023/06/06/apples-app-marketplace.html"
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/06/06/vision-pro-initial.html",
 				
 				"content_html": "<p>Vision Pro Initial Thoughts</p>\n<p>I had a chance to watch the <a href=\"https://events-delivery.apple.com/0105cftwpxxsfrpdwklppzjhjocakrsk/m3u8/vod_index-PQsoJoECcKHTYzphNkXohHsQWACugmET.m3u8\">Vision Pro video</a>. I am far more into for work than entertainment. I rarely watch TV and don&rsquo;t FaceTime/Chat/etc. often. But what I do for hours every day is stand at a desk and navigate many app windows across three monitors.</p>\n<p>The thought of a simple desk with just a quality keyboard and my MBP on it is very appealing, even at the $3,500+ price tag (cheaper than the Pro Display 😄).</p>\n",
@@ -42,7 +82,7 @@
 				"id": "http://scottwater.micro.blog/2023/04/19/i-listened-to.html",
 				
 				"content_html": "<p>I listened to Outlived and need to go back and read the book to pull out some more details.</p>\n<p>In the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I listened to Outlived and need to go back and read the book to pull out some more details. \n\nIn the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post. \n\n<img src=\"uploads/2023/5632d5fa65.jpg\" width=\"450\" height=\"600\" alt=\"Photo of the cover of the book, Built to Move\">\n",
+				"content_text": "I listened to Outlived and need to go back and read the book to pull out some more details. \n\nIn the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/5632d5fa65.jpg\" width=\"450\" height=\"600\" alt=\"Photo of the cover of the book, Built to Move\">\n",
 				"date_published": "2023-04-19T07:24:25-04:00",
 				"url": "https://blog.scottw.com/2023/04/19/i-listened-to.html"
 			},
