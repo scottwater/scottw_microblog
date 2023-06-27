@@ -7,6 +7,14 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/06/27/sparktoro-year-retrospective.html",
+				
+				"content_html": "<p><a href=\"https://sparktoro.com/blog/sparktoro-year-3-retrospective-investor-payback-systemic-challenges-and-v2-on-the-way/\">SparkToro Year 3 Retrospective</a></p>\n<p>This is a must-read if you run (or want to run) a SaaS business.</p>\n",
+				"content_text": "[SparkToro Year 3 Retrospective](https://sparktoro.com/blog/sparktoro-year-3-retrospective-investor-payback-systemic-challenges-and-v2-on-the-way/)\r\n\r\nThis is a must-read if you run (or want to run) a SaaS business. \n",
+				"date_published": "2023-06-27T10:28:08-04:00",
+				"url": "https://blog.scottw.com/2023/06/27/sparktoro-year-retrospective.html"
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/06/12/can-we-just.html",
 				
 				"content_html": "<p>Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be.</p>\n<!-- raw HTML omitted -->\n",
