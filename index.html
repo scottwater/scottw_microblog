@@ -6,7 +6,7 @@
 
   <title>
       
-      ScottW&#39;s Blog
+      ScottW/rites
       
   </title>
 
@@ -25,7 +25,94 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/27/sparktoro-year-retrospective.html" class="u-url"><time class="dt-published" datetime="2023-06-27 10:28:08 -0400">Jun 27, 2023</time></a>
+		<a href="https://scottw.com/2023/07/03/one-of-the.html" class="u-url"><time class="dt-published" datetime="2023-07-03 12:19:32 -0400">Jul 3, 2023</time></a>
+
+		<div class="e-content">
+			 <p>One of the best parts of coding with the help of ChatGPT is learning about built-in APIs that I never thought to look for.</p>
+<p>Today I wanted to iterate over some links in a string, and ChatGPT turned me on this gem of an API: <code>URI#extract</code>.</p>
+<p>Pass it a string with URLs and specify the schemes you want to extract.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://scottw.com/2023/07/01/i-might-have.html" class="u-url"><time class="dt-published" datetime="2023-07-01 20:28:58 -0400">Jul 1, 2023</time></a>
+
+		<div class="e-content">
+			 <p>I might have figured out (and built) a  simple and cost-effective way for posts from Micro Blog to show up on Twitter again. It works if you see this and are under your Twitter allocation for the day. 😄</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://scottw.com/2023/06/29/harden-will-not.html" class="u-url"><time class="dt-published" datetime="2023-06-29 20:13:19 -0400">Jun 29, 2023</time></a>
+
+		<div class="e-content">
+			 <p>Harden will not be missed in Philly.  It was hard to imagine him getting a big payday from Philly after the choke job against the Celtics (minus two amazing games).</p>
+<p>I hope they ship him to the Clippers and give them another often-injured player for the end of the season.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://scottw.com/2023/06/28/ai-is-killing.html" class="u-url"><time class="dt-published" datetime="2023-06-28 09:55:20 -0400">Jun 28, 2023</time></a>
+
+		<div class="e-content">
+			 <p><a href="https://www.theverge.com/2023/6/26/23773914/ai-large-language-models-data-scraping-generation-remaking-web">AI is Killing the Old Web</a></p>
+<p>I suspect things will get even worse once the AI-generated garbage content is what consistently gets submitted to sites like Reddit. This is going to be a vicious cycle. God help the gullible and those unwilling to think for themselves.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2023/06/28/microblog-custom-footer.html">Micro.blog Custom Footer For Local Development</a></h1>
+		
+
+		<a href="https://scottw.com/2023/06/28/microblog-custom-footer.html" class="u-url"><time class="dt-published" datetime="2023-06-28 09:46:55 -0400">Jun 28, 2023</time></a>
+
+		<div class="e-content">
+			 <p>If you want to develop/customize your Micro.blog theme locally, you will likely encounter an issue with a missing file called <code>custom_footer.html</code>. My guess is this file is dynamically added to my Micro.blog at build time.</p>
+<p>To work around this, you can remove the use of <code>&amp;#123;&amp;#123; partial &quot;custom_footer.html&quot; . }}</code> from your theme (either permanently or temporarily), or you can simply check that it exists first:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{{ if templates.Exists ( &#34;partials/custom_footer.html&#34; ) }}
+  {{ partial &#34;custom_footer.html&#34; . }}
+{{ end }}
+</code></pre></td></tr></table>
+</div>
+</div>
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://scottw.com/2023/06/28/i-finally-gave.html" class="u-url"><time class="dt-published" datetime="2023-06-28 07:38:46 -0400">Jun 28, 2023</time></a>
+
+		<div class="e-content">
+			 <p>I finally gave up on using my Apple Watch for zone 5+ training and picked up (via Father’s Day) and Polaris H10.</p>
+<p>It is much more awkward to use (and yet another device), but I am impressed with the simplicity of syncing to machines like the Peloton.</p>
+<!-- raw HTML omitted -->
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://scottw.com/2023/06/27/sparktoro-year-retrospective.html" class="u-url"><time class="dt-published" datetime="2023-06-27 10:28:08 -0400">Jun 27, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://sparktoro.com/blog/sparktoro-year-3-retrospective-investor-payback-systemic-challenges-and-v2-on-the-way/">SparkToro Year 3 Retrospective</a></p>
@@ -37,7 +124,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/12/can-we-just.html" class="u-url"><time class="dt-published" datetime="2023-06-12 15:42:30 -0400">Jun 12, 2023</time></a>
+		<a href="https://scottw.com/2023/06/12/can-we-just.html" class="u-url"><time class="dt-published" datetime="2023-06-12 15:42:30 -0400">Jun 12, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be.</p>
@@ -49,7 +136,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/09/instagrams-twitter-competitor.html" class="u-url"><time class="dt-published" datetime="2023-06-09 10:49:44 -0400">Jun 9, 2023</time></a>
+		<a href="https://scottw.com/2023/06/09/instagrams-twitter-competitor.html" class="u-url"><time class="dt-published" datetime="2023-06-09 10:49:44 -0400">Jun 9, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.theverge.com/2023/6/8/23754304/instagram-meta-twitter-competitor-threads-activitypub">Instagram&rsquo;s Twitter Competitor</a></p>
@@ -63,7 +150,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/07/while-reading-john.html" class="u-url"><time class="dt-published" datetime="2023-06-07 15:46:01 -0400">Jun 7, 2023</time></a>
+		<a href="https://scottw.com/2023/06/07/while-reading-john.html" class="u-url"><time class="dt-published" datetime="2023-06-07 15:46:01 -0400">Jun 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>While reading <a href="https://daringfireball.net/2023/06/first_impressions_of_vision_pro_and_visionos">John Gruber&rsquo;s initial experience with Vision Pro</a>, the following stood out to me regarding our AI gold rush:</p>
@@ -78,7 +165,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/06/other-interesting-things.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:30:33 -0400">Jun 6, 2023</time></a>
+		<a href="https://scottw.com/2023/06/06/other-interesting-things.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:30:33 -0400">Jun 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Other interesting things from the 2023 announcements</p>
@@ -98,7 +185,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/06/apples-app-marketplace.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:17:43 -0400">Jun 6, 2023</time></a>
+		<a href="https://scottw.com/2023/06/06/apples-app-marketplace.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:17:43 -0400">Jun 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Apple&rsquo;s app marketplace is such a massive competitive advantage for Vision Pro. The day it is released, having access to everything iOS (and iPadOS) is an enormous barrier to entry. I am trying to understand how anyone else remotely competes.</p>
@@ -110,7 +197,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/06/06/vision-pro-initial.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:09:53 -0400">Jun 6, 2023</time></a>
+		<a href="https://scottw.com/2023/06/06/vision-pro-initial.html" class="u-url"><time class="dt-published" datetime="2023-06-06 10:09:53 -0400">Jun 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Vision Pro Initial Thoughts</p>
@@ -123,7 +210,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/26/how-to-migrate.html" class="u-url"><time class="dt-published" datetime="2023-04-26 07:35:18 -0400">Apr 26, 2023</time></a>
+		<a href="https://scottw.com/2023/04/26/how-to-migrate.html" class="u-url"><time class="dt-published" datetime="2023-04-26 07:35:18 -0400">Apr 26, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.donnfelker.com/how-to-migrate-to-rails-encrypted-attributes/">How to Migrate to Rails Encrypted Attributes</a></p>
@@ -137,7 +224,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/25/destructuring-in-ruby.html" class="u-url"><time class="dt-published" datetime="2023-04-25 07:18:13 -0400">Apr 25, 2023</time></a>
+		<a href="https://scottw.com/2023/04/25/destructuring-in-ruby.html" class="u-url"><time class="dt-published" datetime="2023-04-25 07:18:13 -0400">Apr 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.fullstackruby.dev/ruby-3-fundamentals/2021/01/06/everything-you-need-to-know-about-destructuring-in-ruby-3">Destructuring in Ruby 3</a></p>
@@ -151,7 +238,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/19/superglue-use-classic.html" class="u-url"><time class="dt-published" datetime="2023-04-19 08:03:16 -0400">Apr 19, 2023</time></a>
+		<a href="https://scottw.com/2023/04/19/superglue-use-classic.html" class="u-url"><time class="dt-published" datetime="2023-04-19 08:03:16 -0400">Apr 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://thoughtbot.github.io/superglue">SuperGlue</a></p>
@@ -166,7 +253,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/19/i-listened-to.html" class="u-url"><time class="dt-published" datetime="2023-04-19 07:24:25 -0400">Apr 19, 2023</time></a>
+		<a href="https://scottw.com/2023/04/19/i-listened-to.html" class="u-url"><time class="dt-published" datetime="2023-04-19 07:24:25 -0400">Apr 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I listened to Outlived and need to go back and read the book to pull out some more details.</p>
@@ -179,7 +266,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/19/component-driven-development.html" class="u-url"><time class="dt-published" datetime="2023-04-19 07:19:22 -0400">Apr 19, 2023</time></a>
+		<a href="https://scottw.com/2023/04/19/component-driven-development.html" class="u-url"><time class="dt-published" datetime="2023-04-19 07:19:22 -0400">Apr 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://fly.io/ruby-dispatch/component-driven-development-on-rails-with-phlex/">Component driven development on Rails with Phlex · Fly</a></p>
@@ -193,7 +280,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/18/great-list-of.html" class="u-url"><time class="dt-published" datetime="2023-04-18 10:04:07 -0400">Apr 18, 2023</time></a>
+		<a href="https://scottw.com/2023/04/18/great-list-of.html" class="u-url"><time class="dt-published" datetime="2023-04-18 10:04:07 -0400">Apr 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Great list of various <a href="https://jvns.ca/blog/2023/04/17/a-list-of-programming-playgrounds/">Programming Playgrounds</a>.</p>
@@ -204,7 +291,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/18/this-is-more.html" class="u-url"><time class="dt-published" datetime="2023-04-18 10:02:55 -0400">Apr 18, 2023</time></a>
+		<a href="https://scottw.com/2023/04/18/this-is-more.html" class="u-url"><time class="dt-published" datetime="2023-04-18 10:02:55 -0400">Apr 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>This is more of a note for my future self: If you need to use <a href="https://markdoc.dev">Markdoc</a> you place them in the <code>public</code> folder.</p>
@@ -215,7 +302,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/17/iconify-iconify-makes.html" class="u-url"><time class="dt-published" datetime="2023-04-17 07:54:21 -0400">Apr 17, 2023</time></a>
+		<a href="https://scottw.com/2023/04/17/iconify-iconify-makes.html" class="u-url"><time class="dt-published" datetime="2023-04-17 07:54:21 -0400">Apr 17, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://iconify.design/">Iconify</a></p>
@@ -229,7 +316,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/15/twitter-api-corporate.html" class="u-url"><time class="dt-published" datetime="2023-04-15 15:26:06 -0400">Apr 15, 2023</time></a>
+		<a href="https://scottw.com/2023/04/15/twitter-api-corporate.html" class="u-url"><time class="dt-published" datetime="2023-04-15 15:26:06 -0400">Apr 15, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://dave.micro.blog/2023/04/15/developer-response-to.html">Twitter API</a></p>
@@ -243,7 +330,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/10/javascript-import-maps.html" class="u-url"><time class="dt-published" datetime="2023-04-10 14:32:08 -0400">Apr 10, 2023</time></a>
+		<a href="https://scottw.com/2023/04/10/javascript-import-maps.html" class="u-url"><time class="dt-published" datetime="2023-04-10 14:32:08 -0400">Apr 10, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://web.dev/import-maps-in-all-modern-browsers/">JavaScript import maps are now supported cross-browser
@@ -258,7 +345,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/04/10/creating-custom-rails.html" class="u-url"><time class="dt-published" datetime="2023-04-10 14:30:08 -0400">Apr 10, 2023</time></a>
+		<a href="https://scottw.com/2023/04/10/creating-custom-rails.html" class="u-url"><time class="dt-published" datetime="2023-04-10 14:30:08 -0400">Apr 10, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://garrettdimon.com/journal/posts/creating-custom-rails-generators">Creating Custom Rails Generators</a></p>
@@ -272,7 +359,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/31/npx-depcheck-depcheck.html" class="u-url"><time class="dt-published" datetime="2023-03-31 14:22:09 -0400">Mar 31, 2023</time></a>
+		<a href="https://scottw.com/2023/03/31/npx-depcheck-depcheck.html" class="u-url"><time class="dt-published" datetime="2023-03-31 14:22:09 -0400">Mar 31, 2023</time></a>
 
 		<div class="e-content">
 			 <p><code>npx depcheck</code></p>
@@ -287,7 +374,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/31/macgpt-is-a.html" class="u-url"><time class="dt-published" datetime="2023-03-31 13:44:48 -0400">Mar 31, 2023</time></a>
+		<a href="https://scottw.com/2023/03/31/macgpt-is-a.html" class="u-url"><time class="dt-published" datetime="2023-03-31 13:44:48 -0400">Mar 31, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.macgpt.com">MacGPT</a> is a fantastic way to interact with ChatGPT on your Mac.</p>
@@ -300,7 +387,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/27/a-bit-slow.html" class="u-url"><time class="dt-published" datetime="2023-03-27 09:29:07 -0400">Mar 27, 2023</time></a>
+		<a href="https://scottw.com/2023/03/27/a-bit-slow.html" class="u-url"><time class="dt-published" datetime="2023-03-27 09:29:07 -0400">Mar 27, 2023</time></a>
 
 		<div class="e-content">
 			 <p>A bit slow for a service, but faster than me. <a href="https://www.safurai.com">Safurai</a></p>
@@ -315,7 +402,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/25/one-of-the.html" class="u-url"><time class="dt-published" datetime="2023-03-25 20:27:27 -0400">Mar 25, 2023</time></a>
+		<a href="https://scottw.com/2023/03/25/one-of-the.html" class="u-url"><time class="dt-published" datetime="2023-03-25 20:27:27 -0400">Mar 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p>One of the shortcuts I have missed from vim in VS Code: <a href="https://marketplace.visualstudio.com/items?itemName=testdouble.vscode-alternate-alternate-file">Alternate Files</a></p>
@@ -326,7 +413,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/23/join-the-kickofflabs.html" class="u-url"><time class="dt-published" datetime="2023-03-23 07:40:21 -0400">Mar 23, 2023</time></a>
+		<a href="https://scottw.com/2023/03/23/join-the-kickofflabs.html" class="u-url"><time class="dt-published" datetime="2023-03-23 07:40:21 -0400">Mar 23, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://kickofflabs.com/affiliate/">Join the KickoffLabs affiliate program</a></p>
@@ -338,7 +425,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/23/suggestions-for-consuming.html" class="u-url"><time class="dt-published" datetime="2023-03-23 07:06:41 -0400">Mar 23, 2023</time></a>
+		<a href="https://scottw.com/2023/03/23/suggestions-for-consuming.html" class="u-url"><time class="dt-published" datetime="2023-03-23 07:06:41 -0400">Mar 23, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Suggestions for consuming less social media:</p>
@@ -353,7 +440,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/23/kredis-kredis-keyed.html" class="u-url"><time class="dt-published" datetime="2023-03-23 06:57:17 -0400">Mar 23, 2023</time></a>
+		<a href="https://scottw.com/2023/03/23/kredis-kredis-keyed.html" class="u-url"><time class="dt-published" datetime="2023-03-23 06:57:17 -0400">Mar 23, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/rails/kredis">Kredis</a></p>
@@ -365,7 +452,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/20/a-game-of.html" class="u-url"><time class="dt-published" datetime="2023-03-20 10:18:46 -0400">Mar 20, 2023</time></a>
+		<a href="https://scottw.com/2023/03/20/a-game-of.html" class="u-url"><time class="dt-published" datetime="2023-03-20 10:18:46 -0400">Mar 20, 2023</time></a>
 
 		<div class="e-content">
 			 <p>A game of spotting the hidden cancel link.</p>
@@ -377,7 +464,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/19/my-other-remote.html" class="u-url"><time class="dt-published" datetime="2023-03-19 12:01:05 -0400">Mar 19, 2023</time></a>
+		<a href="https://scottw.com/2023/03/19/my-other-remote.html" class="u-url"><time class="dt-published" datetime="2023-03-19 12:01:05 -0400">Mar 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>My other Remote Ruby listen on a way too cold morning March walk was with Ken Collins about using <a href="https://remoteruby.com/219">AWS Lambda with Rails</a>.</p>
@@ -389,7 +476,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/19/how-did-i.html" class="u-url"><time class="dt-published" datetime="2023-03-19 11:59:17 -0400">Mar 19, 2023</time></a>
+		<a href="https://scottw.com/2023/03/19/how-did-i.html" class="u-url"><time class="dt-published" datetime="2023-03-19 11:59:17 -0400">Mar 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>How did I not know that typing a single &ldquo;.&rdquo; on GitHub would open the entire project in VSCode.</p>
@@ -401,7 +488,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/15/i-used-what.html" class="u-url"><time class="dt-published" datetime="2023-03-15 08:20:30 -0400">Mar 15, 2023</time></a>
+		<a href="https://scottw.com/2023/03/15/i-used-what.html" class="u-url"><time class="dt-published" datetime="2023-03-15 08:20:30 -0400">Mar 15, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I used <a href="https://whatdoesthiscodedo.com/g/49b7a1bthis-code-defines-a-ruby-method-named-clsx-that-takes-any-number-of-arguments-the-method-then-itera">what does this code do</a> on my <a href="https://gist.github.com/scottwater/da78cdf4d8bf5031b8bc3fc8d9d248b9">ruby clsx</a> implementation.</p>
@@ -413,7 +500,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/14/never-send-a.html" class="u-url"><time class="dt-published" datetime="2023-03-14 10:38:07 -0400">Mar 14, 2023</time></a>
+		<a href="https://scottw.com/2023/03/14/never-send-a.html" class="u-url"><time class="dt-published" datetime="2023-03-14 10:38:07 -0400">Mar 14, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Never send a long email when brief bullet points will do.</p>
@@ -425,7 +512,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/14/bookmarklets-are-an.html" class="u-url"><time class="dt-published" datetime="2023-03-14 09:02:46 -0400">Mar 14, 2023</time></a>
+		<a href="https://scottw.com/2023/03/14/bookmarklets-are-an.html" class="u-url"><time class="dt-published" datetime="2023-03-14 09:02:46 -0400">Mar 14, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Bookmarklet&rsquo;s are an underutilized tool for data entry. This is the first tool I have seen try to make this easier: <a href="https://www.gibney.org/bookmarklet_editor">Bookmarklet Editor</a></p>
@@ -436,7 +523,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/14/litestack-looks-like.html" class="u-url"><time class="dt-published" datetime="2023-03-14 09:00:40 -0400">Mar 14, 2023</time></a>
+		<a href="https://scottw.com/2023/03/14/litestack-looks-like.html" class="u-url"><time class="dt-published" datetime="2023-03-14 09:00:40 -0400">Mar 14, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/oldmoe/litestack">Litestack</a> looks like a handy library to get a project started.</p>
@@ -446,26 +533,58 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/03/14/i-have-been.html">Next.js to Ruby</a></h1>
+			<h1><a href="https://scottw.com/2023/03/14/i-have-been.html">Next.js to Ruby</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/03/14/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-03-14 08:58:23 -0400">Mar 14, 2023</time></a>
+		<a href="https://scottw.com/2023/03/14/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-03-14 08:58:23 -0400">Mar 14, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have been working on converting something from Next.js to Ruby. The Next.js version is still more visually appealing to me, but the benefits of working in Ruby far supior to me long term.</p>
 <p>Before:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">Card</span> <span style="color:#a6e22e">as</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;article&#34;</span>&gt;
-      &lt;<span style="color:#f92672">Card.Title</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">{`/articles/${article.slug}`}</span>&gt;
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#6ab825;font-weight:bold">Card</span> <span style="color:#bbb">as</span>=<span style="color:#ed9d13">&#34;article&#34;</span>&gt;
+      &lt;<span style="color:#6ab825;font-weight:bold">Card.Title</span> <span style="color:#bbb">href</span>=<span style="color:#ed9d13">{`/articles/${article.slug}`}</span>&gt;
         {article.title}
-      &lt;/<span style="color:#f92672">Card.Title</span>&gt;
-      &lt;<span style="color:#f92672">Card.Eyebrow</span> <span style="color:#a6e22e">as</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;time&#34;</span> <span style="color:#a6e22e">dateTime</span><span style="color:#f92672">=</span><span style="color:#e6db74">{article.date}</span> <span style="color:#a6e22e">decorate</span>&gt;
+      &lt;/<span style="color:#6ab825;font-weight:bold">Card.Title</span>&gt;
+      &lt;<span style="color:#6ab825;font-weight:bold">Card.Eyebrow</span> <span style="color:#bbb">as</span>=<span style="color:#ed9d13">&#34;time&#34;</span> <span style="color:#bbb">dateTime</span>=<span style="color:#ed9d13">{article.date}</span> <span style="color:#bbb">decorate</span>&gt;
         {formatDate(article.date)}
-      &lt;/<span style="color:#f92672">Card.Eyebrow</span>&gt;
-      &lt;<span style="color:#f92672">Card.Description</span>&gt;{article.description}&lt;/<span style="color:#f92672">Card.Description</span>&gt;
-      &lt;<span style="color:#f92672">Card.Cta</span>&gt;Read article&lt;/<span style="color:#f92672">Card.Cta</span>&gt;
-    &lt;/<span style="color:#f92672">Card</span>&gt;
-</code></pre></div><p>After:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    {%@ Shared::Card::Card as: :article do %}
+      &lt;/<span style="color:#6ab825;font-weight:bold">Card.Eyebrow</span>&gt;
+      &lt;<span style="color:#6ab825;font-weight:bold">Card.Description</span>&gt;{article.description}&lt;/<span style="color:#6ab825;font-weight:bold">Card.Description</span>&gt;
+      &lt;<span style="color:#6ab825;font-weight:bold">Card.Cta</span>&gt;Read article&lt;/<span style="color:#6ab825;font-weight:bold">Card.Cta</span>&gt;
+    &lt;/<span style="color:#6ab825;font-weight:bold">Card</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>After:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    {%@ Shared::Card::Card as: :article do %}
       {%@ Shared::Card::Title as: :h2, href: article.relative_url do %}
         {{article.data.title}}
       {% end %}
@@ -477,14 +596,16 @@
       {% end %}
       {%@ Shared::Card::Cta do %}Read article{% end %}
     {% end %}
-</code></pre></div>
+</code></pre></td></tr></table>
+</div>
+</div>
 		</div>
 	  </div>
 	
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/07/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-03-07 20:01:18 -0400">Mar 7, 2023</time></a>
+		<a href="https://scottw.com/2023/03/07/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-03-07 20:01:18 -0400">Mar 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have been listening to the “Subtle Art of not Giving a Fuck” and this quote (likely paraphrased incorrectly) stood out to me:</p>
@@ -498,7 +619,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/07/if-you-find.html" class="u-url"><time class="dt-published" datetime="2023-03-07 12:26:54 -0400">Mar 7, 2023</time></a>
+		<a href="https://scottw.com/2023/03/07/if-you-find.html" class="u-url"><time class="dt-published" datetime="2023-03-07 12:26:54 -0400">Mar 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>If you find yourself with a lot of open VSCode projects, the <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock">Peacock</a> extension can add a great visual clue (color) when trying to quickly switch.</p>
@@ -508,29 +629,47 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/03/07/tailwindcss-intellisense-with.html">TailwindCSS IntelliSense with Serbea</a></h1>
+			<h1><a href="https://scottw.com/2023/03/07/tailwindcss-intellisense-with.html">TailwindCSS IntelliSense with Serbea</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/03/07/tailwindcss-intellisense-with.html" class="u-url"><time class="dt-published" datetime="2023-03-07 11:24:02 -0400">Mar 7, 2023</time></a>
+		<a href="https://scottw.com/2023/03/07/tailwindcss-intellisense-with.html" class="u-url"><time class="dt-published" datetime="2023-03-07 11:24:02 -0400">Mar 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have been experimenting with <a href="https://www.serbea.dev">Serbea templates</a> with Bridgetown and was not able to get TailwindCSS IntelliSense to work.</p>
 <p>Serbea files using the file extension <code>.serb</code>, so my first attempt to configure it looked like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;tailwindCSS.includeLanguages&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-  <span style="color:#f92672">&#34;serb&#34;</span>: <span style="color:#e6db74">&#34;html&#34;</span>
-}<span style="color:#960050;background-color:#1e0010">,</span>
-</code></pre></div><p>However, what I needed to do was specify the file content type:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;tailwindCSS.includeLanguages&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-  <span style="color:#f92672">&#34;serbea&#34;</span>: <span style="color:#e6db74">&#34;html&#34;</span>
-}<span style="color:#960050;background-color:#1e0010">,</span>
-</code></pre></div>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#ed9d13">&#34;tailwindCSS.includeLanguages&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+  <span style="color:#6ab825;font-weight:bold">&#34;serb&#34;</span>: <span style="color:#ed9d13">&#34;html&#34;</span>
+}<span style="color:#a61717;background-color:#e3d2d2">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>However, what I needed to do was specify the file content type:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#ed9d13">&#34;tailwindCSS.includeLanguages&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+  <span style="color:#6ab825;font-weight:bold">&#34;serbea&#34;</span>: <span style="color:#ed9d13">&#34;html&#34;</span>
+}<span style="color:#a61717;background-color:#e3d2d2">,</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 		</div>
 	  </div>
 	
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/06/thorough-overview-of.html" class="u-url"><time class="dt-published" datetime="2023-03-06 10:22:56 -0400">Mar 6, 2023</time></a>
+		<a href="https://scottw.com/2023/03/06/thorough-overview-of.html" class="u-url"><time class="dt-published" datetime="2023-03-06 10:22:56 -0400">Mar 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Thorough overview of deploying a new Rails cluster with MRSK:</p>
@@ -542,7 +681,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/06/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-06 09:18:05 -0400">Mar 6, 2023</time></a>
+		<a href="https://scottw.com/2023/03/06/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-06 09:18:05 -0400">Mar 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Day 6 of #mbmar - (pre-)engineering</p>
@@ -554,7 +693,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/05/custom-flash-messages.html" class="u-url"><time class="dt-published" datetime="2023-03-05 23:02:52 -0400">Mar 5, 2023</time></a>
+		<a href="https://scottw.com/2023/03/05/custom-flash-messages.html" class="u-url"><time class="dt-published" datetime="2023-03-05 23:02:52 -0400">Mar 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://til.hashrocket.com/posts/fitzzhkod1-custom-flash-messages-in-rails">Custom Flash Messages in Rails</a></p>
@@ -566,7 +705,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/05/ja-morant-has.html" class="u-url"><time class="dt-published" datetime="2023-03-05 17:27:17 -0400">Mar 5, 2023</time></a>
+		<a href="https://scottw.com/2023/03/05/ja-morant-has.html" class="u-url"><time class="dt-published" datetime="2023-03-05 17:27:17 -0400">Mar 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.si.com/nba/2023/03/04/memphis-grizzlies-ja-morant-could-lose-it-all-gun-instagram-live?utm_source=artifact">Ja Morant Has Everything. He Could Lose It All</a></p>
@@ -578,7 +717,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/05/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-05 17:15:25 -0400">Mar 5, 2023</time></a>
+		<a href="https://scottw.com/2023/03/05/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-05 17:15:25 -0400">Mar 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Day 5 of #mbmar - tiles (with a reflection)</p>
@@ -590,7 +729,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/04/waiting-for-jerry.html" class="u-url"><time class="dt-published" datetime="2023-03-04 19:30:49 -0400">Mar 4, 2023</time></a>
+		<a href="https://scottw.com/2023/03/04/waiting-for-jerry.html" class="u-url"><time class="dt-published" datetime="2023-03-04 19:30:49 -0400">Mar 4, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Waiting for Jerry at ‘zip’ code 10023 - Day 4 mbmar.</p>
@@ -602,7 +741,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/04/the-only-reason.html" class="u-url"><time class="dt-published" datetime="2023-03-04 09:36:48 -0400">Mar 4, 2023</time></a>
+		<a href="https://scottw.com/2023/03/04/the-only-reason.html" class="u-url"><time class="dt-published" datetime="2023-03-04 09:36:48 -0400">Mar 4, 2023</time></a>
 
 		<div class="e-content">
 			 <p>The only reason to post something like this is because it happened and someone admitted to it.</p>
@@ -615,7 +754,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/03/the-new-kickofflabs.html" class="u-url"><time class="dt-published" datetime="2023-03-03 14:44:27 -0400">Mar 3, 2023</time></a>
+		<a href="https://scottw.com/2023/03/03/the-new-kickofflabs.html" class="u-url"><time class="dt-published" datetime="2023-03-03 14:44:27 -0400">Mar 3, 2023</time></a>
 
 		<div class="e-content">
 			 <p>The new KickoffLabs product intro by @joshaledgard is banging:</p>
@@ -628,7 +767,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/03/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-03 08:38:10 -0400">Mar 3, 2023</time></a>
+		<a href="https://scottw.com/2023/03/03/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-03 08:38:10 -0400">Mar 3, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Day 3 of mbmar challenge - Zamboni at Rockefeller Center (Solitude)</p>
@@ -640,7 +779,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/02/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-02 11:51:57 -0400">Mar 2, 2023</time></a>
+		<a href="https://scottw.com/2023/03/02/day-of-mbmar.html" class="u-url"><time class="dt-published" datetime="2023-03-02 11:51:57 -0400">Mar 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Day 2 of #mbmar - weather.</p>
@@ -652,7 +791,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/02/unicode-arrows-so.html" class="u-url"><time class="dt-published" datetime="2023-03-02 09:17:30 -0400">Mar 2, 2023</time></a>
+		<a href="https://scottw.com/2023/03/02/unicode-arrows-so.html" class="u-url"><time class="dt-published" datetime="2023-03-02 09:17:30 -0400">Mar 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://unicodearrows.com/all-arrows?utm_source=substack&amp;utm_medium=email">Unicode Arrows</a></p>
@@ -664,7 +803,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/03/02/prettyprint-json-in.html" class="u-url"><time class="dt-published" datetime="2023-03-02 09:00:19 -0400">Mar 2, 2023</time></a>
+		<a href="https://scottw.com/2023/03/02/prettyprint-json-in.html" class="u-url"><time class="dt-published" datetime="2023-03-02 09:00:19 -0400">Mar 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://til.hashrocket.com/posts/kfys8edbgn-pretty-print-json-in-ruby">Pretty-print JSON in Ruby - Today I Learned</a></p>
@@ -676,7 +815,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/14/bomani-jones-on.html" class="u-url"><time class="dt-published" datetime="2023-02-14 14:59:03 -0400">Feb 14, 2023</time></a>
+		<a href="https://scottw.com/2023/02/14/bomani-jones-on.html" class="u-url"><time class="dt-published" datetime="2023-02-14 14:59:03 -0400">Feb 14, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Bomani Jones on the excellent Steam Room podcast, quoting Netflix&rsquo;s &ldquo;Social Dilemma.&rdquo;</p>
@@ -691,7 +830,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/13/i-didnt-want.html" class="u-url"><time class="dt-published" datetime="2023-02-13 10:31:17 -0400">Feb 13, 2023</time></a>
+		<a href="https://scottw.com/2023/02/13/i-didnt-want.html" class="u-url"><time class="dt-published" datetime="2023-02-13 10:31:17 -0400">Feb 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I didn&rsquo;t want to jump the gun after last night&rsquo;s painful defeat, but with a bit of time to think things through, here is my updated list of what I hate in the NFL (in order)</p>
@@ -707,7 +846,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/06/i-started-a.html" class="u-url"><time class="dt-published" datetime="2023-02-06 11:06:55 -0400">Feb 6, 2023</time></a>
+		<a href="https://scottw.com/2023/02/06/i-started-a.html" class="u-url"><time class="dt-published" datetime="2023-02-06 11:06:55 -0400">Feb 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I started a new stretching routine (6 in total). One stretch involves sitting cross-legged and working towards getting your face to the floor. Another involves working towards raising your hands to 120 degrees behind your back.</p>
@@ -720,7 +859,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/02/lets-go.html" class="u-url"><time class="dt-published" datetime="2023-02-02 10:48:39 -0400">Feb 2, 2023</time></a>
+		<a href="https://scottw.com/2023/02/02/lets-go.html" class="u-url"><time class="dt-published" datetime="2023-02-02 10:48:39 -0400">Feb 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Let’s Go!</p>
@@ -732,7 +871,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/02/on-my-desk.html" class="u-url"><time class="dt-published" datetime="2023-02-02 10:37:56 -0400">Feb 2, 2023</time></a>
+		<a href="https://scottw.com/2023/02/02/on-my-desk.html" class="u-url"><time class="dt-published" datetime="2023-02-02 10:37:56 -0400">Feb 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p>On my desk - The beautify J-01 decked out in GMK Dracula.</p>
@@ -745,7 +884,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/01/hit-my-first.html" class="u-url"><time class="dt-published" datetime="2023-02-01 12:55:14 -0400">Feb 1, 2023</time></a>
+		<a href="https://scottw.com/2023/02/01/hit-my-first.html" class="u-url"><time class="dt-published" datetime="2023-02-01 12:55:14 -0400">Feb 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Hit my first fitness goal of the year by climbing 33K feet on the treadmill in January. Technically there were another 900 feet that my watch could not sync.</p>
@@ -757,7 +896,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/01/in-the-voice.html" class="u-url"><time class="dt-published" datetime="2023-02-01 11:18:42 -0400">Feb 1, 2023</time></a>
+		<a href="https://scottw.com/2023/02/01/in-the-voice.html" class="u-url"><time class="dt-published" datetime="2023-02-01 11:18:42 -0400">Feb 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>In the voice of Paul Hogan (Crocodile Dundee) - &ldquo;You call that a macropad? This is a macropad.&rdquo;</p>
@@ -770,7 +909,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/01/why-can-i.html" class="u-url"><time class="dt-published" datetime="2023-02-01 11:14:39 -0400">Feb 1, 2023</time></a>
+		<a href="https://scottw.com/2023/02/01/why-can-i.html" class="u-url"><time class="dt-published" datetime="2023-02-01 11:14:39 -0400">Feb 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Why can I not view staging? Oh yeah, I did this.</p>
@@ -782,7 +921,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/02/01/i-have-enjoyed.html" class="u-url"><time class="dt-published" datetime="2023-02-01 10:27:42 -0400">Feb 1, 2023</time></a>
+		<a href="https://scottw.com/2023/02/01/i-have-enjoyed.html" class="u-url"><time class="dt-published" datetime="2023-02-01 10:27:42 -0400">Feb 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have enjoyed using the <a href="https://marketplace.visualstudio.com/items?itemName=connorshea.vscode-ruby-test-adapter">Ruby Test Explorer</a> extension for VSCode.</p>
@@ -793,10 +932,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/29/nfl-playoffs-week.html">NFL Playoffs 2023 Week Three Pics</a></h1>
+			<h1><a href="https://scottw.com/2023/01/29/nfl-playoffs-week.html">NFL Playoffs 2023 Week Three Pics</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/29/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-29 12:26:54 -0400">Jan 29, 2023</time></a>
+		<a href="https://scottw.com/2023/01/29/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-29 12:26:54 -0400">Jan 29, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I was 4-0 in money line pics and 3-1 against the spread (my concern about that Chiefs was correct).</p>
@@ -812,7 +951,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/28/the-sixers-defense.html" class="u-url"><time class="dt-published" datetime="2023-01-28 17:33:05 -0400">Jan 28, 2023</time></a>
+		<a href="https://scottw.com/2023/01/28/the-sixers-defense.html" class="u-url"><time class="dt-published" datetime="2023-01-28 17:33:05 -0400">Jan 28, 2023</time></a>
 
 		<div class="e-content">
 			 <p>The @sixers defense has been abysmal, but they are in this game because Denver is soft.</p>
@@ -824,7 +963,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/27/just-say-no.html" class="u-url"><time class="dt-published" datetime="2023-01-27 11:59:06 -0400">Jan 27, 2023</time></a>
+		<a href="https://scottw.com/2023/01/27/just-say-no.html" class="u-url"><time class="dt-published" datetime="2023-01-27 11:59:06 -0400">Jan 27, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Just say no.</p>
@@ -837,7 +976,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/25/lots-of-great.html" class="u-url"><time class="dt-published" datetime="2023-01-25 11:32:30 -0400">Jan 25, 2023</time></a>
+		<a href="https://scottw.com/2023/01/25/lots-of-great.html" class="u-url"><time class="dt-published" datetime="2023-01-25 11:32:30 -0400">Jan 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Lots of great little PostgreSQL date tricks by @robconery</p>
@@ -849,7 +988,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/25/i-use-grammarly.html" class="u-url"><time class="dt-published" datetime="2023-01-25 10:45:56 -0400">Jan 25, 2023</time></a>
+		<a href="https://scottw.com/2023/01/25/i-use-grammarly.html" class="u-url"><time class="dt-published" datetime="2023-01-25 10:45:56 -0400">Jan 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I use Grammarly every day. But another useful tool to clean up your writing is <a href="https://hemingwayapp.com/">Hemingway Editor</a>.</p>
@@ -860,7 +999,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/25/a-daily-email.html" class="u-url"><time class="dt-published" datetime="2023-01-25 09:53:54 -0400">Jan 25, 2023</time></a>
+		<a href="https://scottw.com/2023/01/25/a-daily-email.html" class="u-url"><time class="dt-published" datetime="2023-01-25 09:53:54 -0400">Jan 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.theneurondaily.com/">A daily email on what&rsquo;s new with AI | The Neuron</a></p>
@@ -874,7 +1013,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/25/a-modern-alternative.html" class="u-url"><time class="dt-published" datetime="2023-01-25 09:51:14 -0400">Jan 25, 2023</time></a>
+		<a href="https://scottw.com/2023/01/25/a-modern-alternative.html" class="u-url"><time class="dt-published" datetime="2023-01-25 09:51:14 -0400">Jan 25, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/dduan/tre">A modern alternative to the tree command - tre</a></p>
@@ -890,7 +1029,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/24/damn-it-i.html" class="u-url"><time class="dt-published" datetime="2023-01-24 16:49:10 -0400">Jan 24, 2023</time></a>
+		<a href="https://scottw.com/2023/01/24/damn-it-i.html" class="u-url"><time class="dt-published" datetime="2023-01-24 16:49:10 -0400">Jan 24, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Damn it. I was going through a stack of papers in my office, and I, too, found some classified documents.</p>
@@ -902,7 +1041,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/24/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-01-24 16:31:29 -0400">Jan 24, 2023</time></a>
+		<a href="https://scottw.com/2023/01/24/i-have-been.html" class="u-url"><time class="dt-published" datetime="2023-01-24 16:31:29 -0400">Jan 24, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have been working on a new KickoffLabs trial experience today and I have typed <code>trail</code> more times than I can count. Copilot has caught on seems to be helping push me in the wrong direction.</p>
@@ -913,7 +1052,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/24/once-gmk-chaos.html" class="u-url"><time class="dt-published" datetime="2023-01-24 15:34:07 -0400">Jan 24, 2023</time></a>
+		<a href="https://scottw.com/2023/01/24/once-gmk-chaos.html" class="u-url"><time class="dt-published" datetime="2023-01-24 15:34:07 -0400">Jan 24, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Once GMK Chaos Theory ships, I may need to pick up this <a href="https://keeb.io/products/wtf60-mirrored-60-keyboard-pcb">PCB</a>.</p>
@@ -925,10 +1064,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/23/finding-and-fixing.html">Finding and Fixing Files in Git with Mixed Case</a></h1>
+			<h1><a href="https://scottw.com/2023/01/23/finding-and-fixing.html">Finding and Fixing Files in Git with Mixed Case</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/23/finding-and-fixing.html" class="u-url"><time class="dt-published" datetime="2023-01-23 17:56:13 -0400">Jan 23, 2023</time></a>
+		<a href="https://scottw.com/2023/01/23/finding-and-fixing.html" class="u-url"><time class="dt-published" datetime="2023-01-23 17:56:13 -0400">Jan 23, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I cloned a repo with a couple of files that were duplicated because of case sensitivity. Git was nice enough to warn me about them, but I couldn&rsquo;t remember which files where an issue.</p>
@@ -941,7 +1080,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/22/my-playoff-mona.html" class="u-url"><time class="dt-published" datetime="2023-01-22 22:53:10 -0400">Jan 22, 2023</time></a>
+		<a href="https://scottw.com/2023/01/22/my-playoff-mona.html" class="u-url"><time class="dt-published" datetime="2023-01-22 22:53:10 -0400">Jan 22, 2023</time></a>
 
 		<div class="e-content">
 			 <p>My playoff Mona Lisa.</p>
@@ -952,10 +1091,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/20/nfl-playoffs-week.html">NFL Playoffs 2023 Week Two Pics</a></h1>
+			<h1><a href="https://scottw.com/2023/01/20/nfl-playoffs-week.html">NFL Playoffs 2023 Week Two Pics</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/20/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-20 14:05:07 -0400">Jan 20, 2023</time></a>
+		<a href="https://scottw.com/2023/01/20/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-20 14:05:07 -0400">Jan 20, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I was <a href="https://blog.scottw.com/2023/01/13/nfl-playoffs-week.html">5-1 last week</a> on the money line. I sadly picked the Bucs not because I thought they would win, but because I despise the Cowboys.</p>
@@ -974,7 +1113,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/20/i-was-unaware.html" class="u-url"><time class="dt-published" datetime="2023-01-20 13:54:10 -0400">Jan 20, 2023</time></a>
+		<a href="https://scottw.com/2023/01/20/i-was-unaware.html" class="u-url"><time class="dt-published" datetime="2023-01-20 13:54:10 -0400">Jan 20, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I was unaware of <a href="https://blog.saeloun.com/2022/01/12/rails-7-adds-custom-enum-support-in-postgresql.html">Rails support for custom enum types in PostgreSQL</a>.</p>
@@ -986,7 +1125,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/19/this-looks-like.html" class="u-url"><time class="dt-published" datetime="2023-01-19 11:14:11 -0400">Jan 19, 2023</time></a>
+		<a href="https://scottw.com/2023/01/19/this-looks-like.html" class="u-url"><time class="dt-published" datetime="2023-01-19 11:14:11 -0400">Jan 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>This looks like a great library to take your Rails javascript interactions up a notch without adding something like Alpine (or even more heavy-handed).</p>
@@ -1001,7 +1140,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/19/whats-in-your.html" class="u-url"><time class="dt-published" datetime="2023-01-19 10:52:34 -0400">Jan 19, 2023</time></a>
+		<a href="https://scottw.com/2023/01/19/whats-in-your.html" class="u-url"><time class="dt-published" datetime="2023-01-19 10:52:34 -0400">Jan 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>What&rsquo;s in your Gemfile? These are some of my favorite posts. I also need to create a list of my favorite/most often used gems soon.</p>
@@ -1013,7 +1152,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/19/i-did-a.html" class="u-url"><time class="dt-published" datetime="2023-01-19 10:48:14 -0400">Jan 19, 2023</time></a>
+		<a href="https://scottw.com/2023/01/19/i-did-a.html" class="u-url"><time class="dt-published" datetime="2023-01-19 10:48:14 -0400">Jan 19, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I did a little digging and found an option for a <a href="https://www.greendoorgeeks.com/collections/65-percent-plates/products/bauer-2-pom-plate-pro">Bauer 2 POM</a> plate.</p>
@@ -1025,7 +1164,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/18/i-went-through.html" class="u-url"><time class="dt-published" datetime="2023-01-18 16:40:38 -0400">Jan 18, 2023</time></a>
+		<a href="https://scottw.com/2023/01/18/i-went-through.html" class="u-url"><time class="dt-published" datetime="2023-01-18 16:40:38 -0400">Jan 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I went through  <a href="https://www.hotrails.dev/turbo-rails">Turbo Rails Tutorial</a> (free e-book).</p>
@@ -1038,7 +1177,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/18/fun-little-health.html" class="u-url"><time class="dt-published" datetime="2023-01-18 14:58:34 -0400">Jan 18, 2023</time></a>
+		<a href="https://scottw.com/2023/01/18/fun-little-health.html" class="u-url"><time class="dt-published" datetime="2023-01-18 14:58:34 -0400">Jan 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Fun little health food hack.</p>
@@ -1051,10 +1190,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/18/only-thing-worse.html">Only Thing Worse Than Layoffs are Slow Drawn Out Layoffs</a></h1>
+			<h1><a href="https://scottw.com/2023/01/18/only-thing-worse.html">Only Thing Worse Than Layoffs are Slow Drawn Out Layoffs</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/18/only-thing-worse.html" class="u-url"><time class="dt-published" datetime="2023-01-18 11:12:01 -0400">Jan 18, 2023</time></a>
+		<a href="https://scottw.com/2023/01/18/only-thing-worse.html" class="u-url"><time class="dt-published" datetime="2023-01-18 11:12:01 -0400">Jan 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I cannot comment on the specifics of the <a href="https://blogs.microsoft.com/blog/2023/01/18/subject-focusing-on-our-short-and-long-term-opportunity/">Microsoft layoffs</a>, but one thing in the announcement jumped out to me as particularly bad:</p>
@@ -1071,7 +1210,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/18/on-my-desk.html" class="u-url"><time class="dt-published" datetime="2023-01-18 10:39:06 -0400">Jan 18, 2023</time></a>
+		<a href="https://scottw.com/2023/01/18/on-my-desk.html" class="u-url"><time class="dt-published" datetime="2023-01-18 10:39:06 -0400">Jan 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>On my desk, the last week or so has been the excellent Bauer 2 sporting some APL keycaps.</p>
@@ -1085,7 +1224,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/18/did-you-ever.html" class="u-url"><time class="dt-published" datetime="2023-01-18 09:56:48 -0400">Jan 18, 2023</time></a>
+		<a href="https://scottw.com/2023/01/18/did-you-ever.html" class="u-url"><time class="dt-published" datetime="2023-01-18 09:56:48 -0400">Jan 18, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Did you ever want to have a conversation with a book?</p>
@@ -1097,7 +1236,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/17/jack-ryan-season.html" class="u-url"><time class="dt-published" datetime="2023-01-17 13:40:07 -0400">Jan 17, 2023</time></a>
+		<a href="https://scottw.com/2023/01/17/jack-ryan-season.html" class="u-url"><time class="dt-published" datetime="2023-01-17 13:40:07 -0400">Jan 17, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Jack Ryan - Season 1 - 8/10 on the treadmill watchability index.</p>
@@ -1107,10 +1246,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/17/i-rearranged-my.html">I rearranged my office over the long weekend</a></h1>
+			<h1><a href="https://scottw.com/2023/01/17/i-rearranged-my.html">I rearranged my office over the long weekend</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/17/i-rearranged-my.html" class="u-url"><time class="dt-published" datetime="2023-01-17 10:09:10 -0400">Jan 17, 2023</time></a>
+		<a href="https://scottw.com/2023/01/17/i-rearranged-my.html" class="u-url"><time class="dt-published" datetime="2023-01-17 10:09:10 -0400">Jan 17, 2023</time></a>
 
 		<div class="e-content">
 			 <ul>
@@ -1128,7 +1267,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/16/i-mentioned-the.html" class="u-url"><time class="dt-published" datetime="2023-01-16 18:36:54 -0400">Jan 16, 2023</time></a>
+		<a href="https://scottw.com/2023/01/16/i-mentioned-the.html" class="u-url"><time class="dt-published" datetime="2023-01-16 18:36:54 -0400">Jan 16, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I mentioned the new Rails <a href="https://blog.scottw.com/2022/12/15/rails-and-docker.html">Docked</a> option a couple of weeks ago. However, until watching <a href="https://www.driftingruby.com/episodes/rails-docked">Drifting Ruby&rsquo;s Rails Docked</a> video, I did not fully grasp how simple a process of setting up a new rails project could be.</p>
@@ -1138,10 +1277,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/13/book-die-with.html">Recommended Book: Die With Zero</a></h1>
+			<h1><a href="https://scottw.com/2023/01/13/book-die-with.html">Recommended Book: Die With Zero</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/13/book-die-with.html" class="u-url"><time class="dt-published" datetime="2023-01-13 16:04:27 -0400">Jan 13, 2023</time></a>
+		<a href="https://scottw.com/2023/01/13/book-die-with.html" class="u-url"><time class="dt-published" datetime="2023-01-13 16:04:27 -0400">Jan 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p>The first completed book of 2023 is <a href="https://amzn.to/3khGDVS">Die With Zero</a> by Bill Perkins (@bp22).</p>
@@ -1161,7 +1300,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/13/vscode-short-cut.html" class="u-url"><time class="dt-published" datetime="2023-01-13 15:43:36 -0400">Jan 13, 2023</time></a>
+		<a href="https://scottw.com/2023/01/13/vscode-short-cut.html" class="u-url"><time class="dt-published" datetime="2023-01-13 15:43:36 -0400">Jan 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p>VSCode Short Cut for currently open files: control+tab.</p>
@@ -1173,7 +1312,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/13/all-the-hacks.html" class="u-url"><time class="dt-published" datetime="2023-01-13 15:04:05 -0400">Jan 13, 2023</time></a>
+		<a href="https://scottw.com/2023/01/13/all-the-hacks.html" class="u-url"><time class="dt-published" datetime="2023-01-13 15:04:05 -0400">Jan 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.allthehacks.com/">All The Hacks</a> - is a fantastic podcast on life, money, and travel. I have been binging it for a couple of weeks now. Highly recommended.</p>
@@ -1183,10 +1322,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/13/nfl-playoffs-week.html">NFL Playoffs 2023 Week One Pics</a></h1>
+			<h1><a href="https://scottw.com/2023/01/13/nfl-playoffs-week.html">NFL Playoffs 2023 Week One Pics</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/13/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-13 13:39:55 -0400">Jan 13, 2023</time></a>
+		<a href="https://scottw.com/2023/01/13/nfl-playoffs-week.html" class="u-url"><time class="dt-published" datetime="2023-01-13 13:39:55 -0400">Jan 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Here are my pics for round 1 of the playoffs</p>
@@ -1205,7 +1344,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/13/i-would-hate.html" class="u-url"><time class="dt-published" datetime="2023-01-13 07:26:41 -0400">Jan 13, 2023</time></a>
+		<a href="https://scottw.com/2023/01/13/i-would-hate.html" class="u-url"><time class="dt-published" datetime="2023-01-13 07:26:41 -0400">Jan 13, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I would hate to see Tweetbot go, but considering Twitter makes zero revenue from it, and it has no ads, I am not shocked.</p>
@@ -1217,7 +1356,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/12/i-enjoy-the.html" class="u-url"><time class="dt-published" datetime="2023-01-12 18:09:49 -0400">Jan 12, 2023</time></a>
+		<a href="https://scottw.com/2023/01/12/i-enjoy-the.html" class="u-url"><time class="dt-published" datetime="2023-01-12 18:09:49 -0400">Jan 12, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I enjoy the three extra clicks it takes to do a traditional call instead of using huddles.  #neverhuddles</p>
@@ -1229,7 +1368,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/11/the-saas-playbook.html" class="u-url"><time class="dt-published" datetime="2023-01-11 21:51:50 -0400">Jan 11, 2023</time></a>
+		<a href="https://scottw.com/2023/01/11/the-saas-playbook.html" class="u-url"><time class="dt-published" datetime="2023-01-11 21:51:50 -0400">Jan 11, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://saasplaybook.com/">The SaaS Playbook</a> - a new book by @robwalling - will be an instant purchase once available.</p>
@@ -1240,7 +1379,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/10/i-didnt-realize.html" class="u-url"><time class="dt-published" datetime="2023-01-10 11:08:07 -0400">Jan 10, 2023</time></a>
+		<a href="https://scottw.com/2023/01/10/i-didnt-realize.html" class="u-url"><time class="dt-published" datetime="2023-01-10 11:08:07 -0400">Jan 10, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I didn&rsquo;t realize <a href="https://github.com/bullet-train-co/bullet_train">Bullet Train</a> was now open source (it looks like you have to pay to use Stripe, but that feels very fair).</p>
@@ -1252,7 +1391,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/09/us-stock-market.html" class="u-url"><time class="dt-published" datetime="2023-01-09 13:59:52 -0400">Jan 9, 2023</time></a>
+		<a href="https://scottw.com/2023/01/09/us-stock-market.html" class="u-url"><time class="dt-published" datetime="2023-01-09 13:59:52 -0400">Jan 9, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://themeasureofaplan.com/us-stock-market-returns-1870s-to-present/">U.S. Stock Market Returns by Year</a></p>
@@ -1264,7 +1403,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/07/not-bad-for.html" class="u-url"><time class="dt-published" datetime="2023-01-07 14:59:31 -0400">Jan 7, 2023</time></a>
+		<a href="https://scottw.com/2023/01/07/not-bad-for.html" class="u-url"><time class="dt-published" datetime="2023-01-07 14:59:31 -0400">Jan 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Not bad for midafternoon Saturday. I was planning on just hanging out at a coffee shop most of the morning in NYC, but listened to a large chunk of Dying with Zero and just walked.</p>
@@ -1276,7 +1415,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/07/i-could-do.html" class="u-url"><time class="dt-published" datetime="2023-01-07 13:35:13 -0400">Jan 7, 2023</time></a>
+		<a href="https://scottw.com/2023/01/07/i-could-do.html" class="u-url"><time class="dt-published" datetime="2023-01-07 13:35:13 -0400">Jan 7, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I could do the hipster thing.</p>
@@ -1288,7 +1427,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/06/migrating-from-a.html" class="u-url"><time class="dt-published" datetime="2023-01-06 16:37:43 -0400">Jan 6, 2023</time></a>
+		<a href="https://scottw.com/2023/01/06/migrating-from-a.html" class="u-url"><time class="dt-published" datetime="2023-01-06 16:37:43 -0400">Jan 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://kentcdodds.com/blog/i-migrated-from-a-postgres-cluster-to-distributed-sqlite-with-litefs">Migrating from a Postgres Cluster to Distributed SQLite with LiteFS</a></p>
@@ -1300,7 +1439,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/06/after-nearly-years.html" class="u-url"><time class="dt-published" datetime="2023-01-06 09:31:02 -0400">Jan 6, 2023</time></a>
+		<a href="https://scottw.com/2023/01/06/after-nearly-years.html" class="u-url"><time class="dt-published" datetime="2023-01-06 09:31:02 -0400">Jan 6, 2023</time></a>
 
 		<div class="e-content">
 			 <p>After nearly 12 years, we finally moved from <code>$redis</code> on KickoffLabs to <code>REDIS</code>.</p>
@@ -1311,10 +1450,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2023/01/05/alttab.html">AltTab</a></h1>
+			<h1><a href="https://scottw.com/2023/01/05/alttab.html">AltTab</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2023/01/05/alttab.html" class="u-url"><time class="dt-published" datetime="2023-01-05 18:05:56 -0400">Jan 5, 2023</time></a>
+		<a href="https://scottw.com/2023/01/05/alttab.html" class="u-url"><time class="dt-published" datetime="2023-01-05 18:05:56 -0400">Jan 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I have been a user of CommandTabPlus for years, but it is not working reliability anymore. I am unsure if this relates to Ventura or whatnot, but it was time to move on.</p>
@@ -1334,7 +1473,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/05/ftc-proposes-ban.html" class="u-url"><time class="dt-published" datetime="2023-01-05 16:17:46 -0400">Jan 5, 2023</time></a>
+		<a href="https://scottw.com/2023/01/05/ftc-proposes-ban.html" class="u-url"><time class="dt-published" datetime="2023-01-05 16:17:46 -0400">Jan 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.vice.com/en/article/88qjjz/ftc-proposes-ban-on-worker-non-compete-clauses">FTC Proposes Ban on Worker Non-Compete Clauses</a></p>
@@ -1348,7 +1487,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/05/my-favorite-christmas.html" class="u-url"><time class="dt-published" datetime="2023-01-05 16:13:11 -0400">Jan 5, 2023</time></a>
+		<a href="https://scottw.com/2023/01/05/my-favorite-christmas.html" class="u-url"><time class="dt-published" datetime="2023-01-05 16:13:11 -0400">Jan 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p>My favorite 2022 Christmas present.</p>
@@ -1360,7 +1499,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/05/mastodon-microposts-my.html" class="u-url"><time class="dt-published" datetime="2023-01-05 15:20:28 -0400">Jan 5, 2023</time></a>
+		<a href="https://scottw.com/2023/01/05/mastodon-microposts-my.html" class="u-url"><time class="dt-published" datetime="2023-01-05 15:20:28 -0400">Jan 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://feedbin.com/blog/2023/01/05/mastodon-and-microposts/">Mastodon &amp; Microposts</a></p>
@@ -1372,7 +1511,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/05/excalidraw-free-tool.html" class="u-url"><time class="dt-published" datetime="2023-01-05 11:02:51 -0400">Jan 5, 2023</time></a>
+		<a href="https://scottw.com/2023/01/05/excalidraw-free-tool.html" class="u-url"><time class="dt-published" datetime="2023-01-05 11:02:51 -0400">Jan 5, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://excalidraw.com/">Excalidraw</a> - Free tool to make hand-drawn sketches in your browser. Open source as well.</p>
@@ -1383,7 +1522,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/04/steps-to-use.html" class="u-url"><time class="dt-published" datetime="2023-01-04 14:25:51 -0400">Jan 4, 2023</time></a>
+		<a href="https://scottw.com/2023/01/04/steps-to-use.html" class="u-url"><time class="dt-published" datetime="2023-01-04 14:25:51 -0400">Jan 4, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://gist.github.com/searls/13912eccce10dac7e07c76db8ea96ef7">Steps to use solargraph for Rails projects in VS Code (WIP)</a></p>
@@ -1395,7 +1534,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/04/a-nice-qualityoflife.html" class="u-url"><time class="dt-published" datetime="2023-01-04 12:07:14 -0400">Jan 4, 2023</time></a>
+		<a href="https://scottw.com/2023/01/04/a-nice-qualityoflife.html" class="u-url"><time class="dt-published" datetime="2023-01-04 12:07:14 -0400">Jan 4, 2023</time></a>
 
 		<div class="e-content">
 			 <p>A nice quality-of-life improvement in Ruby 3.2 <a href="https://codewithrails.com/ruby-enumerator-product">Enumerator::product</a></p>
@@ -1406,7 +1545,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/03/how-to-validate.html" class="u-url"><time class="dt-published" datetime="2023-01-03 17:13:04 -0400">Jan 3, 2023</time></a>
+		<a href="https://scottw.com/2023/01/03/how-to-validate.html" class="u-url"><time class="dt-published" datetime="2023-01-03 17:13:04 -0400">Jan 3, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://thoughtbot.com/blog/how-to-validate-the-presence-of-a-boolean-field-in-a-rails-model">How to validate the presence of a boolean field in a Rails model</a></p>
@@ -1420,7 +1559,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/03/crontabguru-the-quick.html" class="u-url"><time class="dt-published" datetime="2023-01-03 13:28:24 -0400">Jan 3, 2023</time></a>
+		<a href="https://scottw.com/2023/01/03/crontabguru-the-quick.html" class="u-url"><time class="dt-published" datetime="2023-01-03 13:28:24 -0400">Jan 3, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://crontab.guru/">Crontab.guru</a></p>
@@ -1435,7 +1574,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/03/active-record-enum.html" class="u-url"><time class="dt-published" datetime="2023-01-03 12:18:27 -0400">Jan 3, 2023</time></a>
+		<a href="https://scottw.com/2023/01/03/active-record-enum.html" class="u-url"><time class="dt-published" datetime="2023-01-03 12:18:27 -0400">Jan 3, 2023</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://hybrd.co/posts/active-record-enum-form-select">Active Record enum form select</a></p>
@@ -1447,7 +1586,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/02/zion-and-embiid.html" class="u-url"><time class="dt-published" datetime="2023-01-02 21:33:21 -0400">Jan 2, 2023</time></a>
+		<a href="https://scottw.com/2023/01/02/zion-and-embiid.html" class="u-url"><time class="dt-published" datetime="2023-01-02 21:33:21 -0400">Jan 2, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Zion and Embiid moving like big men should not be able to move.</p>
@@ -1459,7 +1598,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/01/i-took-this.html" class="u-url"><time class="dt-published" datetime="2023-01-01 21:20:23 -0400">Jan 1, 2023</time></a>
+		<a href="https://scottw.com/2023/01/01/i-took-this.html" class="u-url"><time class="dt-published" datetime="2023-01-01 21:20:23 -0400">Jan 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>I took this photo on New Year’s Eve.</p>
@@ -1472,7 +1611,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2023/01/01/weird-choice-to.html" class="u-url"><time class="dt-published" datetime="2023-01-01 21:16:25 -0400">Jan 1, 2023</time></a>
+		<a href="https://scottw.com/2023/01/01/weird-choice-to.html" class="u-url"><time class="dt-published" datetime="2023-01-01 21:16:25 -0400">Jan 1, 2023</time></a>
 
 		<div class="e-content">
 			 <p>Weird choice to use a nickname for Idaho.</p>
@@ -1484,7 +1623,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/31/fog-was-thick.html" class="u-url"><time class="dt-published" datetime="2022-12-31 12:43:40 -0400">Dec 31, 2022</time></a>
+		<a href="https://scottw.com/2022/12/31/fog-was-thick.html" class="u-url"><time class="dt-published" datetime="2022-12-31 12:43:40 -0400">Dec 31, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Fog was thick as hell today.</p>
@@ -1496,7 +1635,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/29/finally-made-the.html" class="u-url"><time class="dt-published" datetime="2022-12-29 12:10:42 -0400">Dec 29, 2022</time></a>
+		<a href="https://scottw.com/2022/12/29/finally-made-the.html" class="u-url"><time class="dt-published" datetime="2022-12-29 12:10:42 -0400">Dec 29, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Finally made the autocomplete for IRB in Ruby 3.0 readable with my Dracula color scheme. All it took was changing the terminal&rsquo;s definition of <code>Cyan</code>. Hopefully, this will be configurable in the future.</p>
@@ -1508,7 +1647,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/23/a-nice-point.html" class="u-url"><time class="dt-published" datetime="2022-12-23 22:30:39 -0400">Dec 23, 2022</time></a>
+		<a href="https://scottw.com/2022/12/23/a-nice-point.html" class="u-url"><time class="dt-published" datetime="2022-12-23 22:30:39 -0400">Dec 23, 2022</time></a>
 
 		<div class="e-content">
 			 <p>A nice 20 point comeback win for the @Sixers to start the <del>sports</del> Christmas weekend.</p>
@@ -1519,7 +1658,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/23/delayed-elon-jet.html" class="u-url"><time class="dt-published" datetime="2022-12-23 13:56:19 -0400">Dec 23, 2022</time></a>
+		<a href="https://scottw.com/2022/12/23/delayed-elon-jet.html" class="u-url"><time class="dt-published" datetime="2022-12-23 13:56:19 -0400">Dec 23, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.theverge.com/2022/12/23/23524060/twitter-elon-musk-jet-tracking-elonjet-elonjetnextday">Delayed Elon Jet</a></p>
@@ -1531,7 +1670,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/23/a-cappuccino-cloud.html" class="u-url"><time class="dt-published" datetime="2022-12-23 11:18:02 -0400">Dec 23, 2022</time></a>
+		<a href="https://scottw.com/2022/12/23/a-cappuccino-cloud.html" class="u-url"><time class="dt-published" datetime="2022-12-23 11:18:02 -0400">Dec 23, 2022</time></a>
 
 		<div class="e-content">
 			 <p>A cappuccino cloud.</p>
@@ -1543,7 +1682,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/22/confused-do-i.html" class="u-url"><time class="dt-published" datetime="2022-12-22 17:42:47 -0400">Dec 22, 2022</time></a>
+		<a href="https://scottw.com/2022/12/22/confused-do-i.html" class="u-url"><time class="dt-published" datetime="2022-12-22 17:42:47 -0400">Dec 22, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Confused. Do I not have access to quality conversations today?</p>
@@ -1555,7 +1694,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/22/sunday-ticket-to.html" class="u-url"><time class="dt-published" datetime="2022-12-22 11:20:36 -0400">Dec 22, 2022</time></a>
+		<a href="https://scottw.com/2022/12/22/sunday-ticket-to.html" class="u-url"><time class="dt-published" datetime="2022-12-22 11:20:36 -0400">Dec 22, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.espn.com/nfl/story/_/id/35304457/nfl-sunday-ticket-headed-youtube-2023-season">Sunday Ticket to YouTube.tv</a></p>
@@ -1567,7 +1706,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/21/whats-on-my.html" class="u-url"><time class="dt-published" datetime="2022-12-21 11:16:31 -0400">Dec 21, 2022</time></a>
+		<a href="https://scottw.com/2022/12/21/whats-on-my.html" class="u-url"><time class="dt-published" datetime="2022-12-21 11:16:31 -0400">Dec 21, 2022</time></a>
 
 		<div class="e-content">
 			 <p>What&rsquo;s on my desk? - An Onyx with GMK Botanical</p>
@@ -1579,7 +1718,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/21/store-model-storemodel.html" class="u-url"><time class="dt-published" datetime="2022-12-21 11:08:05 -0400">Dec 21, 2022</time></a>
+		<a href="https://scottw.com/2022/12/21/store-model-storemodel.html" class="u-url"><time class="dt-published" datetime="2022-12-21 11:08:05 -0400">Dec 21, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/DmitryTsepelev/store_model">Store Model</a></p>
@@ -1594,7 +1733,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/20/original-tweet-on.html" class="u-url"><time class="dt-published" datetime="2022-12-20 22:19:19 -0400">Dec 20, 2022</time></a>
+		<a href="https://scottw.com/2022/12/20/original-tweet-on.html" class="u-url"><time class="dt-published" datetime="2022-12-20 22:19:19 -0400">Dec 20, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Original Tweet on the unoriginal Toot.</p>
@@ -1606,7 +1745,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/20/overheard-at-home.html" class="u-url"><time class="dt-published" datetime="2022-12-20 19:36:56 -0400">Dec 20, 2022</time></a>
+		<a href="https://scottw.com/2022/12/20/overheard-at-home.html" class="u-url"><time class="dt-published" datetime="2022-12-20 19:36:56 -0400">Dec 20, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Overheard at home:</p>
@@ -1619,7 +1758,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/20/144200.html" class="u-url"><time class="dt-published" datetime="2022-12-20 15:42:00 -0400">Dec 20, 2022</time></a>
+		<a href="https://scottw.com/2022/12/20/144200.html" class="u-url"><time class="dt-published" datetime="2022-12-20 15:42:00 -0400">Dec 20, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://badass.dev/launch-of-a-developer-education-product">An Overview of a Successful Dev Education Product Launch</a></p>
@@ -1631,7 +1770,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/20/135700.html" class="u-url"><time class="dt-published" datetime="2022-12-20 14:57:00 -0400">Dec 20, 2022</time></a>
+		<a href="https://scottw.com/2022/12/20/135700.html" class="u-url"><time class="dt-published" datetime="2022-12-20 14:57:00 -0400">Dec 20, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://denisdefreyne.com/articles/2022-ruby-equality/">A Guide to Ruby Equality</a></p>
@@ -1645,7 +1784,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/20/ruby-irb-the.html" class="u-url"><time class="dt-published" datetime="2022-12-20 14:00:57 -0400">Dec 20, 2022</time></a>
+		<a href="https://scottw.com/2022/12/20/ruby-irb-the.html" class="u-url"><time class="dt-published" datetime="2022-12-20 14:00:57 -0400">Dec 20, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://st0012.dev/whats-new-in-ruby-3-2-irb">Ruby 3.2 IRB</a></p>
@@ -1657,13 +1796,20 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/19/i-saw-scott.html" class="u-url"><time class="dt-published" datetime="2022-12-19 17:33:41 -0400">Dec 19, 2022</time></a>
+		<a href="https://scottw.com/2022/12/19/i-saw-scott.html" class="u-url"><time class="dt-published" datetime="2022-12-19 17:33:41 -0400">Dec 19, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I saw <a href="https://www.hanselman.com/blog/use-your-own-user-domain-for-mastodon-discoverability-with-the-webfinger-protocol-without-hosting-a-server">Scott Hanselman&rsquo;s post on using your own domain for Mastodon</a> discoverability.</p>
 <p>Instead of adding a webfinger file, I added this redirect on Netlify:</p>
-<pre tabindex="0"><code>/.well-known/webfinger https://ruby.social/.well-known/webfinger?resource=acct:scottw@ruby.social
-</code></pre><p>Longer term, there is likely some benefit to hosting the file yourself, but this gets you rolling quickly today.</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/.well-known/webfinger https://ruby.social/.well-known/webfinger?resource=acct:scottw@ruby.social
+</code></pre></td></tr></table>
+</div>
+</div><p>Longer term, there is likely some benefit to hosting the file yourself, but this gets you rolling quickly today.</p>
 
 		</div>
 	  </div>
@@ -1671,7 +1817,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/19/113100.html" class="u-url"><time class="dt-published" datetime="2022-12-19 12:31:00 -0400">Dec 19, 2022</time></a>
+		<a href="https://scottw.com/2022/12/19/113100.html" class="u-url"><time class="dt-published" datetime="2022-12-19 12:31:00 -0400">Dec 19, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I&rsquo;ll be back with Ivory, but for now, it is time to increasingly minimize time on the birdsite.</p>
@@ -1684,7 +1830,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/19/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-19 11:00:00 -0400">Dec 19, 2022</time></a>
+		<a href="https://scottw.com/2022/12/19/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-19 11:00:00 -0400">Dec 19, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://opml.glitch.me">Twitter Followings OPML Export</a></p>
@@ -1699,7 +1845,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/19/093700.html" class="u-url"><time class="dt-published" datetime="2022-12-19 10:37:00 -0400">Dec 19, 2022</time></a>
+		<a href="https://scottw.com/2022/12/19/093700.html" class="u-url"><time class="dt-published" datetime="2022-12-19 10:37:00 -0400">Dec 19, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Most SaaS apps with a free(mium) tier obscure the free option.</p>
@@ -1712,7 +1858,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/19/simpleicons-free-svg.html" class="u-url"><time class="dt-published" datetime="2022-12-19 09:40:51 -0400">Dec 19, 2022</time></a>
+		<a href="https://scottw.com/2022/12/19/simpleicons-free-svg.html" class="u-url"><time class="dt-published" datetime="2022-12-19 09:40:51 -0400">Dec 19, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://simpleicons.org/">SimpleIcons</a></p>
@@ -1726,7 +1872,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/18/promotion-of-alternative.html" class="u-url"><time class="dt-published" datetime="2022-12-18 16:23:48 -0400">Dec 18, 2022</time></a>
+		<a href="https://scottw.com/2022/12/18/promotion-of-alternative.html" class="u-url"><time class="dt-published" datetime="2022-12-18 16:23:48 -0400">Dec 18, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://help.twitter.com/en/rules-and-policies/social-platforms-policy">Promotion of Alternative Social Platforms Policy </a></p>
@@ -1742,7 +1888,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/18/a-good-futbol.html" class="u-url"><time class="dt-published" datetime="2022-12-18 13:59:49 -0400">Dec 18, 2022</time></a>
+		<a href="https://scottw.com/2022/12/18/a-good-futbol.html" class="u-url"><time class="dt-published" datetime="2022-12-18 13:59:49 -0400">Dec 18, 2022</time></a>
 
 		<div class="e-content">
 			 <p>A good futbol start to the football day (weekend with yesterday&rsquo;s three games).</p>
@@ -1754,7 +1900,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/reason-that-i.html" class="u-url"><time class="dt-published" datetime="2022-12-16 23:04:59 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/reason-that-i.html" class="u-url"><time class="dt-published" datetime="2022-12-16 23:04:59 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Reason 8,343 that I hate the Celtics.</p>
@@ -1766,7 +1912,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/the-new-cleanshot.html" class="u-url"><time class="dt-published" datetime="2022-12-16 22:17:24 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/the-new-cleanshot.html" class="u-url"><time class="dt-published" datetime="2022-12-16 22:17:24 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>The new CleanShot X background feature is such a nice touch for screenshots.</p>
@@ -1778,7 +1924,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/it-was-worth.html" class="u-url"><time class="dt-published" datetime="2022-12-16 22:13:17 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/it-was-worth.html" class="u-url"><time class="dt-published" datetime="2022-12-16 22:13:17 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>It was worth a shot.</p>
@@ -1790,7 +1936,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/curry-is-out.html" class="u-url"><time class="dt-published" datetime="2022-12-16 21:09:11 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/curry-is-out.html" class="u-url"><time class="dt-published" datetime="2022-12-16 21:09:11 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Curry is out. Sixers and Warriors with a 3-point shooting contest in the first quarter.</p>
@@ -1800,10 +1946,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/16/good-bye-twitter.html">On Twitter</a></h1>
+			<h1><a href="https://scottw.com/2022/12/16/good-bye-twitter.html">On Twitter</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/good-bye-twitter.html" class="u-url"><time class="dt-published" datetime="2022-12-16 15:00:00 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/good-bye-twitter.html" class="u-url"><time class="dt-published" datetime="2022-12-16 15:00:00 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I have not said much on Elon/Twitter because I don&rsquo;t think it will matter.</p>
@@ -1818,10 +1964,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/16/132100.html">Friday Five - iOS Apps I Use Frequently</a></h1>
+			<h1><a href="https://scottw.com/2022/12/16/132100.html">Friday Five - iOS Apps I Use Frequently</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/132100.html" class="u-url"><time class="dt-published" datetime="2022-12-16 14:21:00 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/132100.html" class="u-url"><time class="dt-published" datetime="2022-12-16 14:21:00 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Outside of social media, email, music, and maps, here are my five most used/essential iOS apps:</p>
@@ -1850,7 +1996,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/my-twitter-prediction.html" class="u-url"><time class="dt-published" datetime="2022-12-16 10:20:10 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/my-twitter-prediction.html" class="u-url"><time class="dt-published" datetime="2022-12-16 10:20:10 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p>My Twitter Prediction: Microsoft will purchase it from Elon in the $3 to $5 billion range in 12 to 18 months. The embarrassment from this will force him out of Tesla as well.</p>
@@ -1861,7 +2007,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/16/stimulus-hotkeys-this.html" class="u-url"><time class="dt-published" datetime="2022-12-16 10:02:58 -0400">Dec 16, 2022</time></a>
+		<a href="https://scottw.com/2022/12/16/stimulus-hotkeys-this.html" class="u-url"><time class="dt-published" datetime="2022-12-16 10:02:58 -0400">Dec 16, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/leastbad/stimulus-hotkeys">Stimulus Hotkeys</a></p>
@@ -1874,10 +2020,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/15/rails-and-docker.html">Rails and Docker</a></h1>
+			<h1><a href="https://scottw.com/2022/12/15/rails-and-docker.html">Rails and Docker</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/rails-and-docker.html" class="u-url"><time class="dt-published" datetime="2022-12-15 17:24:55 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/rails-and-docker.html" class="u-url"><time class="dt-published" datetime="2022-12-15 17:24:55 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://github.com/rails/docked">Docked</a></p>
@@ -1893,7 +2039,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/rails-dbmigrateredo-the.html" class="u-url"><time class="dt-published" datetime="2022-12-15 16:25:44 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/rails-dbmigrateredo-the.html" class="u-url"><time class="dt-published" datetime="2022-12-15 16:25:44 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://twitter.com/donnfelker/status/1599070911508119553">rails db:migrate:redo</a></p>
@@ -1910,7 +2056,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/all-my-weather.html" class="u-url"><time class="dt-published" datetime="2022-12-15 14:42:22 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/all-my-weather.html" class="u-url"><time class="dt-published" datetime="2022-12-15 14:42:22 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p>All my weather apps say it is raining.</p>
@@ -1922,7 +2068,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/113100.html" class="u-url"><time class="dt-published" datetime="2022-12-15 12:31:00 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/113100.html" class="u-url"><time class="dt-published" datetime="2022-12-15 12:31:00 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://speed.cloudflare.com">CloudFlare Speed Test</a></p>
@@ -1934,10 +2080,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/15/105300.html">RailsBytes</a></h1>
+			<h1><a href="https://scottw.com/2022/12/15/105300.html">RailsBytes</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/105300.html" class="u-url"><time class="dt-published" datetime="2022-12-15 11:53:00 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/105300.html" class="u-url"><time class="dt-published" datetime="2022-12-15 11:53:00 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p>There are many templates to jump-start a project and few options to add something to an existing project.</p>
@@ -1952,7 +2098,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/100300.html" class="u-url"><time class="dt-published" datetime="2022-12-15 11:03:00 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/100300.html" class="u-url"><time class="dt-published" datetime="2022-12-15 11:03:00 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.honeybadger.io/blog/the-rubyist-guide-to-unicode-utf8/">A Rubyist&rsquo;s Introduction to Character Encoding, Unicode and UTF-8</a></p>
@@ -1967,7 +2113,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/sold-a-good.html" class="u-url"><time class="dt-published" datetime="2022-12-15 10:08:51 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/sold-a-good.html" class="u-url"><time class="dt-published" datetime="2022-12-15 10:08:51 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Sold a good chunk of my mechanical keyboard stash over the last couple of weeks. I valued and enjoyed all of it, but it felt l a waste to have it sitting on shelves and/or in boxes.</p>
@@ -1979,7 +2125,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/15/let-over-skirt.html" class="u-url"><time class="dt-published" datetime="2022-12-15 10:01:12 -0400">Dec 15, 2022</time></a>
+		<a href="https://scottw.com/2022/12/15/let-over-skirt.html" class="u-url"><time class="dt-published" datetime="2022-12-15 10:01:12 -0400">Dec 15, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Left over skirt steak and sweet potatoes hash&hellip;.it&rsquo;s what&rsquo;s for breakfast.</p>
@@ -1990,10 +2136,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/14/120300.html">iOS Shortcut for Following Someone on a Different Mastodon Server</a></h1>
+			<h1><a href="https://scottw.com/2022/12/14/120300.html">iOS Shortcut for Following Someone on a Different Mastodon Server</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/14/120300.html" class="u-url"><time class="dt-published" datetime="2022-12-14 13:03:00 -0400">Dec 14, 2022</time></a>
+		<a href="https://scottw.com/2022/12/14/120300.html" class="u-url"><time class="dt-published" datetime="2022-12-14 13:03:00 -0400">Dec 14, 2022</time></a>
 
 		<div class="e-content">
 			 <blockquote>
@@ -2007,19 +2153,40 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/14/110000.html">Adding Paging Titles for Short Micro.blog Posts</a></h1>
+			<h1><a href="https://scottw.com/2022/12/14/110000.html">Adding Paging Titles for Short Micro.blog Posts</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/14/110000.html" class="u-url"><time class="dt-published" datetime="2022-12-14 12:00:00 -0400">Dec 14, 2022</time></a>
+		<a href="https://scottw.com/2022/12/14/110000.html" class="u-url"><time class="dt-published" datetime="2022-12-14 12:00:00 -0400">Dec 14, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I noticed posts without titles do not have proper HTML Title tags on my new Micro.blog.</p>
 <p>Even as I type this, I kind of get it. <em>How do you have a title without a title?</em> 🤔</p>
 <p>Many services rely on a title element when building links, and seeing &ldquo;ScottW&rsquo;s Blog&rdquo; (or whatever I eventually name this thing) looks silly.</p>
 <p>I checked the source for a couple other Micro.blog templates and found none of them did anything special to handle the missing title. Most looked something like this:</p>
-<pre tabindex="0"><code>&lt;title&gt;{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ site.Title }}&lt;/title&gt;
-</code></pre><p>After some trial and error, I noticed the <code>.Summary</code> value for the default meta description tag and decided to use that. This is the first &lsquo;code&rsquo; I have written in Hugo, so it might need some more tweaking in the future:</p>
-<pre tabindex="0"><code>  &lt;title&gt;
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;title&gt;{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ site.Title }}&lt;/title&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>After some trial and error, I noticed the <code>.Summary</code> value for the default meta description tag and decided to use that. This is the first &lsquo;code&rsquo; I have written in Hugo, so it might need some more tweaking in the future:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  &lt;title&gt;
       {{ if .IsHome }}
         Home
       {{ else if .Title }}
@@ -2029,14 +2196,16 @@
       {{ end }}
       - {{ .Site.Title }}
   &lt;/title&gt;
-</code></pre>
+</code></pre></td></tr></table>
+</div>
+</div>
 		</div>
 	  </div>
 	
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/14/css-loaders-sample.html" class="u-url"><time class="dt-published" datetime="2022-12-14 11:32:00 -0400">Dec 14, 2022</time></a>
+		<a href="https://scottw.com/2022/12/14/css-loaders-sample.html" class="u-url"><time class="dt-published" datetime="2022-12-14 11:32:00 -0400">Dec 14, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje">CSS Loaders</a> 100 sample loaders are all done with CSS. I continue to be amazed at what can be done with CSS, even with a personal goal to write as little CSS as possible for the rest of my life. 😄</p>
@@ -2047,7 +2216,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/14/rails-safety-mechanisms.html" class="u-url"><time class="dt-published" datetime="2022-12-14 10:21:00 -0400">Dec 14, 2022</time></a>
+		<a href="https://scottw.com/2022/12/14/rails-safety-mechanisms.html" class="u-url"><time class="dt-published" datetime="2022-12-14 10:21:00 -0400">Dec 14, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://planetscale.com/blog/rails-safety-mechanisms">Rails Safety Mechanisms</a></p>
@@ -2059,7 +2228,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/polar-express.html" class="u-url"><time class="dt-published" datetime="2022-12-13 21:25:27 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/polar-express.html" class="u-url"><time class="dt-published" datetime="2022-12-13 21:25:27 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Polar Express</p>
@@ -2071,7 +2240,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/its-that-time.html" class="u-url"><time class="dt-published" datetime="2022-12-13 16:23:12 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/its-that-time.html" class="u-url"><time class="dt-published" datetime="2022-12-13 16:23:12 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p>It&rsquo;s that time of year&hellip;</p>
@@ -2083,7 +2252,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/113400.html" class="u-url"><time class="dt-published" datetime="2022-12-13 12:34:00 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/113400.html" class="u-url"><time class="dt-published" datetime="2022-12-13 12:34:00 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.goodgoodgood.co/articles/open-source-seeds-big-agriculture">Open Source Seeds</a></p>
@@ -2097,7 +2266,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/104800.html" class="u-url"><time class="dt-published" datetime="2022-12-13 11:48:00 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/104800.html" class="u-url"><time class="dt-published" datetime="2022-12-13 11:48:00 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://deepsource.io/blog/ruby-percent-notation/">Percent notation in Ruby</a></p>
@@ -2109,7 +2278,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/095800.html" class="u-url"><time class="dt-published" datetime="2022-12-13 10:58:00 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/095800.html" class="u-url"><time class="dt-published" datetime="2022-12-13 10:58:00 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.phlex.fun/">Phlex</a></p>
@@ -2125,7 +2294,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/13/postgres-i-am.html" class="u-url"><time class="dt-published" datetime="2022-12-13 09:54:45 -0400">Dec 13, 2022</time></a>
+		<a href="https://scottw.com/2022/12/13/postgres-i-am.html" class="u-url"><time class="dt-published" datetime="2022-12-13 09:54:45 -0400">Dec 13, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.postgresql.org/about/news/postgresql-15-released-2526/">Postgres15</a></p>
@@ -2136,10 +2305,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/12/cleanshot-custom-backgrounds.html">CleanShot Custom Backgrounds</a></h1>
+			<h1><a href="https://scottw.com/2022/12/12/cleanshot-custom-backgrounds.html">CleanShot Custom Backgrounds</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/cleanshot-custom-backgrounds.html" class="u-url"><time class="dt-published" datetime="2022-12-12 14:00:00 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/cleanshot-custom-backgrounds.html" class="u-url"><time class="dt-published" datetime="2022-12-12 14:00:00 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="http://cleanshot.com">CleanShot X</a> has a nice update (version 4.5) that allows you to control the background of a screenshot.</p>
@@ -2153,7 +2322,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/120000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 13:00:00 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/120000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 13:00:00 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.cakebrew.com">CakeBrew</a> is an excellent GUI overview of your HomeBrew install.</p>
@@ -2166,7 +2335,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/113000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 12:30:00 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/113000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 12:30:00 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="http://shortruby.com">ShortRuby</a> - The best part about checking email on Monday morning is finding a new ShortRuby newsletter.</p>
@@ -2180,7 +2349,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/103000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 11:30:00 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/103000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 11:30:00 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://medium.com/rubycademy/ruby-bitwise-operators-da57763fa368">Ruby Bitwise Operators</a></p>
@@ -2190,10 +2359,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/12/100000.html">Titleless Posts</a></h1>
+			<h1><a href="https://scottw.com/2022/12/12/100000.html">Titleless Posts</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 11:00:00 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-12 11:00:00 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I have more to share on why I chose Micro.Blog, but one of the features that were most important to me going forward was &ldquo;Titleless Posts.&rdquo; This allows you the same basic writing flow as a Tweet (or, I guess, Toot these days).</p>
@@ -2207,7 +2376,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/12/the-codingfont-game.html" class="u-url"><time class="dt-published" datetime="2022-12-12 10:24:27 -0400">Dec 12, 2022</time></a>
+		<a href="https://scottw.com/2022/12/12/the-codingfont-game.html" class="u-url"><time class="dt-published" datetime="2022-12-12 10:24:27 -0400">Dec 12, 2022</time></a>
 
 		<div class="e-content">
 			 <p>The CodingFont game is excellent, but what if you want to do a quick test drive?</p>
@@ -2220,7 +2389,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/11/a-nice-parlay.html" class="u-url"><time class="dt-published" datetime="2022-12-11 09:17:52 -0400">Dec 11, 2022</time></a>
+		<a href="https://scottw.com/2022/12/11/a-nice-parlay.html" class="u-url"><time class="dt-published" datetime="2022-12-11 09:17:52 -0400">Dec 11, 2022</time></a>
 
 		<div class="e-content">
 			 <p>A nice parlay win going into Sunday.</p>
@@ -2233,7 +2402,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/11/attention-trust-and.html" class="u-url"><time class="dt-published" datetime="2022-12-11 07:35:07 -0400">Dec 11, 2022</time></a>
+		<a href="https://scottw.com/2022/12/11/attention-trust-and.html" class="u-url"><time class="dt-published" datetime="2022-12-11 07:35:07 -0400">Dec 11, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://seths.blog/2022/12/attention-trust-and-gpt3/">Attention, trust and GPT3</a></p>
@@ -2247,7 +2416,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/sixers-got-lucky.html" class="u-url"><time class="dt-published" datetime="2022-12-09 23:31:18 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/sixers-got-lucky.html" class="u-url"><time class="dt-published" datetime="2022-12-09 23:31:18 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Sixers got lucky in the end. Lakers choked on two free throws, ran out of gas, and are not a good team.</p>
@@ -2258,7 +2427,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/what-a-horrific.html" class="u-url"><time class="dt-published" datetime="2022-12-09 23:15:39 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/what-a-horrific.html" class="u-url"><time class="dt-published" datetime="2022-12-09 23:15:39 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p>What a horrific collapse by the #Sixers. vs the Lakers. The Sixers are the worst-coached team in the NBA. #docsgottago.</p>
@@ -2269,7 +2438,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/nice-upgrade-to.html" class="u-url"><time class="dt-published" datetime="2022-12-09 16:36:50 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/nice-upgrade-to.html" class="u-url"><time class="dt-published" datetime="2022-12-09 16:36:50 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Nice upgrade to MarsEdit (V5). I am looking forward to using the new Micro Post feature.</p>
@@ -2280,7 +2449,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/omglol-is-a.html" class="u-url"><time class="dt-published" datetime="2022-12-09 15:52:10 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/omglol-is-a.html" class="u-url"><time class="dt-published" datetime="2022-12-09 15:52:10 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://home.omg.lol">OMG.lol</a> is a fun little service for status updates, profile pages, and more.</p>
@@ -2292,10 +2461,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/09/friday-five-podcasts.html">Friday Five: Podcasts</a></h1>
+			<h1><a href="https://scottw.com/2022/12/09/friday-five-podcasts.html">Friday Five: Podcasts</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/friday-five-podcasts.html" class="u-url"><time class="dt-published" datetime="2022-12-09 12:00:00 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/friday-five-podcasts.html" class="u-url"><time class="dt-published" datetime="2022-12-09 12:00:00 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p>My podcast listening usually fluctuates between what I am interested in and what I do while listening to podcasts.</p>
@@ -2326,7 +2495,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-09 11:00:00 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/100000.html" class="u-url"><time class="dt-published" datetime="2022-12-09 11:00:00 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.codingfont.com">CodingFont</a> is a fun bracket game that helps you pick a coding font.</p>
@@ -2340,7 +2509,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/09/debugging-is-an.html" class="u-url"><time class="dt-published" datetime="2022-12-09 09:24:47 -0400">Dec 9, 2022</time></a>
+		<a href="https://scottw.com/2022/12/09/debugging-is-an.html" class="u-url"><time class="dt-published" datetime="2022-12-09 09:24:47 -0400">Dec 9, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Debugging is an underappreciated skill and is worth your time to get good at.</p>
@@ -2351,10 +2520,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/08/the-new-business.html">The New Business Paradox</a></h1>
+			<h1><a href="https://scottw.com/2022/12/08/the-new-business.html">The New Business Paradox</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/08/the-new-business.html" class="u-url"><time class="dt-published" datetime="2022-12-08 10:43:02 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/08/the-new-business.html" class="u-url"><time class="dt-published" datetime="2022-12-08 10:43:02 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Nathan Barry (on <a href="https://twitter.com/nathanbarry/status/1600690284358430724">Twitter</a> this morning)</p>
@@ -2371,10 +2540,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/05/132544.html">Optimizing ActiveRecord SQL Memory Usage in Rails</a></h1>
+			<h1><a href="https://scottw.com/2022/12/05/132544.html">Optimizing ActiveRecord SQL Memory Usage in Rails</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/05/132544.html" class="u-url"><time class="dt-published" datetime="2022-12-08 10:29:42 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/05/132544.html" class="u-url"><time class="dt-published" datetime="2022-12-08 10:29:42 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>A decent suggestion by Patel Urbanek - <a href="https://pawelurbanek.com/activerecord-memory-usage">Easy to Miss Way to Optimize ActiveRecord SQL Memory Usage in Rails</a>.</p>
@@ -2396,7 +2565,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/08/at-this-point.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:55:28 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/08/at-this-point.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:55:28 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>At this point, shouldn&rsquo;t you just were a helmet?</p>
@@ -2408,10 +2577,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/08/apple-watch-start.html">Apple Watch - Start Your Day?</a></h1>
+			<h1><a href="https://scottw.com/2022/12/08/apple-watch-start.html">Apple Watch - Start Your Day?</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/08/apple-watch-start.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:49:13 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/08/apple-watch-start.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:49:13 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>“The Start Your Day” request is now my least favorite watch/iOS feature.</p>
@@ -2434,7 +2603,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/08/an-early-morning.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:34:13 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/08/an-early-morning.html" class="u-url"><time class="dt-published" datetime="2022-12-08 07:34:13 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>An early morning post-workout full moon.</p>
@@ -2446,7 +2615,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/08/i-would-buy.html" class="u-url"><time class="dt-published" datetime="2022-12-08 05:16:49 -0400">Dec 8, 2022</time></a>
+		<a href="https://scottw.com/2022/12/08/i-would-buy.html" class="u-url"><time class="dt-published" datetime="2022-12-08 05:16:49 -0400">Dec 8, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I would buy Ratio’s Protein yogurt in buckets if it were available.</p>
@@ -2457,10 +2626,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/07/aaron-judge-is.html">Aaron Judge is Back</a></h1>
+			<h1><a href="https://scottw.com/2022/12/07/aaron-judge-is.html">Aaron Judge is Back</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/07/aaron-judge-is.html" class="u-url"><time class="dt-published" datetime="2022-12-07 12:05:13 -0400">Dec 7, 2022</time></a>
+		<a href="https://scottw.com/2022/12/07/aaron-judge-is.html" class="u-url"><time class="dt-published" datetime="2022-12-07 12:05:13 -0400">Dec 7, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.espn.com/mlb/story/_/id/35202619/aaron-judge-agrees-9-year-360m-deal-stick-yankees-per-report">Aaron Judge is Back!!!</a></p>
@@ -2476,7 +2645,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/07/tot-this-is.html" class="u-url"><time class="dt-published" datetime="2022-12-07 11:19:45 -0400">Dec 7, 2022</time></a>
+		<a href="https://scottw.com/2022/12/07/tot-this-is.html" class="u-url"><time class="dt-published" datetime="2022-12-07 11:19:45 -0400">Dec 7, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://tot.rocks/">Tot</a> - this is one of the few apps I use daily on all my devices.</p>
@@ -2493,7 +2662,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/07/a-first-look.html" class="u-url"><time class="dt-published" datetime="2022-12-07 08:20:20 -0400">Dec 7, 2022</time></a>
+		<a href="https://scottw.com/2022/12/07/a-first-look.html" class="u-url"><time class="dt-published" datetime="2022-12-07 08:20:20 -0400">Dec 7, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://blog.appsignal.com/2022/12/06/a-first-look-at-hanami-2-for-ruby.html">A First Look at Hanami</a></p>
@@ -2507,7 +2676,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/06/hansel-emmanuel-the.html" class="u-url"><time class="dt-published" datetime="2022-12-06 20:15:27 -0400">Dec 6, 2022</time></a>
+		<a href="https://scottw.com/2022/12/06/hansel-emmanuel-the.html" class="u-url"><time class="dt-published" datetime="2022-12-06 20:15:27 -0400">Dec 6, 2022</time></a>
 
 		<div class="e-content">
 			 <blockquote>
@@ -2522,7 +2691,7 @@
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/06/its-never-a.html" class="u-url"><time class="dt-published" datetime="2022-12-06 17:42:13 -0400">Dec 6, 2022</time></a>
+		<a href="https://scottw.com/2022/12/06/its-never-a.html" class="u-url"><time class="dt-published" datetime="2022-12-06 17:42:13 -0400">Dec 6, 2022</time></a>
 
 		<div class="e-content">
 			 <p>“It’s never a perfect time. The house could burn down tomorrow. “</p>
@@ -2533,10 +2702,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/06/on-grammarly.html">On Grammarly</a></h1>
+			<h1><a href="https://scottw.com/2022/12/06/on-grammarly.html">On Grammarly</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/06/on-grammarly.html" class="u-url"><time class="dt-published" datetime="2022-12-06 11:10:23 -0400">Dec 6, 2022</time></a>
+		<a href="https://scottw.com/2022/12/06/on-grammarly.html" class="u-url"><time class="dt-published" datetime="2022-12-06 11:10:23 -0400">Dec 6, 2022</time></a>
 
 		<div class="e-content">
 			 <p><a href="https://www.grammarly.com/">Grammarly</a> is the most essential browser extension I use daily and happily pay for the premium edition.</p>
@@ -2549,10 +2718,10 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/06/shipping-is-never.html">Shipping is Never Free</a></h1>
+			<h1><a href="https://scottw.com/2022/12/06/shipping-is-never.html">Shipping is Never Free</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/06/shipping-is-never.html" class="u-url"><time class="dt-published" datetime="2022-12-06 09:47:41 -0400">Dec 6, 2022</time></a>
+		<a href="https://scottw.com/2022/12/06/shipping-is-never.html" class="u-url"><time class="dt-published" datetime="2022-12-06 09:47:41 -0400">Dec 6, 2022</time></a>
 
 		<div class="e-content">
 			 <p>The biggest fallacy in online shipping is free shipping. UPS, FedEx, USPS, DHL, etc., all charge for their services.</p>
@@ -2564,28 +2733,46 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/05/finding-duplicate-charactes.html">Finding Duplicate Charactes in Multiple Arrays with Ruby</a></h1>
+			<h1><a href="https://scottw.com/2022/12/05/finding-duplicate-charactes.html">Finding Duplicate Charactes in Multiple Arrays with Ruby</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/05/finding-duplicate-charactes.html" class="u-url"><time class="dt-published" datetime="2022-12-05 10:14:50 -0400">Dec 5, 2022</time></a>
+		<a href="https://scottw.com/2022/12/05/finding-duplicate-charactes.html" class="u-url"><time class="dt-published" datetime="2022-12-05 10:14:50 -0400">Dec 5, 2022</time></a>
 
 		<div class="e-content">
 			 <p>We needed to find duplicate characters in multiple arrays for Saturday&rsquo;s <a href="https://adventofcode.com">Advent of Code</a>.</p>
 <p>In the first part of the problem, it was among two arrays, so I did something quick like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">first_array<span style="color:#f92672">.</span>select { <span style="color:#f92672">|</span>char<span style="color:#f92672">|</span> second_array<span style="color:#f92672">.</span>include?(char) }
-</code></pre></div><p>This worked as expected, but in part 2, you needed to perform a similar search across three arrays.</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">first_array.select { |char| second_array.include?(char) }
+</code></pre></td></tr></table>
+</div>
+</div><p>This worked as expected, but in part 2, you needed to perform a similar search across three arrays.</p>
 <p>I could have chained a second <code>select</code> or duplicated the line entirely, but I figured there was a more straightforward way&hellip;and of course, in Ruby, there is almost always a more straightforward way.</p>
 <p><del>I do not have a traditional comp sci background, so my mind rarely jumps to Bitwise operators, but in this case, this is the Bitwise <code>&amp;</code> operator is exactly what we needed.</del></p>
 <p><a href="https://ruby.social/@scott/109461560027015018">@scott</a> pointed this is not Bitwise when dealing with strings:</p>
 <blockquote>
 <p>It is the unary and operator. On arrays, #&amp; is a method that returns the set union of two arrays. On integers, it is indeed implemented as a bitwise and.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;vJrwpWtwJgWrhcsFMMfFFhFp&#34;</span><span style="color:#f92672">.</span>chars
-b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL&#34;</span><span style="color:#f92672">.</span>chars
-c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PmmdzqPrVvPwwTWBwg&#34;</span><span style="color:#f92672">.</span>chars
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">a = <span style="color:#ed9d13">&#34;vJrwpWtwJgWrhcsFMMfFFhFp&#34;</span>.chars
+b = <span style="color:#ed9d13">&#34;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL&#34;</span>.chars
+c = <span style="color:#ed9d13">&#34;PmmdzqPrVvPwwTWBwg&#34;</span>.chars
 
-duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> b <span style="color:#f92672">&amp;</span> c
-</code></pre></div><p>Even better, this easily scales across N arrays.</p>
+duplicates = a &amp; b &amp; c
+</code></pre></td></tr></table>
+</div>
+</div><p>Even better, this easily scales across N arrays.</p>
 
 		</div>
 	  </div>
@@ -2593,7 +2780,7 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/03/anabolic-sky-high.html" class="u-url"><time class="dt-published" datetime="2022-12-03 10:01:10 -0400">Dec 3, 2022</time></a>
+		<a href="https://scottw.com/2022/12/03/anabolic-sky-high.html" class="u-url"><time class="dt-published" datetime="2022-12-03 10:01:10 -0400">Dec 3, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Anabolic Sky High French Toast</p>
@@ -2607,7 +2794,7 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/03/i-recently-switched.html" class="u-url"><time class="dt-published" datetime="2022-12-03 08:36:37 -0400">Dec 3, 2022</time></a>
+		<a href="https://scottw.com/2022/12/03/i-recently-switched.html" class="u-url"><time class="dt-published" datetime="2022-12-03 08:36:37 -0400">Dec 3, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I recently switched from a 3 day on and 1 day off training schedule to 2 on, 1 off, 3 on, and 1 off.</p>
@@ -2619,7 +2806,7 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/03/with-usc-losing.html" class="u-url"><time class="dt-published" datetime="2022-12-03 08:19:22 -0400">Dec 3, 2022</time></a>
+		<a href="https://scottw.com/2022/12/03/with-usc-losing.html" class="u-url"><time class="dt-published" datetime="2022-12-03 08:19:22 -0400">Dec 3, 2022</time></a>
 
 		<div class="e-content">
 			 <p>With USC losing to Utah, we are one TCU loss away from a Big10 vs. SEC show down in the college football playoffs.</p>
@@ -2629,10 +2816,10 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/02/friday-five-getting.html">Friday Five: Getting Fit in 2023</a></h1>
+			<h1><a href="https://scottw.com/2022/12/02/friday-five-getting.html">Friday Five: Getting Fit in 2023</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/02/friday-five-getting.html" class="u-url"><time class="dt-published" datetime="2022-12-02 14:00:12 -0400">Dec 2, 2022</time></a>
+		<a href="https://scottw.com/2022/12/02/friday-five-getting.html" class="u-url"><time class="dt-published" datetime="2022-12-02 14:00:12 -0400">Dec 2, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Below is roughly what I have done for the last 500 or so days. I lucked into this progression, but I am hoping it will help others in the future.</p>
@@ -2663,7 +2850,7 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/12/01/i-have-not.html" class="u-url"><time class="dt-published" datetime="2022-12-01 16:26:03 -0400">Dec 1, 2022</time></a>
+		<a href="https://scottw.com/2022/12/01/i-have-not.html" class="u-url"><time class="dt-published" datetime="2022-12-01 16:26:03 -0400">Dec 1, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I have not had much use for <a href="https://sizzy.co">Sizzy</a> in while, but fired it up today and was instantly re-impressed. One of the more indispensable tools for frontend web development.</p>
@@ -2673,54 +2860,97 @@ duplicates <span style="color:#f92672">=</span> a <span style="color:#f92672">&a
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/12/01/bare-metal-fizzbuzz.html">Bare Metal FizzBuzz</a></h1>
+			<h1><a href="https://scottw.com/2022/12/01/bare-metal-fizzbuzz.html">Bare Metal FizzBuzz</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/12/01/bare-metal-fizzbuzz.html" class="u-url"><time class="dt-published" datetime="2022-12-01 10:28:46 -0400">Dec 1, 2022</time></a>
+		<a href="https://scottw.com/2022/12/01/bare-metal-fizzbuzz.html" class="u-url"><time class="dt-published" datetime="2022-12-01 10:28:46 -0400">Dec 1, 2022</time></a>
 
 		<div class="e-content">
 			 <p>If I were deploying this somewhere, I would lean towards something that looks more like the <code>readable_solution</code> below.</p>
 <p>But for the sake of the <a href="https://gist.github.com/Schwad/9cf63f647ad3d16dc8d01eff554aae50">challenge</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">solution</span>(number)
- <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span><span style="color:#e6db74">&#34;Fizz&#34;</span> <span style="color:#66d9ef">if</span> (number <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>zero?<span style="color:#e6db74">}#{</span><span style="color:#e6db74">&#34;Buzz&#34;</span> <span style="color:#66d9ef">if</span> (number <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>zero?<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
-<span style="color:#66d9ef">end</span>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">solution</span>(number)
+ <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">#{</span><span style="color:#ed9d13">&#34;Fizz&#34;</span> <span style="color:#6ab825;font-weight:bold">if</span> (number % <span style="color:#3677a9">3</span>).zero?<span style="color:#ed9d13">}#{</span><span style="color:#ed9d13">&#34;Buzz&#34;</span> <span style="color:#6ab825;font-weight:bold">if</span> (number % <span style="color:#3677a9">5</span>).zero?<span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span>
+<span style="color:#6ab825;font-weight:bold">end</span>
 
-<span style="color:#66d9ef">raise</span> <span style="color:#66d9ef">unless</span> solution(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Fizz&#34;</span>
-<span style="color:#66d9ef">raise</span> <span style="color:#66d9ef">unless</span> solution(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Buzz&#34;</span>
-<span style="color:#66d9ef">raise</span> <span style="color:#66d9ef">unless</span> solution(<span style="color:#ae81ff">15</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;FizzBuzz&#34;</span>
+<span style="color:#6ab825;font-weight:bold">raise</span> <span style="color:#6ab825;font-weight:bold">unless</span> solution(<span style="color:#3677a9">3</span>) == <span style="color:#ed9d13">&#34;Fizz&#34;</span>
+<span style="color:#6ab825;font-weight:bold">raise</span> <span style="color:#6ab825;font-weight:bold">unless</span> solution(<span style="color:#3677a9">5</span>) == <span style="color:#ed9d13">&#34;Buzz&#34;</span>
+<span style="color:#6ab825;font-weight:bold">raise</span> <span style="color:#6ab825;font-weight:bold">unless</span> solution(<span style="color:#3677a9">15</span>) == <span style="color:#ed9d13">&#34;FizzBuzz&#34;</span>
 
-puts <span style="color:#e6db74">&#34;It works!&#34;</span>
+<span style="color:#24909d">puts</span> <span style="color:#ed9d13">&#34;It works!&#34;</span>
 
-</code></pre></div><p>If this were a one-liner competition, I would like my chances. 😄</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">readable_solution</span>(number)
- modulo_3 <span style="color:#f92672">=</span> (number <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>zero?
- modulo_5 <span style="color:#f92672">=</span> (number <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>zero?
+</code></pre></td></tr></table>
+</div>
+</div><p>If this were a one-liner competition, I would like my chances. 😄</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">readable_solution</span>(number)
+ modulo_3 = (number % <span style="color:#3677a9">3</span>).zero?
+ modulo_5 = (number % <span style="color:#3677a9">5</span>).zero?
 
- <span style="color:#66d9ef">if</span> modulo_3 <span style="color:#f92672">&amp;&amp;</span> modulo_5
-   <span style="color:#e6db74">&#34;FizzBuzz&#34;</span>
- <span style="color:#66d9ef">elsif</span> modulo_3
-   <span style="color:#e6db74">&#34;Fizz&#34;</span>
-  <span style="color:#66d9ef">elsif</span> modulo_5
-    <span style="color:#e6db74">&#34;Buzz&#34;</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div>
+ <span style="color:#6ab825;font-weight:bold">if</span> modulo_3 &amp;&amp; modulo_5
+   <span style="color:#ed9d13">&#34;FizzBuzz&#34;</span>
+ <span style="color:#6ab825;font-weight:bold">elsif</span> modulo_3
+   <span style="color:#ed9d13">&#34;Fizz&#34;</span>
+  <span style="color:#6ab825;font-weight:bold">elsif</span> modulo_5
+    <span style="color:#ed9d13">&#34;Buzz&#34;</span>
+  <span style="color:#6ab825;font-weight:bold">end</span>
+<span style="color:#6ab825;font-weight:bold">end</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 		</div>
 	  </div>
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/11/30/today-i-learned.html">Today I Learned: You can split a string in Ruby and request an array with a maximum number of values.</a></h1>
+			<h1><a href="https://scottw.com/2022/11/30/today-i-learned.html">Today I Learned: You can split a string in Ruby and request an array with a maximum number of values.</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/11/30/today-i-learned.html" class="u-url"><time class="dt-published" datetime="2022-11-30 12:08:02 -0400">Nov 30, 2022</time></a>
+		<a href="https://scottw.com/2022/11/30/today-i-learned.html" class="u-url"><time class="dt-published" datetime="2022-11-30 12:08:02 -0400">Nov 30, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">img_url <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">“</span>d3aa8b1gak9v1d<span style="color:#f92672">.</span>cloudfront<span style="color:#f92672">.</span>net<span style="color:#f92672">/</span>assets<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">640</span>d75f6<span style="color:#f92672">-</span>c607<span style="color:#f92672">-</span><span style="color:#ae81ff">4825</span><span style="color:#f92672">-</span>b23e<span style="color:#f92672">-</span>c4bd0e283c42<span style="color:#f92672">/</span>xwzxe02c76m3oxo00gil<span style="color:#f92672">/</span>mac<span style="color:#f92672">-</span>os<span style="color:#f92672">-</span>xspaces<span style="color:#f92672">-</span>options<span style="color:#f92672">.</span>png<span style="color:#960050;background-color:#1e0010">”</span>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">img_url = <span style="color:#a61717;background-color:#e3d2d2">“</span>d3aa8b1gak9v1d.cloudfront.net/assets/<span style="color:#3677a9">1</span>/<span style="color:#3677a9">640</span>d75f6-c607-<span style="color:#3677a9">4825</span>-b23e-c4bd0e283c42/xwzxe02c76m3oxo00gil/mac-os-xspaces-options.png<span style="color:#a61717;background-color:#e3d2d2">”</span>
 
-bucket, file_path <span style="color:#f92672">=</span> img_url<span style="color:#f92672">.</span>split(<span style="color:#960050;background-color:#1e0010">“</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">“</span>, <span style="color:#ae81ff">2</span>)
-</code></pre></div><p>This will populate bucket with <code>d3aa8b1gak9v1d.cloudfront.net</code> and put the rest of the string in file_path.</p>
+bucket, file_path = img_url.split(<span style="color:#a61717;background-color:#e3d2d2">“</span>/<span style="color:#a61717;background-color:#e3d2d2">“</span>, <span style="color:#3677a9">2</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>This will populate bucket with <code>d3aa8b1gak9v1d.cloudfront.net</code> and put the rest of the string in file_path.</p>
 <p>Full Details: <a href="https://ruby-doc.org/core-3.1.2/String.html#method-i-split">https://ruby-doc.org/core-3.1.2/String.html#method-i-split</a></p>
 
 		</div>
@@ -2729,7 +2959,7 @@ bucket, file_path <span style="color:#f92672">=</span> img_url<span style="color
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/11/30/i-was-convinced.html" class="u-url"><time class="dt-published" datetime="2022-11-30 11:13:07 -0400">Nov 30, 2022</time></a>
+		<a href="https://scottw.com/2022/11/30/i-was-convinced.html" class="u-url"><time class="dt-published" datetime="2022-11-30 11:13:07 -0400">Nov 30, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I was convinced there was a bug with OS X Spaces on Ventura or <a href="https://noteifyapp.com/command-tab-plus/">Command-Tab Plus</a>. My spaces were constantly not what I remembered.</p>
@@ -2742,7 +2972,7 @@ bucket, file_path <span style="color:#f92672">=</span> img_url<span style="color
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/11/30/i-have-seen.html" class="u-url"><time class="dt-published" datetime="2022-11-30 10:40:29 -0400">Nov 30, 2022</time></a>
+		<a href="https://scottw.com/2022/11/30/i-have-seen.html" class="u-url"><time class="dt-published" datetime="2022-11-30 10:40:29 -0400">Nov 30, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I have seen and generated plenty of errors over the past 20+ years on software development, but this is the first I have seen this one.</p>
@@ -2753,10 +2983,10 @@ bucket, file_path <span style="color:#f92672">=</span> img_url<span style="color
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://blog.scottw.com/2022/11/30/hanging-out-at.html">Hanging out at Micro.blog</a></h1>
+			<h1><a href="https://scottw.com/2022/11/30/hanging-out-at.html">Hanging out at Micro.blog</a></h1>
 		
 
-		<a href="https://blog.scottw.com/2022/11/30/hanging-out-at.html" class="u-url"><time class="dt-published" datetime="2022-11-30 10:31:03 -0400">Nov 30, 2022</time></a>
+		<a href="https://scottw.com/2022/11/30/hanging-out-at.html" class="u-url"><time class="dt-published" datetime="2022-11-30 10:31:03 -0400">Nov 30, 2022</time></a>
 
 		<div class="e-content">
 			 <p>I have been experimenting a some Twitter alternatives and for now I have settled on <a href="http://micro.blog">Micro.blog</a>.</p>
@@ -2770,7 +3000,7 @@ bucket, file_path <span style="color:#f92672">=</span> img_url<span style="color
 	  <div class="h-entry">
 		
 
-		<a href="https://blog.scottw.com/2022/11/28/is-this-thing.html" class="u-url"><time class="dt-published" datetime="2022-11-28 09:39:58 -0400">Nov 28, 2022</time></a>
+		<a href="https://scottw.com/2022/11/28/is-this-thing.html" class="u-url"><time class="dt-published" datetime="2022-11-28 09:39:58 -0400">Nov 28, 2022</time></a>
 
 		<div class="e-content">
 			 <p>Is this thing on?</p>
