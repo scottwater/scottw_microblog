@@ -7,6 +7,23 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/08/25/nice-walk-through.html",
+				
+				"content_html": "<p>Nice walk through going from a <a href=\"https://superails.com/posts/ruby-on-rails-144-why-i-am-replacing-turbo-frames-with-streams-for-actsasvotable\">Turbo Frame to Turbo Stream</a></p>\n",
+				"content_text": "Nice walk through going from a [Turbo Frame to Turbo Stream](https://superails.com/posts/ruby-on-rails-144-why-i-am-replacing-turbo-frames-with-streams-for-actsasvotable)\n",
+				"date_published": "2023-08-25T14:40:32-04:00",
+				"url": "https://scottw.com/2023/08/25/nice-walk-through.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/07/20/fear-is-our.html",
+				
+				"content_html": "<p>Fear is our true enemy</p>\n<blockquote>\n<p>At the root of most fear is what other people will think of us. It&rsquo;s paralyzing. It&rsquo;s skewing. It distorts the very fabric of our reality &ndash; makes us behave in such utterly insane and cowardly ways that it&rsquo;s hard to even describe.</p>\n</blockquote>\n<p>- via Ryan Holiday in <em>Courage is Calling</em></p>\n<p>The older I get, the more I see this every day.  Science says we only use about 10% of brains.  But that is not what holds us back. We hold ourselves back because we are afraid of looking like a failure.</p>\n",
+				"content_text": "Fear is our true enemy \n\n>  At the root of most fear is what other people will think of us. It's paralyzing. It's skewing. It distorts the very fabric of our reality -- makes us behave in such utterly insane and cowardly ways that it's hard to even describe.\n\n\\- via Ryan Holiday in _Courage is Calling_\n\nThe older I get, the more I see this every day.  Science says we only use about 10% of brains.  But that is not what holds us back. We hold ourselves back because we are afraid of looking like a failure.  \n",
+				"date_published": "2023-07-20T16:10:51-04:00",
+				"url": "https://scottw.com/2023/07/20/fear-is-our.html",
+				"tags": ["Life","Books"]
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/07/19/from-minutes-to.html",
 				"title": "From Minutes to Seconds",
 				"content_html": "<p>I am tired of guessing the future of AI. What I am sure of, something routine like this used to take significantly longer than it does today.</p>\n<p>In the past:</p>\n<ol>\n<li>Google a bit; maybe find someone asking a similar question somewhere (hopefully, do not get distracted by something else).</li>\n<li>Goto the docs (which often took Google to find)</li>\n<li>Try and find something related to what you were doing.</li>\n<li>(Sometimes) Apply what you learn in step #3 to your problem.</li>\n</ol>\n<p>Now, we are back to a quick search, which is kind of like Google in the old days.</p>\n<!-- raw HTML omitted -->\n",
