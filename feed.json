@@ -7,6 +7,14 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/09/01/interesting-break-down.html",
+				
+				"content_html": "<p>Interesting break down of <a href=\"https://sparktoro.com/blog/we-analyzed-millions-of-chatgpt-user-sessions-visits-are-down-29-since-may-programming-assistance-is-30-of-use/\">what people actually use ChatGPT for</a>.</p>\n<p>The last couple of days I have been working with TSRanges in PostgreSQL and it ChatGPT has made it extremely productive.</p>\n",
+				"content_text": "Interesting break down of [what people actually use ChatGPT for](https://sparktoro.com/blog/we-analyzed-millions-of-chatgpt-user-sessions-visits-are-down-29-since-may-programming-assistance-is-30-of-use/). \r\n\r\nThe last couple of days I have been working with TSRanges in PostgreSQL and it ChatGPT has made it extremely productive. \n",
+				"date_published": "2023-09-01T09:08:10-04:00",
+				"url": "https://scottw.com/2023/09/01/interesting-break-down.html"
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/08/25/nice-walk-through.html",
 				
 				"content_html": "<p>Nice walk through going from a <a href=\"https://superails.com/posts/ruby-on-rails-144-why-i-am-replacing-turbo-frames-with-streams-for-actsasvotable\">Turbo Frame to Turbo Stream</a></p>\n",
