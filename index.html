@@ -25,6 +25,46 @@
 	  <div class="h-entry">
 		
 
+		<a href="https://scottw.com/2023/09/18/a-truly-fantastic.html" class="u-url"><time class="dt-published" datetime="2023-09-18 15:27:20 -0400">Sep 18, 2023</time></a>
+
+		<div class="e-content">
+			 <p>A truly fantastic talk by Bill Gurley on the regulatory landscape and the influence of special interests - <a href="https://www.youtube.com/watch?v=F9cO3-MLHOM">2,851 Miles</a></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2023/09/12/suggestions-for-not.html">Suggestions For Not Forgetting To Remove Unused Code</a></h1>
+		
+
+		<a href="https://scottw.com/2023/09/12/suggestions-for-not.html" class="u-url"><time class="dt-published" datetime="2023-09-12 09:38:36 -0400">Sep 12, 2023</time></a>
+
+		<div class="e-content">
+			 <p>I am working on a significant update/rewrite of part of KickoffLabs. I had a task to work through what we do in a Sidekiq worker. It was late on Friday when I got to this part of the code, and I decided to punt on it until Monday.</p>
+<p>Monday morning, I grab a cup of coffee and sit down to finish this section off and see a comment I missed (and had missed for a long time).</p>
+<!-- raw HTML omitted -->
+<p>Outside the screenshot, there is an if statement, ensuring this code was not executed in the last four years. Still, it was frustrating that we had missed removing it for so long.</p>
+<p>I figured ChatGPT would have a good solution to stay on top of this, but it mostly just tried to explain to me how to use comments. :)</p>
+<p>Next up, I asked on <a href="https://twitter.com/scottw/status/1701244816217038929">Twitter</a> (and <a href="https://ruby.social/@Scottw/111047042095713444">Ruby.Social</a>):</p>
+<blockquote>
+<p>Any suggestions (other than search) to ensure code like this gets cleaned up?</p>
+</blockquote>
+<p>From there, I got a lot of good suggestions.</p>
+<p>Two Ruby gems looked interesting:</p>
+<ul>
+<li><a href="https://github.com/searls/todo_or_die">todo_or_die</a></li>
+<li><a href="https://github.com/Shopify/smart_todo">smart_todo</a></li>
+</ul>
+<p>If I had to choose, I would go with todo_or_die since it would cause a failure/notification locally. I would rather not wait until there was a pull request/etc.</p>
+<p>The rest of the suggestions included if statements and date checks. My favorite, and the one I will likely adopt going forward, is to wrap it in a test that <a href="https://ruby.social/@p8/111047287492099475">fails after a specific date</a>.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
 		<a href="https://scottw.com/2023/09/11/a-nice-demo.html" class="u-url"><time class="dt-published" datetime="2023-09-11 09:46:27 -0400">Sep 11, 2023</time></a>
 
 		<div class="e-content">
