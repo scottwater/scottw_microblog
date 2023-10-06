@@ -7,6 +7,22 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/10/06/whos-harry-potter.html",
+				
+				"content_html": "<p><a href=\"https://www.microsoft.com/en-us/research/project/physics-of-agi/articles/whos-harry-potter-making-llms-forget-2/\">Who’s Harry Potter? Making LLMs forget</a></p>\n<blockquote>\n<p>What do we do if we realize that some of our training data needs to be removed after the LLM has already been trained?</p>\n</blockquote>\n",
+				"content_text": "[Who’s Harry Potter? Making LLMs forget](https://www.microsoft.com/en-us/research/project/physics-of-agi/articles/whos-harry-potter-making-llms-forget-2/)\r\n\r\n> What do we do if we realize that some of our training data needs to be removed after the LLM has already been trained?\n",
+				"date_published": "2023-10-06T10:01:24-04:00",
+				"url": "https://scottw.com/2023/10/06/whos-harry-potter.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/09/18/in-a-similar.html",
+				
+				"content_html": "<p>In a similar vein to the <a href=\"https://scottw.com/2023/09/18/a-truly-fantastic.html\">Bill Gurley&rsquo;s video</a>, Malcom Gladwell had a recent podcast highlighting the misinformation in bills that would <a href=\"https://www.pushkin.fm/podcasts/revisionist-history/guns-part-3-a-shooting-lesson\">ban AR-15&rsquo;s</a>.</p>\n",
+				"content_text": "In a similar vein to the [Bill Gurley's video](https://scottw.com/2023/09/18/a-truly-fantastic.html), Malcom Gladwell had a recent podcast highlighting the misinformation in bills that would [ban AR-15's](https://www.pushkin.fm/podcasts/revisionist-history/guns-part-3-a-shooting-lesson). \n",
+				"date_published": "2023-09-18T15:31:53-04:00",
+				"url": "https://scottw.com/2023/09/18/in-a-similar.html"
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/09/18/a-truly-fantastic.html",
 				
 				"content_html": "<p>A truly fantastic talk by Bill Gurley on the regulatory landscape and the influence of special interests - <a href=\"https://www.youtube.com/watch?v=F9cO3-MLHOM\">2,851 Miles</a></p>\n",
