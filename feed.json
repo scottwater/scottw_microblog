@@ -7,6 +7,22 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2023/10/13/ruby-enumerableany-at.html",
+				
+				"content_html": "<p>Ruby Enumerable#any?</p>\n<p>At first glance, this is not what I was expecting:</p>\n<pre><code>[false, false, false].any? =&gt; false\r\n</code></pre>\n<p>But a quick glance at the docs:</p>\n<blockquote>\n<p>The method returns true if the block ever returns a value other than false or nil</p>\n</blockquote>\n<p>This can be handy for doing a bunch of small tests and detecting if anything passed.</p>\n",
+				"content_text": "Ruby Enumerable#any?\r\n\r\nAt first glance, this is not what I was expecting:\r\n\r\n    [false, false, false].any? => false\r\n\r\nBut a quick glance at the docs: \r\n\r\n> The method returns true if the block ever returns a value other than false or nil\r\n\r\nThis can be handy for doing a bunch of small tests and detecting if anything passed.\n",
+				"date_published": "2023-10-13T09:48:26-04:00",
+				"url": "https://scottw.com/2023/10/13/ruby-enumerableany-at.html"
+			},
+			{
+				"id": "http://scottwater.micro.blog/2023/10/06/ai-code-review.html",
+				
+				"content_html": "<p><a href=\"https://metabob.com\">AI Code Review via MetaBob</a></p>\n<p>Looks interesting. I will definitely try it out once they support Ruby.</p>\n",
+				"content_text": "[AI Code Review via MetaBob](https://metabob.com)\r\n\r\nLooks interesting. I will definitely try it out once they support Ruby.\n",
+				"date_published": "2023-10-06T10:03:23-04:00",
+				"url": "https://scottw.com/2023/10/06/ai-code-review.html"
+			},
+			{
 				"id": "http://scottwater.micro.blog/2023/10/06/whos-harry-potter.html",
 				
 				"content_html": "<p><a href=\"https://www.microsoft.com/en-us/research/project/physics-of-agi/articles/whos-harry-potter-making-llms-forget-2/\">Who’s Harry Potter? Making LLMs forget</a></p>\n<blockquote>\n<p>What do we do if we realize that some of our training data needs to be removed after the LLM has already been trained?</p>\n</blockquote>\n",
