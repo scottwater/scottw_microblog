@@ -24,6 +24,62 @@
 	
 	  <div class="h-entry">
 		
+			<h1><a href="https://scottw.com/2024/01/18/the-hidden-month.html">The Hidden Month</a></h1>
+		
+
+		<a href="https://scottw.com/2024/01/18/the-hidden-month.html" class="u-url"><time class="dt-published" datetime="2024-01-18 09:14:41 -0500">Jan 18, 2024</time></a>
+
+		<div class="e-content">
+			 <p>New Year, new ambitions: start your own business and take control of your time and finances.</p>
+<p>But here&rsquo;s the harsh reality: the adrenaline fades, and most give up within weeks.</p>
+<p>Here&rsquo;s a suggestion&hellip;</p>
+<p>Dedicate your weekends this year. Spend four hours each on Saturday and Sunday building your business.</p>
+<p>That&rsquo;s a solid month (26 days) of focused work without sacrificing sleep or your regular schedule.</p>
+<p>Speed to market is overrated. Success comes from execution and continuous improvement, week after week, month after month.</p>
+<p>Posted initially to X: <a href="https://twitter.com/scottw/status/1745104752818766318">twitter.com/scottw/st&hellip;</a></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2024/01/08/troubleshooting-broken-software.html">Troubleshooting Broken Software Tools Still Sucks</a></h1>
+		
+
+		<a href="https://scottw.com/2024/01/08/troubleshooting-broken-software.html" class="u-url"><time class="dt-published" datetime="2024-01-08 11:12:33 -0500">Jan 8, 2024</time></a>
+
+		<div class="e-content">
+			 <p>20+ years of professionally building software, and here is how my last hour or so went.</p>
+<p><code>heroku login</code> -&gt; <code>zsh: killed heroku login</code></p>
+<p>hmmm&hellip;why did ZSH kill Heroku? It turns out it is just reporting what happened.</p>
+<p>Open the crash reports and get a bunch of text I barely understand.</p>
+<p>I remember that I have a second brain that knows what this crap means. <strong>ChatGPT, can you help me?</strong></p>
+<p>It does a decent job of educating me on what the reports (segfault on the main thread implies not even the hand of God can save this process).</p>
+<p>When in doubt, just re-install.</p>
+<p>No dice.</p>
+<p>Google shows me others with similar problems, but none related to Heroku, and nothing that looks promising.</p>
+<p>I wonder what the <strong>(brew) Doctor</strong> thinks about this (Heroku was installed this way).</p>
+<p>The doctor takes her good old time getting back to me on this older Mac. But when she does respond, she says, &ldquo;Dawg, your shit is F&rsquo;ed Up!&rdquo;</p>
+<p>I am paraphrasing, but there are unlinked things, kegs with no formula,, dry taps, an unbrewed dylibs, and likely most importantly, this:</p>
+<!-- raw HTML omitted -->
+<p>This is weird because I had previously checked for an update after an OS update, and I had tried to re-install the tools just to be safe.</p>
+<p>In both cases, it said, &ldquo;there are no updates, go away&rdquo;.</p>
+<p>Anywho, I run the following:</p>
+<p><code>sudo rm -rf /Library/Developer/CommandLineTools</code></p>
+<p><code>sudo xcode-select --install</code></p>
+<p>Eventually, notice the popup window (because why install them from the terminal), click OK to continue, and 10 minutes or so later, we are back in business.</p>
+<p>The key takeaways:</p>
+<ol>
+<li>This shit isn&rsquo;t hard, it just takes patience.</li>
+<li>Even those who have done it for a long time still get stuck.</li>
+<li>There is nothing wrong with yelling profanities at a computer from the comfort of your basement.</li>
+</ol>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
 			<h1><a href="https://scottw.com/2024/01/08/finding-joy-in.html">Finding Joy in Fitness: The Importance of Enjoying Your Training</a></h1>
 		
 
