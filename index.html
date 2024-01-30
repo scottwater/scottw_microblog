@@ -24,6 +24,63 @@
 	
 	  <div class="h-entry">
 		
+			<h1><a href="https://scottw.com/2024/01/30/getting-campfire-to.html">Getting Campfire to Run on Localhost</a></h1>
+		
+
+		<a href="https://scottw.com/2024/01/30/getting-campfire-to.html" class="u-url"><time class="dt-published" datetime="2024-01-30 14:14:31 -0500">Jan 30, 2024</time></a>
+
+		<div class="e-content">
+			 <p>David Kimura at <a href="https://www.driftingruby.com/episodes?tag=campfire">Drifting Ruby</a> has some good videos on setting Campfire up outside the Once installer.  Outside of the 3.3 RC1 and stringio issues, I was running into another issue: I could not generate thumbnails when running on localhost. The thumbnails generated as expected when using Puma Dev. Still, on localhost, they were failing, and worse, I would typically end up with one broken thumbnail variant per thread pool worker.</p>
+<p>First, here are my setup steps:</p>
+<ol>
+<li>Download the source</li>
+<li>Run bin/setup (I had to remove rbenv from this file since I use ASDF these days)</li>
+<li>From the rails console, run, <code>WebPush.generate_key</code> and copy the keys into ENV variables <code>VAPID_PUBLIC_KEY</code> and <code>VAPID_PRIVATE_KEY</code></li>
+<li>Add the <code>msgpack</code> gem to my GemFile</li>
+</ol>
+<p>With all of this in place, <a href="https://campfire.test">https://campfire.test</a> worked as expected.</p>
+<p>However, when starting the server via <code>bundle exec rails server</code> (on an M1 MBP with Sonoma 14.3), the thumbnails of images were missing. I could click on the thumbnails and see them in the lightbox but not in the chat window.</p>
+<p>Digging into the database, I could see they were not being analyzed, but I had no idea why.</p>
+<p>Then I saw the following in the logs:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">objc[84578]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called.
+objc[84578]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.
+</code></pre></td></tr></table>
+</div>
+</div><p>The thread running ActiveJob running the ActiveStorage Analyze job was crashing.</p>
+<p>A little searching led me to this <a href="https://github.com/rails/rails/issues/38560">bug thread</a> and a suggestion to set <code>OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES</code>. A quick server reboot, and everything works as expected.</p>
+<p>Before I got here, I also tried disabling cluster mode in Puma, <code>WEB_CONCURRENCY=0 bundle exec rails s</code>, which solved the problem.</p>
+<p>I submitted this as a bug to 37Signals. I am not sure if this is just something on my computer or not, so I would try it without these changes first.</p>
+<p><strong>Update:</strong> 37Signals confirmed this is a known issue. The env variable is actually set in the <code>.pumadev</code> file which is why I did. not see the issue when using Puma Dev.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2024/01/18/a-few-new.html">A few new apps I am using in 2024</a></h1>
+		
+
+		<a href="https://scottw.com/2024/01/18/a-few-new.html" class="u-url"><time class="dt-published" datetime="2024-01-18 09:20:09 -0500">Jan 18, 2024</time></a>
+
+		<div class="e-content">
+			 <p><a href="https://typefully.com/?via=scott">Typefully</a> - a few options exist for posting to social media without logging in first. I am trying to get back into writing/sharing, and this seems like the best option.</p>
+<p>If Threads adds an API, all will be right.</p>
+<p><a href="https://cronometer.com">Cronometer</a> - A replacement for MyFitnessPal. Short review: It is better in every way.  It is easier to use, quicker and costs less.</p>
+<p>I don&rsquo;t track calories as much these days; with a change in my diet recently, I wanted to be a little more diligent.</p>
+<p><a href="https://www.craft.do">Craft</a> is a notes app similar to Notion, but I find it more responsive and easier to use. Craft syncs across all my devices and has been a joy for the last few weeks.</p>
+<p>Via X: <a href="https://twitter.com/scottw/status/1744751689666818462">twitter.com/scottw/st&hellip;</a></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
 			<h1><a href="https://scottw.com/2024/01/18/the-hidden-month.html">The Hidden Month</a></h1>
 		
 
