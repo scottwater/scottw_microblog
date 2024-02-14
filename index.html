@@ -24,7 +24,106 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://scottw.com/2024/01/30/getting-campfire-to.html">Getting Campfire to Run on Localhost</a></h1>
+			<h1><a href="https://scottw.com/2024/02/14/http-post-with.html">HTTP Post with a Link_To in Rails 7</a></h1>
+		
+
+		<a href="https://scottw.com/2024/02/14/http-post-with.html" class="u-url"><time class="dt-published" datetime="2024-02-14 06:58:07 -0500">Feb 14, 2024</time></a>
+
+		<div class="e-content">
+			 <p>I have been migrating a small app to Rails 7.x. The app has not been touched in a couple of years (Rails 5-ish with webpacker). I decided it would be simpler to start anew and just copy over the parts I needed.</p>
+<p>One thing I noticed on a new app without RJS installed was that setting the HTTP method on links was not working.</p>
+<p>There are two ways to fix this. One is to just use <code>button_to</code> instead. This is arguably better since it actually does a POST (and submit). However, if you need/want to continue using <code>link_to</code>, you can instead swap the <code>method</code> for a <code>turbo_method</code>.</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;li&gt;
+  &lt;%= link_to &#34;Sign Out&#34;, logout_path, data: {turbo_method: :delete}, aria: {label: &#34;Sign out of How I VSCode&#34;}, class: &#34;nav-link&#34; %&gt;
+&lt;/li&gt;
+</code></pre></td></tr></table>
+</div>
+</div>
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2024/01/31/enabling-debugging-in.html">Enabling Debugging in Campfire</a></h1>
+		
+
+		<a href="https://scottw.com/2024/01/31/enabling-debugging-in.html" class="u-url"><time class="dt-published" datetime="2024-01-31 15:31:25 -0500">Jan 31, 2024</time></a>
+
+		<div class="e-content">
+			 <p>Ruby&rsquo;s debugging story has improved dramatically in 3.x (and Rails).</p>
+<p>I figured the best way to understand what&rsquo;s happening in Campfire would be to attach the debugger and step through some of the more interesting parts.</p>
+<p>Unfortunately, I was greeted with a recurring error that often looked something like this:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;Thread:0x00000001276a7750@DEBUGGER__::Server::reader /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/gems/3.3.0/gems/debug-1.9.1/lib/debug/server.rb:44 aborting&gt; terminated with exception (report_on_exception is true):
+/Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/3.3.0/socket.rb:1128:in `unlink&#39;: No such file or directory @ apply2files - /var/folders/6q/xz6r4tqd4sl9qpbqkjlqj3dr0000gn/T/rdbg-501/rdbg-29191 (Errno::ENOENT)
+	from /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/3.3.0/socket.rb:1128:in `ensure in unix_server_socket&#39;
+/Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/3.3.0/socket.rb:1128:in `unlink&#39;	from /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/3.3.0/socket.rb:1128:in `unix_server_socket&#39;
+	from /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/3.3.0/socket.rb:1169:in `unix_server_loop&#39;
+	from /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/gems/3.3.0/gems/debug-1.9.1/lib/debug/server.rb:502:in `accept&#39;
+	from /Users/scott/.asdf/installs/ruby/3.3.0/lib/ruby/gems/3.3.0/gems/debug-1.9.1/lib/debug/server.rb:49:in `block in activate&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>At first, I was convinced that debugging was busted on my computer. But I spun up a new project, and everything worked as expected.</p>
+<p>Then, I thought about the error above showing up multiple times and the <a href="https://scottw.com/2024/01/30/getting-campfire-to.html">problems with threads I had previously</a> mentioned.</p>
+<p>I restarted the process without cluster mode enabled for Puma (WEB_CONCURRENCY=0) and could connect the debugger as expected.</p>
+<p>From here, I decided to compare the puma.rb file in Campfire to the one in the empty Rails 7.1 project I just spun up, and I found the problem.</p>
+<p>In the Puma configuration file, cluster mode is enabled if <code>workers</code> is greater than 0.</p>
+<p>In a fresh Rails 7.1 puma.rb file, the worker configuration looks like this:</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#40ffff">ENV</span>[<span style="color:#ed9d13">&#34;RAILS_ENV&#34;</span>] == <span style="color:#ed9d13">&#34;production&#34;</span>
+  <span style="color:#24909d">require</span> <span style="color:#ed9d13">&#34;concurrent-ruby&#34;</span>
+  worker_count = <span style="color:#24909d">Integer</span>(<span style="color:#40ffff">ENV</span>.fetch(<span style="color:#ed9d13">&#34;WEB_CONCURRENCY&#34;</span>) { <span style="color:#40ffff">Concurrent</span>.physical_processor_count })
+  workers worker_count <span style="color:#6ab825;font-weight:bold">if</span> worker_count &gt; <span style="color:#3677a9">1</span>
+<span style="color:#6ab825;font-weight:bold">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>However, in Campfire, the RAILS_ENV check is removed</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">worker_count = (Concurrent.processor_count * 0.666).ceil
+workers ENV.fetch(&#34;WEB_CONCURRENCY&#34;) { worker_count }
+</code></pre></td></tr></table>
+</div>
+</div><p>My guess is that with Campfire being a chat app with lots of connectivity, they opted for Puma&rsquo;s cluster mode by default.</p>
+<p>The good news is you can disable cluster mode in Campfire without changing any source. Just set the WEB_CONCURRENCY ENV to 0.</p>
+<p>Something like this should do the trick:</p>
+<p><code>WEB_CONCURRENCY=0 rdbg -n --open=vscode -c -- bin/rails server -p 3000</code></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2024/01/30/getting-campfire-to.html">Setting Up Campfire on Localhost</a></h1>
 		
 
 		<a href="https://scottw.com/2024/01/30/getting-campfire-to.html" class="u-url"><time class="dt-published" datetime="2024-01-30 14:14:31 -0500">Jan 30, 2024</time></a>
