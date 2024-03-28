@@ -24,68 +24,73 @@
 	
 	  <div class="h-entry">
 		
-			<h1><a href="https://scottw.com/2024/03/15/heroku-cloudflare-ssl.html">Heroku &#43; CloudFlare &#43; SSL</a></h1>
+			<h1><a href="https://scottw.com/2024/03/28/adding-execute-permission.html">Adding Execute Permission to Script in Git</a></h1>
 		
 
-		<a href="https://scottw.com/2024/03/15/heroku-cloudflare-ssl.html" class="u-url"><time class="dt-published" datetime="2024-03-15 10:39:57 -0400">Mar 15, 2024</time></a>
+		<a href="https://scottw.com/2024/03/28/adding-execute-permission.html" class="u-url"><time class="dt-published" datetime="2024-03-28 10:21:44 -0400">Mar 28, 2024</time></a>
 
 		<div class="e-content">
-			 <p>Heroku has had pretty good free’ish SSL support for a couple of years. You add your domain, enable auto certs, and enter a DNS record.</p>
+			 <p>With my SQLite backup script, I mentioned you need to add <a href="https://scottw.com/2024/02/22/configuring-the-sqlite.html">execute permission after you deploy</a>.</p>
+<p>However, I cloned a Rails app off of GitHub today and noticed that the bin/setup worked as expected and had proper execute permissions. 👀</p>
+<p>I eventually found my way to the git&rsquo;s <a href="https://git-scm.com/docs/git-update-index">update-index</a> command:</p>
+<blockquote>
+<p>Modifies the index. Each file mentioned is updated into the index and any unmerged or needs updating state is cleared.</p>
+</blockquote>
+<p>That description is clear as mud. 😛</p>
+<p>But digging further is this option: <code>--chmod=(+|-)x</code></p>
+<blockquote>
+<p>Set the execute permissions on the updated files.</p>
+</blockquote>
+<p>So here is how to use it.</p>
+<ol>
+<li>Add a new script file or modify an executing one (even with just a comment). This is important because <code>update-index</code> will not take effect unless you commit to some change.</li>
+<li>Add the change to git: <code>git add bin/backup</code></li>
+<li>Execute update-index: `git update-index &ndash;chmod=+x bin/backup</li>
+<li>Commit the change: <code>git commit -m &quot;Now with execute permission&quot;</code></li>
+</ol>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2024/03/18/ruby-sub-vs.html">Ruby Sub vs. Gsub</a></h1>
+		
+
+		<a href="https://scottw.com/2024/03/18/ruby-sub-vs.html" class="u-url"><time class="dt-published" datetime="2024-03-18 11:54:18 -0400">Mar 18, 2024</time></a>
+
+		<div class="e-content">
+			 <p>A little Ruby distinction I had not seen (or remembered seeing) before.</p>
+<p>In Ruby, both <code>String#sub</code> and <code>String#gsub</code> are methods used for string substitution, but they have a subtle difference:</p>
+<p><code>String#sub</code>: This method performs a substitution based on a regular expression pattern, replacing only the first occurrence that matches the pattern.</p>
 <div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heroku domains add www.mkrank.com
-heroku certs:auto:enable
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">str = <span style="color:#ed9d13">&#34;hello world&#34;</span>
+new_str = str.sub(<span style="color:#ed9d13">/o/</span>, <span style="color:#ed9d13">&#34;a&#34;</span>)
+<span style="color:#24909d">puts</span> new_str
 </code></pre></td></tr></table>
 </div>
-</div><p>Heroku makes it super easy, but it does come with one big drawback: <em>Heroku does not support root (apex) level domains</em>. Whether you should use your root domain or subdomain and if it matters is a debate for another day. I only care about the user experience around setting up a root-level SSL cert and whether it is easy to set up and maintain.</p>
-<p>Lack of Heroku certs on root-level domains is usually not a big deal. Most of your traffic likely comes from something other than a person typing a URL directly into a browser (and even then, autocomplete based on browsing history helps guide visitors back). But if we could do it and it was easy to do, then why not?</p>
-<p>In practice, you would not want to CNAME your apex domain since it likely hides their records in the same node<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
-<p>However, a couple of DNS providers support “aliasing” apex-level domains without the side effect of making other records in that node unavailable. As far as I know, this is not an actual spec/standard yet, but its support is pretty solid and has been growing over the years.</p>
-<p>The three I know who support it today are:</p>
-<ul>
-<li>DNS Made Easy</li>
-<li>DNSimple</li>
-<li>CloudFlare</li>
-</ul>
-<p>Both DNS Made Easy, and DNSimple requires you to choose to use this type of alias record explicitly. CloudFlare automatically does this if you add a CNAME for your root domain (regardless of whether it is on accident or purpose). I am not sure which is better, but every six months, I spend 30 minutes trying to remember how to do this in CloudFlare<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
-<p>Anyway, back to CloudFlare, I have been using them more and more for my projects. In addition to great DNS and pretty good support, they have a growing list of exciting features, such as workers.</p>
-<p>So how do we get going? To use CloudFlare for SSL for Heroku:</p>
-<ol>
-<li>Add your domain to Heroku (<code>heroku domains add mkrank.com</code>)</li>
-<li>Take the CNAME record they give you and add it to CloudFlare<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
-</ol>
-<p>SSL will work, but it comes with a minor caveat. The traffic from your clients' browsers to CloudFlare will be secure. However, from CloudFlare to your Heroku app, it will not be. Chances are this is not an issue but a weak link. I did not even notice the weak link until I published a new app, <a href="https://mkrank.com">MKRank</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
-<p>I built this app as a fun side project, and I want nothing to do with managing emails/passwords/etc., so I opted to use OmniAuth and enabled signing in with various existing sites.</p>
-<p>Everything worked locally, but when I first deployed MKRank, I could not sign in with any third-party site. After a bit of debugging, I realized the callback URL from my app did not match what I had configured in each third-party app (all are hard-coded to use SSL).</p>
-<p>So what was going on?</p>
-<p>Well, if you remember from above, communications between the client and CloudFlare were happening over SSL. However, CloudFlare was communicating back to my app over HTTP. Since my app received non-SSL traffic, the URLs it generated for OmniAuth did not use HTTPS.</p>
-<p>One fix would be to force OmniAuth somehow always to use SSL in production (this might be a good idea either way).</p>
-<p>However, a better fix would be to enable SSL communication between CloudFlare and my app.</p>
-<p>It turns out this is very simple. All we must do is add the Heroku auto certs feature (<code>heroku certs:auto:enable</code>). Once in place, Heroku will accept SSL traffic for our app.</p>
-<p>The final step is to go back into CloudFlare and enable full SSL.</p>
-<p><img src="https://scottw.com/uploads/2024/full-ssl.png" alt="Full SSL"></p>
-<p>Now, all communication from the client (browser) → CloudFlare → Heroku is secure. Logins with OmniAuth will now generate the proper callback urls, and no additional configuration or monkey-patching was necessary.</p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>Everyone sometimes finds this out the hard way when their email is no longer available because MX records are no longer available.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>Actually, who am I kidding? I prefer being explicit, but as someone who does product support, I 100% get why they just made it so.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3" role="doc-endnote">
-<p>you should create a second CNAME on the www domain. Once in place, you can use CloudFlare&rsquo;s page rules to redirect all www. traffic to the non-www URL.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4" role="doc-endnote">
-<p>MKRank is an app for the mechanical keyboard community. It allows you to build lists of your favorite mechanical keyboard products.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
+</div><p>Output: <em>hella world</em></p>
+<p><code>String#gsub</code>: This method also performs a substitution based on a regular expression pattern, but it replaces all occurrences that match the pattern within the string.</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">str = &#34;hello world&#34;
+new_str = str.gsub(/o/, &#34;a&#34;)
+puts new_str
+</code></pre></td></tr></table>
+</div>
+</div><p>Output: <em>hella warld</em></p>
+<p>Hat tip to ChatGPT, who answered this question for me.</p>
 
 		</div>
 	  </div>
@@ -4070,6 +4075,74 @@ bucket, file_path = img_url.split(<span style="color:#a61717;background-color:#e
 
 		<div class="e-content">
 			 <p>Is this thing on?</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://scottw.com/2020/03/15/heroku-cloudflare-ssl.html">Heroku &#43; CloudFlare &#43; SSL</a></h1>
+		
+
+		<a href="https://scottw.com/2020/03/15/heroku-cloudflare-ssl.html" class="u-url"><time class="dt-published" datetime="2020-03-15 10:39:00 -0400">Mar 15, 2020</time></a>
+
+		<div class="e-content">
+			 <p>Heroku has had pretty good free’ish SSL support for a couple of years. You add your domain, enable auto certs, and enter a DNS record.</p>
+<div class="highlight"><div style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">heroku domains add www.mkrank.com
+heroku certs:auto:enable
+</code></pre></td></tr></table>
+</div>
+</div><p>Heroku makes it super easy, but it does come with one big drawback: <em>Heroku does not support root (apex) level domains</em>. Whether you should use your root domain or subdomain and if it matters is a debate for another day. I only care about the user experience around setting up a root-level SSL cert and whether it is easy to set up and maintain.</p>
+<p>Lack of Heroku certs on root-level domains is usually not a big deal. Most of your traffic likely comes from something other than a person typing a URL directly into a browser (and even then, autocomplete based on browsing history helps guide visitors back). But if we could do it and it was easy to do, then why not?</p>
+<p>In practice, you would not want to CNAME your apex domain since it likely hides their records in the same node<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>However, a couple of DNS providers support “aliasing” apex-level domains without the side effect of making other records in that node unavailable. As far as I know, this is not an actual spec/standard yet, but its support is pretty solid and has been growing over the years.</p>
+<p>The three I know who support it today are:</p>
+<ul>
+<li>DNS Made Easy</li>
+<li>DNSimple</li>
+<li>CloudFlare</li>
+</ul>
+<p>Both DNS Made Easy, and DNSimple requires you to choose to use this type of alias record explicitly. CloudFlare automatically does this if you add a CNAME for your root domain (regardless of whether it is on accident or purpose). I am not sure which is better, but every six months, I spend 30 minutes trying to remember how to do this in CloudFlare<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p>Anyway, back to CloudFlare, I have been using them more and more for my projects. In addition to great DNS and pretty good support, they have a growing list of exciting features, such as workers.</p>
+<p>So how do we get going? To use CloudFlare for SSL for Heroku:</p>
+<ol>
+<li>Add your domain to Heroku (<code>heroku domains add mkrank.com</code>)</li>
+<li>Take the CNAME record they give you and add it to CloudFlare<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
+</ol>
+<p>SSL will work, but it comes with a minor caveat. The traffic from your clients' browsers to CloudFlare will be secure. However, from CloudFlare to your Heroku app, it will not be. Chances are this is not an issue but a weak link. I did not even notice the weak link until I published a new app, <a href="https://mkrank.com">MKRank</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p>I built this app as a fun side project, and I want nothing to do with managing emails/passwords/etc., so I opted to use OmniAuth and enabled signing in with various existing sites.</p>
+<p>Everything worked locally, but when I first deployed MKRank, I could not sign in with any third-party site. After a bit of debugging, I realized the callback URL from my app did not match what I had configured in each third-party app (all are hard-coded to use SSL).</p>
+<p>So what was going on?</p>
+<p>Well, if you remember from above, communications between the client and CloudFlare were happening over SSL. However, CloudFlare was communicating back to my app over HTTP. Since my app received non-SSL traffic, the URLs it generated for OmniAuth did not use HTTPS.</p>
+<p>One fix would be to force OmniAuth somehow always to use SSL in production (this might be a good idea either way).</p>
+<p>However, a better fix would be to enable SSL communication between CloudFlare and my app.</p>
+<p>It turns out this is very simple. All we must do is add the Heroku auto certs feature (<code>heroku certs:auto:enable</code>). Once in place, Heroku will accept SSL traffic for our app.</p>
+<p>The final step is to go back into CloudFlare and enable full SSL.</p>
+<p><img src="https://scottw.com/uploads/2024/full-ssl.png" alt="Full SSL"></p>
+<p>Now, all communication from the client (browser) → CloudFlare → Heroku is secure. Logins with OmniAuth will now generate the proper callback urls, and no additional configuration or monkey-patching was necessary.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Everyone sometimes finds this out the hard way when their email is no longer available because MX records are no longer available.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Actually, who am I kidding? I prefer being explicit, but as someone who does product support, I 100% get why they just made it so.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>you should create a second CNAME on the www domain. Once in place, you can use CloudFlare&rsquo;s page rules to redirect all www. traffic to the non-www URL.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>MKRank is an app for the mechanical keyboard community. It allows you to build lists of your favorite mechanical keyboard products.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 
 		</div>
 	  </div>
