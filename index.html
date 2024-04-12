@@ -24,6 +24,32 @@
 	
 	  <div class="h-entry">
 		
+			<h1><a href="https://scottw.com/2024/04/12/handling-a-stuck.html">Handling a Stuck Heroku Release Command (Maybe)</a></h1>
+		
+
+		<a href="https://scottw.com/2024/04/12/handling-a-stuck.html" class="u-url"><time class="dt-published" datetime="2024-04-12 09:43:46 -0400">Apr 12, 2024</time></a>
+
+		<div class="e-content">
+			 <p>I am unsure how to title this post, but it feels like a good idea to share what happened so that you have some steps to follow if you are in a bit of a panic.</p>
+<p>First, here is what happened. Earlier today, I deployed a change that would add a column to a table. There was no backfill on the column. There are no required indexes. Nothing. It&rsquo;s a blank column on a relatively small (20k rows) table. I even held the code that would use this table for a second deployment.</p>
+<p>Our Heroku deploys have been taking quite a while recently (15 minutes or so). I haven&rsquo;t had time to dig into why yet, so I wasn&rsquo;t overly concerned about the duration initially. Then I got the first ping that something was offline (Sidekiq error queue). That one felt unrelated. Our monitoring is set to notify us anytime the error queue has more than 100 items. Shortly after, I received notifications that other services were unavailable (timing out). A quick check on the recent deployment shows that the release phase has been running for 20 minutes.</p>
+<p>At this point, I decide it is time to kill the deployment. I commnd+D the terminal and checked the current processes on Heroku (<code>heroku ps</code>). I can see the release command is still running. The next thing to check is the database. I can console into the database and other apps that use this same database are all functioning as expected. In addition, as far as I can tell, all the background jobs for this app are still running as expected (we use Sidekiq+Redis, but ultimately all work is done against the PG database).</p>
+<p>To be safe, I ran <code>pg:diagnose</code> and could see long-running queries against the table I was attempting to migrate.</p>
+<p>Next, I focused on killing the release phase process. In nearly 12 years of using Heroku, I have never had to kill a running process. I find references to <code>ps:stop</code> and <code>ps:kill</code>. Both report they worked, but running us <code>ps</code>, I can see the process is still running. It turns out that you need to include the process type as well: <code>heroku ps:kill release.2343</code>. Better output here would have been helpful.</p>
+<p>While this killed the process, the app&rsquo;s state did not improve. I restarted the processes, which again did not fix the problem. Finally, I figured something was off with the app state, so I rolled back to a previous update (note: the new deploy was never fully deployed and unavailable). This appeared to fix things for a few seconds, but everything on the main app again began to time out.</p>
+<p>I checked <code>heroku pg:diagnose</code> again and could see the same long-running queries were still there. There were about 40 or so of them, but I couldn&rsquo;t get the output in a state where I could quickly grab the PIDs to kill each process, so I went ahead and ran <code>heroku pg: killall</code>. After this, I restarted the main app (and related apps), and everything appears to be working well.</p>
+<p>So the takeaways:</p>
+<ol>
+<li>Never deploy before coffee. The mind is not ready for this kind of stress.</li>
+<li>My best guess is that the connection pool for the main web app somehow got into a bad state. Killing all the connections, I was able to reset it.</li>
+</ol>
+<p>I still have to deploy again, but I assume this was a freak condition.</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
 			<h1><a href="https://scottw.com/2024/03/28/adding-execute-permission.html">Adding Execute Permission to Script in Git</a></h1>
 		
 
