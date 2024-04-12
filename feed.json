@@ -7,6 +7,15 @@
 	"items": [
 		
 			{
+				"id": "http://scottwater.micro.blog/2024/04/12/handling-a-stuck.html",
+				"title": "Handling a Stuck Heroku Release Command (Maybe)",
+				"content_html": "<p>I am unsure how to title this post, but it feels like a good idea to share what happened so that you have some steps to follow if you are in a bit of a panic.</p>\n<p>First, here is what happened. Earlier today, I deployed a change that would add a column to a table. There was no backfill on the column. There are no required indexes. Nothing. It&rsquo;s a blank column on a relatively small (20k rows) table. I even held the code that would use this table for a second deployment.</p>\n<p>Our Heroku deploys have been taking quite a while recently (15 minutes or so). I haven&rsquo;t had time to dig into why yet, so I wasn&rsquo;t overly concerned about the duration initially. Then I got the first ping that something was offline (Sidekiq error queue). That one felt unrelated. Our monitoring is set to notify us anytime the error queue has more than 100 items. Shortly after, I received notifications that other services were unavailable (timing out). A quick check on the recent deployment shows that the release phase has been running for 20 minutes.</p>\n<p>At this point, I decide it is time to kill the deployment. I commnd+D the terminal and checked the current processes on Heroku (<code>heroku ps</code>). I can see the release command is still running. The next thing to check is the database. I can console into the database and other apps that use this same database are all functioning as expected. In addition, as far as I can tell, all the background jobs for this app are still running as expected (we use Sidekiq+Redis, but ultimately all work is done against the PG database).</p>\n<p>To be safe, I ran <code>pg:diagnose</code> and could see long-running queries against the table I was attempting to migrate.</p>\n<p>Next, I focused on killing the release phase process. In nearly 12 years of using Heroku, I have never had to kill a running process. I find references to <code>ps:stop</code> and <code>ps:kill</code>. Both report they worked, but running us <code>ps</code>, I can see the process is still running. It turns out that you need to include the process type as well: <code>heroku ps:kill release.2343</code>. Better output here would have been helpful.</p>\n<p>While this killed the process, the app&rsquo;s state did not improve. I restarted the processes, which again did not fix the problem. Finally, I figured something was off with the app state, so I rolled back to a previous update (note: the new deploy was never fully deployed and unavailable). This appeared to fix things for a few seconds, but everything on the main app again began to time out.</p>\n<p>I checked <code>heroku pg:diagnose</code> again and could see the same long-running queries were still there. There were about 40 or so of them, but I couldn&rsquo;t get the output in a state where I could quickly grab the PIDs to kill each process, so I went ahead and ran <code>heroku pg: killall</code>. After this, I restarted the main app (and related apps), and everything appears to be working well.</p>\n<p>So the takeaways:</p>\n<ol>\n<li>Never deploy before coffee. The mind is not ready for this kind of stress.</li>\n<li>My best guess is that the connection pool for the main web app somehow got into a bad state. Killing all the connections, I was able to reset it.</li>\n</ol>\n<p>I still have to deploy again, but I assume this was a freak condition.</p>\n",
+				"content_text": "I am unsure how to title this post, but it feels like a good idea to share what happened so that you have some steps to follow if you are in a bit of a panic.\n\nFirst, here is what happened. Earlier today, I deployed a change that would add a column to a table. There was no backfill on the column. There are no required indexes. Nothing. It's a blank column on a relatively small (20k rows) table. I even held the code that would use this table for a second deployment.\n\nOur Heroku deploys have been taking quite a while recently (15 minutes or so). I haven't had time to dig into why yet, so I wasn't overly concerned about the duration initially. Then I got the first ping that something was offline (Sidekiq error queue). That one felt unrelated. Our monitoring is set to notify us anytime the error queue has more than 100 items. Shortly after, I received notifications that other services were unavailable (timing out). A quick check on the recent deployment shows that the release phase has been running for 20 minutes. \n\nAt this point, I decide it is time to kill the deployment. I commnd+D the terminal and checked the current processes on Heroku (`heroku ps`). I can see the release command is still running. The next thing to check is the database. I can console into the database and other apps that use this same database are all functioning as expected. In addition, as far as I can tell, all the background jobs for this app are still running as expected (we use Sidekiq+Redis, but ultimately all work is done against the PG database). \n\nTo be safe, I ran `pg:diagnose` and could see long-running queries against the table I was attempting to migrate. \n\nNext, I focused on killing the release phase process. In nearly 12 years of using Heroku, I have never had to kill a running process. I find references to `ps:stop` and `ps:kill`. Both report they worked, but running us `ps`, I can see the process is still running. It turns out that you need to include the process type as well: `heroku ps:kill release.2343`. Better output here would have been helpful. \n\nWhile this killed the process, the app's state did not improve. I restarted the processes, which again did not fix the problem. Finally, I figured something was off with the app state, so I rolled back to a previous update (note: the new deploy was never fully deployed and unavailable). This appeared to fix things for a few seconds, but everything on the main app again began to time out.\n\nI checked `heroku pg:diagnose` again and could see the same long-running queries were still there. There were about 40 or so of them, but I couldn't get the output in a state where I could quickly grab the PIDs to kill each process, so I went ahead and ran `heroku pg: killall`. After this, I restarted the main app (and related apps), and everything appears to be working well. \n\nSo the takeaways:\n\n1. Never deploy before coffee. The mind is not ready for this kind of stress. \n2. My best guess is that the connection pool for the main web app somehow got into a bad state. Killing all the connections, I was able to reset it.\n\nI still have to deploy again, but I assume this was a freak condition. \n",
+				"date_published": "2024-04-12T09:43:46-04:00",
+				"url": "https://scottw.com/2024/04/12/handling-a-stuck.html",
+				"tags": ["Code"]
+			},
+			{
 				"id": "http://scottwater.micro.blog/2024/03/28/adding-execute-permission.html",
 				"title": "Adding Execute Permission to Script in Git",
 				"content_html": "<p>With my SQLite backup script, I mentioned you need to add <a href=\"https://scottw.com/2024/02/22/configuring-the-sqlite.html\">execute permission after you deploy</a>.</p>\n<p>However, I cloned a Rails app off of GitHub today and noticed that the bin/setup worked as expected and had proper execute permissions. 👀</p>\n<p>I eventually found my way to the git&rsquo;s <a href=\"https://git-scm.com/docs/git-update-index\">update-index</a> command:</p>\n<blockquote>\n<p>Modifies the index. Each file mentioned is updated into the index and any unmerged or needs updating state is cleared.</p>\n</blockquote>\n<p>That description is clear as mud. 😛</p>\n<p>But digging further is this option: <code>--chmod=(+|-)x</code></p>\n<blockquote>\n<p>Set the execute permissions on the updated files.</p>\n</blockquote>\n<p>So here is how to use it.</p>\n<ol>\n<li>Add a new script file or modify an executing one (even with just a comment). This is important because <code>update-index</code> will not take effect unless you commit to some change.</li>\n<li>Add the change to git: <code>git add bin/backup</code></li>\n<li>Execute update-index: `git update-index &ndash;chmod=+x bin/backup</li>\n<li>Commit the change: <code>git commit -m &quot;Now with execute permission&quot;</code></li>\n</ol>\n",
@@ -95,7 +104,7 @@
 				"id": "http://scottwater.micro.blog/2024/01/08/troubleshooting-broken-software.html",
 				"title": "Troubleshooting Broken Software Tools Still Sucks",
 				"content_html": "<p>20+ years of professionally building software, and here is how my last hour or so went.</p>\n<p><code>heroku login</code> -&gt; <code>zsh: killed heroku login</code></p>\n<p>hmmm&hellip;why did ZSH kill Heroku? It turns out it is just reporting what happened.</p>\n<p>Open the crash reports and get a bunch of text I barely understand.</p>\n<p>I remember that I have a second brain that knows what this crap means. <strong>ChatGPT, can you help me?</strong></p>\n<p>It does a decent job of educating me on what the reports (segfault on the main thread implies not even the hand of God can save this process).</p>\n<p>When in doubt, just re-install.</p>\n<p>No dice.</p>\n<p>Google shows me others with similar problems, but none related to Heroku, and nothing that looks promising.</p>\n<p>I wonder what the <strong>(brew) Doctor</strong> thinks about this (Heroku was installed this way).</p>\n<p>The doctor takes her good old time getting back to me on this older Mac. But when she does respond, she says, &ldquo;Dawg, your shit is F&rsquo;ed Up!&rdquo;</p>\n<p>I am paraphrasing, but there are unlinked things, kegs with no formula,, dry taps, an unbrewed dylibs, and likely most importantly, this:</p>\n<!-- raw HTML omitted -->\n<p>This is weird because I had previously checked for an update after an OS update, and I had tried to re-install the tools just to be safe.</p>\n<p>In both cases, it said, &ldquo;there are no updates, go away&rdquo;.</p>\n<p>Anywho, I run the following:</p>\n<p><code>sudo rm -rf /Library/Developer/CommandLineTools</code></p>\n<p><code>sudo xcode-select --install</code></p>\n<p>Eventually, notice the popup window (because why install them from the terminal), click OK to continue, and 10 minutes or so later, we are back in business.</p>\n<p>The key takeaways:</p>\n<ol>\n<li>This shit isn&rsquo;t hard, it just takes patience.</li>\n<li>Even those who have done it for a long time still get stuck.</li>\n<li>There is nothing wrong with yelling profanities at a computer from the comfort of your basement.</li>\n</ol>\n",
-				"content_text": "20+ years of professionally building software, and here is how my last hour or so went.\n\n`heroku login` -> `zsh: killed heroku login`\n\nhmmm...why did ZSH kill Heroku? It turns out it is just reporting what happened. \n\nOpen the crash reports and get a bunch of text I barely understand.\n\nI remember that I have a second brain that knows what this crap means. **ChatGPT, can you help me?** \n\nIt does a decent job of educating me on what the reports (segfault on the main thread implies not even the hand of God can save this process).\n\nWhen in doubt, just re-install. \n\nNo dice.\n\nGoogle shows me others with similar problems, but none related to Heroku, and nothing that looks promising.\n\nI wonder what the **(brew) Doctor** thinks about this (Heroku was installed this way).\n\nThe doctor takes her good old time getting back to me on this older Mac. But when she does respond, she says, \"Dawg, your shit is F'ed Up!\"\n\nI am paraphrasing, but there are unlinked things, kegs with no formula,, dry taps, an unbrewed dylibs, and likely most importantly, this:\n\n<img src=\"uploads/2024/installthetools.png\" width=\"600\" height=\"408\" alt=\"You missing the good tools message\">\n\nThis is weird because I had previously checked for an update after an OS update, and I had tried to re-install the tools just to be safe.\n\nIn both cases, it said, \"there are no updates, go away\".\n\nAnywho, I run the following:\n\n`sudo rm -rf /Library/Developer/CommandLineTools` \n\n`sudo xcode-select --install`\n\nEventually, notice the popup window (because why install them from the terminal), click OK to continue, and 10 minutes or so later, we are back in business.\n\nThe key takeaways:\n\n1. This shit isn't hard, it just takes patience. \n2. Even those who have done it for a long time still get stuck.\n3. There is nothing wrong with yelling profanities at a computer from the comfort of your basement.\n",
+				"content_text": "20+ years of professionally building software, and here is how my last hour or so went.\n\n`heroku login` -> `zsh: killed heroku login`\n\nhmmm...why did ZSH kill Heroku? It turns out it is just reporting what happened. \n\nOpen the crash reports and get a bunch of text I barely understand.\n\nI remember that I have a second brain that knows what this crap means. **ChatGPT, can you help me?** \n\nIt does a decent job of educating me on what the reports (segfault on the main thread implies not even the hand of God can save this process).\n\nWhen in doubt, just re-install. \n\nNo dice.\n\nGoogle shows me others with similar problems, but none related to Heroku, and nothing that looks promising.\n\nI wonder what the **(brew) Doctor** thinks about this (Heroku was installed this way).\n\nThe doctor takes her good old time getting back to me on this older Mac. But when she does respond, she says, \"Dawg, your shit is F'ed Up!\"\n\nI am paraphrasing, but there are unlinked things, kegs with no formula,, dry taps, an unbrewed dylibs, and likely most importantly, this:\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2024/installthetools.png\" width=\"600\" height=\"408\" alt=\"You missing the good tools message\">\n\nThis is weird because I had previously checked for an update after an OS update, and I had tried to re-install the tools just to be safe.\n\nIn both cases, it said, \"there are no updates, go away\".\n\nAnywho, I run the following:\n\n`sudo rm -rf /Library/Developer/CommandLineTools` \n\n`sudo xcode-select --install`\n\nEventually, notice the popup window (because why install them from the terminal), click OK to continue, and 10 minutes or so later, we are back in business.\n\nThe key takeaways:\n\n1. This shit isn't hard, it just takes patience. \n2. Even those who have done it for a long time still get stuck.\n3. There is nothing wrong with yelling profanities at a computer from the comfort of your basement.\n",
 				"date_published": "2024-01-08T12:12:33-04:00",
 				"url": "https://scottw.com/2024/01/08/troubleshooting-broken-software.html",
 				"tags": ["Code"]
@@ -169,7 +178,7 @@
 				"id": "http://scottwater.micro.blog/2023/09/12/suggestions-for-not.html",
 				"title": "Suggestions For Not Forgetting To Remove Unused Code",
 				"content_html": "<p>I am working on a significant update/rewrite of part of KickoffLabs. I had a task to work through what we do in a Sidekiq worker. It was late on Friday when I got to this part of the code, and I decided to punt on it until Monday.</p>\n<p>Monday morning, I grab a cup of coffee and sit down to finish this section off and see a comment I missed (and had missed for a long time).</p>\n<!-- raw HTML omitted -->\n<p>Outside the screenshot, there is an if statement, ensuring this code was not executed in the last four years. Still, it was frustrating that we had missed removing it for so long.</p>\n<p>I figured ChatGPT would have a good solution to stay on top of this, but it mostly just tried to explain to me how to use comments. :)</p>\n<p>Next up, I asked on <a href=\"https://twitter.com/scottw/status/1701244816217038929\">Twitter</a> (and <a href=\"https://ruby.social/@Scottw/111047042095713444\">Ruby.Social</a>):</p>\n<blockquote>\n<p>Any suggestions (other than search) to ensure code like this gets cleaned up?</p>\n</blockquote>\n<p>From there, I got a lot of good suggestions.</p>\n<p>Two Ruby gems looked interesting:</p>\n<ul>\n<li><a href=\"https://github.com/searls/todo_or_die\">todo_or_die</a></li>\n<li><a href=\"https://github.com/Shopify/smart_todo\">smart_todo</a></li>\n</ul>\n<p>If I had to choose, I would go with todo_or_die since it would cause a failure/notification locally. I would rather not wait until there was a pull request/etc.</p>\n<p>The rest of the suggestions included if statements and date checks. My favorite, and the one I will likely adopt going forward, is to wrap it in a test that <a href=\"https://ruby.social/@p8/111047287492099475\">fails after a specific date</a>.</p>\n",
-				"content_text": "I am working on a significant update/rewrite of part of KickoffLabs. I had a task to work through what we do in a Sidekiq worker. It was late on Friday when I got to this part of the code, and I decided to punt on it until Monday.\n\nMonday morning, I grab a cup of coffee and sit down to finish this section off and see a comment I missed (and had missed for a long time). \n\n<img src=\"uploads/2023/f5wjcuawmaaokwf.jpeg\" width=\"600\" height=\"99\" alt=\"Code Comment, Remove in August 2019\">\n\nOutside the screenshot, there is an if statement, ensuring this code was not executed in the last four years. Still, it was frustrating that we had missed removing it for so long. \n\nI figured ChatGPT would have a good solution to stay on top of this, but it mostly just tried to explain to me how to use comments. :)\n\nNext up, I asked on [Twitter](https://twitter.com/scottw/status/1701244816217038929) (and [Ruby.Social](https://ruby.social/@Scottw/111047042095713444)): \n\n> Any suggestions (other than search) to ensure code like this gets cleaned up?\n\nFrom there, I got a lot of good suggestions. \n\nTwo Ruby gems looked interesting:\n\n* [todo_or_die](https://github.com/searls/todo_or_die)\n* [smart_todo](https://github.com/Shopify/smart_todo)\n\nIf I had to choose, I would go with todo_or_die since it would cause a failure/notification locally. I would rather not wait until there was a pull request/etc. \n\nThe rest of the suggestions included if statements and date checks. My favorite, and the one I will likely adopt going forward, is to wrap it in a test that [fails after a specific date](https://ruby.social/@p8/111047287492099475).  \n",
+				"content_text": "I am working on a significant update/rewrite of part of KickoffLabs. I had a task to work through what we do in a Sidekiq worker. It was late on Friday when I got to this part of the code, and I decided to punt on it until Monday.\n\nMonday morning, I grab a cup of coffee and sit down to finish this section off and see a comment I missed (and had missed for a long time). \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/f5wjcuawmaaokwf.jpeg\" width=\"600\" height=\"99\" alt=\"Code Comment, Remove in August 2019\">\n\nOutside the screenshot, there is an if statement, ensuring this code was not executed in the last four years. Still, it was frustrating that we had missed removing it for so long. \n\nI figured ChatGPT would have a good solution to stay on top of this, but it mostly just tried to explain to me how to use comments. :)\n\nNext up, I asked on [Twitter](https://twitter.com/scottw/status/1701244816217038929) (and [Ruby.Social](https://ruby.social/@Scottw/111047042095713444)): \n\n> Any suggestions (other than search) to ensure code like this gets cleaned up?\n\nFrom there, I got a lot of good suggestions. \n\nTwo Ruby gems looked interesting:\n\n* [todo_or_die](https://github.com/searls/todo_or_die)\n* [smart_todo](https://github.com/Shopify/smart_todo)\n\nIf I had to choose, I would go with todo_or_die since it would cause a failure/notification locally. I would rather not wait until there was a pull request/etc. \n\nThe rest of the suggestions included if statements and date checks. My favorite, and the one I will likely adopt going forward, is to wrap it in a test that [fails after a specific date](https://ruby.social/@p8/111047287492099475).  \n",
 				"date_published": "2023-09-12T09:38:36-04:00",
 				"url": "https://scottw.com/2023/09/12/suggestions-for-not.html",
 				"tags": ["Code"]
@@ -211,7 +220,7 @@
 				"id": "http://scottwater.micro.blog/2023/07/19/from-minutes-to.html",
 				"title": "From Minutes to Seconds",
 				"content_html": "<p>I am tired of guessing the future of AI. What I am sure of, something routine like this used to take significantly longer than it does today.</p>\n<p>In the past:</p>\n<ol>\n<li>Google a bit; maybe find someone asking a similar question somewhere (hopefully, do not get distracted by something else).</li>\n<li>Goto the docs (which often took Google to find)</li>\n<li>Try and find something related to what you were doing.</li>\n<li>(Sometimes) Apply what you learn in step #3 to your problem.</li>\n</ol>\n<p>Now, we are back to a quick search, which is kind of like Google in the old days.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I am tired of guessing the future of AI. What I am sure of, something routine like this used to take significantly longer than it does today.\r\n\r\nIn the past:\r\n\r\n1. Google a bit; maybe find someone asking a similar question somewhere (hopefully, do not get distracted by something else). \r\n2. Goto the docs (which often took Google to find)\r\n3. Try and find something related to what you were doing.\r\n4. (Sometimes) Apply what you learn in step #3 to your problem.\r\n\r\n Now, we are back to a quick search, which is kind of like Google in the old days. \n\n<img src=\"uploads/2023/braintree-payment-method-on-subs2x.png\" width=\"600\" height=\"517\" alt=\"Code showing how to update the payment method on a subscription in Braintree\">\n",
+				"content_text": "I am tired of guessing the future of AI. What I am sure of, something routine like this used to take significantly longer than it does today.\r\n\r\nIn the past:\r\n\r\n1. Google a bit; maybe find someone asking a similar question somewhere (hopefully, do not get distracted by something else). \r\n2. Goto the docs (which often took Google to find)\r\n3. Try and find something related to what you were doing.\r\n4. (Sometimes) Apply what you learn in step #3 to your problem.\r\n\r\n Now, we are back to a quick search, which is kind of like Google in the old days. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/braintree-payment-method-on-subs2x.png\" width=\"600\" height=\"517\" alt=\"Code showing how to update the payment method on a subscription in Braintree\">\n",
 				"date_published": "2023-07-19T14:34:41-04:00",
 				"url": "https://scottw.com/2023/07/19/from-minutes-to.html",
 				"tags": ["Code"]
@@ -246,7 +255,7 @@
 				"id": "http://scottwater.micro.blog/2023/07/14/this-is-likely.html",
 				
 				"content_html": "<p>This is likely the best post gem install message I have seen (well, next to HTTParty). Well done Stanard team.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "This is likely the best post gem install message I have seen (well, next to HTTParty). Well done Stanard team.\n\n<img src=\"uploads/2023/stanard-post-install-gem-message2x.png\" width=\"544\" height=\"600\" alt=\"A Helpful Standard Post Install Message\">\n",
+				"content_text": "This is likely the best post gem install message I have seen (well, next to HTTParty). Well done Stanard team.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/stanard-post-install-gem-message2x.png\" width=\"544\" height=\"600\" alt=\"A Helpful Standard Post Install Message\">\n",
 				"date_published": "2023-07-14T11:02:50-04:00",
 				"url": "https://scottw.com/2023/07/14/this-is-likely.html",
 				"tags": ["Code"]
@@ -307,7 +316,7 @@
 				"id": "http://scottwater.micro.blog/2023/07/08/according-to-peak.html",
 				
 				"content_html": "<p>According to Peak (and my watch) I am at 2.2 million steps for the year. New goal - 5 million by the end of the year.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "According to Peak (and my watch) I am at 2.2 million steps for the year. New goal - 5 million by the end of the year. \n\n<img src=\"uploads/2023/ed6127fe75.jpg\" width=\"578\" height=\"600\" alt=\"Chart with Steps for the year\">\n",
+				"content_text": "According to Peak (and my watch) I am at 2.2 million steps for the year. New goal - 5 million by the end of the year. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/ed6127fe75.jpg\" width=\"578\" height=\"600\" alt=\"Chart with Steps for the year\">\n",
 				"date_published": "2023-07-08T13:59:36-04:00",
 				"url": "https://scottw.com/2023/07/08/according-to-peak.html"
 			},
@@ -364,7 +373,7 @@
 				"id": "http://scottwater.micro.blog/2023/07/03/i-was-surprised.html",
 				
 				"content_html": "<p>I was surprised that multiple places at the mall with a more convincing Easter Bunny (anyone know the movie?) had vinyl albums for sale.</p>\n<p>Just putting on an album and leaving it to play resonates with me—no 20-second clips to find the right song, endless scrolling, pop-ups, jumping around, etc.</p>\n<p>But then I think back to not having access to just about every song recorded in the last 100+ years for $10 or so a month, and I am immediately out.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I was surprised that multiple places at the mall with a more convincing Easter Bunny (anyone know the movie?) had vinyl albums for sale. \n\nJust putting on an album and leaving it to play resonates with me—no 20-second clips to find the right song, endless scrolling, pop-ups, jumping around, etc. \n\nBut then I think back to not having access to just about every song recorded in the last 100+ years for $10 or so a month, and I am immediately out. \n\n\n\n<img src=\"uploads/2023/36e0264789.jpg\" width=\"600\" height=\"567\" alt=\"Vinyl For Sale\">\n",
+				"content_text": "I was surprised that multiple places at the mall with a more convincing Easter Bunny (anyone know the movie?) had vinyl albums for sale. \n\nJust putting on an album and leaving it to play resonates with me—no 20-second clips to find the right song, endless scrolling, pop-ups, jumping around, etc. \n\nBut then I think back to not having access to just about every song recorded in the last 100+ years for $10 or so a month, and I am immediately out. \n\n\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/36e0264789.jpg\" width=\"600\" height=\"567\" alt=\"Vinyl For Sale\">\n",
 				"date_published": "2023-07-03T18:39:31-04:00",
 				"url": "https://scottw.com/2023/07/03/i-was-surprised.html"
 			},
@@ -414,7 +423,7 @@
 				"id": "http://scottwater.micro.blog/2023/06/28/i-finally-gave.html",
 				
 				"content_html": "<p>I finally gave up on using my Apple Watch for zone 5+ training and picked up (via Father’s Day) and Polaris H10.</p>\n<p>It is much more awkward to use (and yet another device), but I am impressed with the simplicity of syncing to machines like the Peloton.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I finally gave up on using my Apple Watch for zone 5+ training and picked up (via Father’s Day) and Polaris H10. \n\nIt is much more awkward to use (and yet another device), but I am impressed with the simplicity of syncing to machines like the Peloton.  \n\n<img src=\"uploads/2023/image.jpg\" width=\"600\" height=\"276\" alt=\"Zone 5 training graph  \">\n",
+				"content_text": "I finally gave up on using my Apple Watch for zone 5+ training and picked up (via Father’s Day) and Polaris H10. \n\nIt is much more awkward to use (and yet another device), but I am impressed with the simplicity of syncing to machines like the Peloton.  \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/image.jpg\" width=\"600\" height=\"276\" alt=\"Zone 5 training graph  \">\n",
 				"date_published": "2023-06-28T07:38:46-04:00",
 				"url": "https://scottw.com/2023/06/28/i-finally-gave.html"
 			},
@@ -430,7 +439,7 @@
 				"id": "http://scottwater.micro.blog/2023/06/12/can-we-just.html",
 				
 				"content_html": "<p>Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be. \n\n<img src=\"uploads/2023/daf19f91db.png\" width=\"600\" height=\"143\" alt=\"No Upgradablity Headline\">\n",
+				"content_text": "Can we just agree there is no longer a need to report on Macs with limited ports or upgradability? Right or wrong, this is just how it will always be. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/daf19f91db.png\" width=\"600\" height=\"143\" alt=\"No Upgradablity Headline\">\n",
 				"date_published": "2023-06-12T15:42:30-04:00",
 				"url": "https://scottw.com/2023/06/12/can-we-just.html"
 			},
@@ -502,7 +511,7 @@
 				"id": "http://scottwater.micro.blog/2023/04/19/i-listened-to.html",
 				
 				"content_html": "<p>I listened to Outlived and need to go back and read the book to pull out some more details.</p>\n<p>In the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I listened to Outlived and need to go back and read the book to pull out some more details. \n\nIn the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post. \n\n<img src=\"uploads/2023/5632d5fa65.jpg\" width=\"450\" height=\"600\" alt=\"Photo of the cover of the book, Built to Move\">\n",
+				"content_text": "I listened to Outlived and need to go back and read the book to pull out some more details. \n\nIn the meantime, I have moved on to Kelly (and Juliet) Starrett’s latest: “Built to Move” which has me sitting on the floor reading book and writing this post. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/5632d5fa65.jpg\" width=\"450\" height=\"600\" alt=\"Photo of the cover of the book, Built to Move\">\n",
 				"date_published": "2023-04-19T07:24:25-04:00",
 				"url": "https://scottw.com/2023/04/19/i-listened-to.html"
 			},
@@ -574,7 +583,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/31/macgpt-is-a.html",
 				
 				"content_html": "<p><a href=\"https://www.macgpt.com\">MacGPT</a> is a fantastic way to interact with ChatGPT on your Mac.</p>\n<p>Even better, there is an excellent menubar option you can wire a keyboard shortcut to.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[MacGPT](https://www.macgpt.com) is a fantastic way to interact with ChatGPT on your Mac. \r\n\r\nEven better, there is an excellent menubar option you can wire a keyboard shortcut to.\n\n<img src=\"uploads/2023/ab3df23f97.png\" width=\"457\" height=\"600\" alt=\"MacGPT MenuBar Screenshot\">\n",
+				"content_text": "[MacGPT](https://www.macgpt.com) is a fantastic way to interact with ChatGPT on your Mac. \r\n\r\nEven better, there is an excellent menubar option you can wire a keyboard shortcut to.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/ab3df23f97.png\" width=\"457\" height=\"600\" alt=\"MacGPT MenuBar Screenshot\">\n",
 				"date_published": "2023-03-31T13:44:48-04:00",
 				"url": "https://scottw.com/2023/03/31/macgpt-is-a.html"
 			},
@@ -622,7 +631,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/20/a-game-of.html",
 				
 				"content_html": "<p>A game of spotting the hidden cancel link.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "A game of spotting the hidden cancel link. \n\n<img src=\"uploads/2023/1d2969327e.png\" width=\"600\" height=\"366\" alt=\"semi-hidden cancel link\">\n",
+				"content_text": "A game of spotting the hidden cancel link. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/1d2969327e.png\" width=\"600\" height=\"366\" alt=\"semi-hidden cancel link\">\n",
 				"date_published": "2023-03-20T10:18:46-04:00",
 				"url": "https://scottw.com/2023/03/20/a-game-of.html"
 			},
@@ -654,7 +663,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/14/never-send-a.html",
 				
 				"content_html": "<p>Never send a long email when brief bullet points will do.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Never send a long email when brief bullet points will do.\n\n<img src=\"uploads/2023/29a46de052.png\" width=\"600\" height=\"208\" alt=\"Google says they will make your short emails longer for some dumb reason\">\n",
+				"content_text": "Never send a long email when brief bullet points will do.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/29a46de052.png\" width=\"600\" height=\"208\" alt=\"Google says they will make your short emails longer for some dumb reason\">\n",
 				"date_published": "2023-03-14T10:38:07-04:00",
 				"url": "https://scottw.com/2023/03/14/never-send-a.html"
 			},
@@ -720,7 +729,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/06/day-of-mbmar.html",
 				
 				"content_html": "<p>Day 6 of #mbmar - (pre-)engineering</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Day 6 of #mbmar - (pre-)engineering\n\n<img src=\"uploads/2023/99bd88bb0f.jpg\" width=\"600\" height=\"450\" alt=\"Lego's built by my daughter\">\n",
+				"content_text": "Day 6 of #mbmar - (pre-)engineering\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/99bd88bb0f.jpg\" width=\"600\" height=\"450\" alt=\"Lego's built by my daughter\">\n",
 				"date_published": "2023-03-06T09:18:05-04:00",
 				"url": "https://scottw.com/2023/03/06/day-of-mbmar.html"
 			},
@@ -744,7 +753,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/05/day-of-mbmar.html",
 				
 				"content_html": "<p>Day 5 of #mbmar - tiles (with a reflection)</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Day 5 of #mbmar - tiles (with a reflection)\n\n<img src=\"uploads/2023/96ddd95937.jpg\" width=\"600\" height=\"450\" alt=\"Glass subway tiles with a reflection\">\n",
+				"content_text": "Day 5 of #mbmar - tiles (with a reflection)\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/96ddd95937.jpg\" width=\"600\" height=\"450\" alt=\"Glass subway tiles with a reflection\">\n",
 				"date_published": "2023-03-05T17:15:25-04:00",
 				"url": "https://scottw.com/2023/03/05/day-of-mbmar.html"
 			},
@@ -752,7 +761,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/04/waiting-for-jerry.html",
 				
 				"content_html": "<p>Waiting for Jerry at ‘zip’ code 10023 - Day 4 mbmar.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Waiting for Jerry at ‘zip’ code 10023 - Day 4 mbmar. \n\n<img src=\"uploads/2023/97d46cebdf.jpg\" width=\"600\" height=\"450\" alt=\"Empty Beacon Theater stage\">\n",
+				"content_text": "Waiting for Jerry at ‘zip’ code 10023 - Day 4 mbmar. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/97d46cebdf.jpg\" width=\"600\" height=\"450\" alt=\"Empty Beacon Theater stage\">\n",
 				"date_published": "2023-03-04T19:30:49-04:00",
 				"url": "https://scottw.com/2023/03/04/waiting-for-jerry.html"
 			},
@@ -760,7 +769,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/04/the-only-reason.html",
 				
 				"content_html": "<p>The only reason to post something like this is because it happened and someone admitted to it.</p>\n<p><a href=\"https://mobile.twitter.com/NatlParkService/status/1630653487825526786\">National Park Service on Twitter</a></p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "The only reason to post something like this is because it happened and someone admitted to it. \n\n[National Park Service on Twitter](https://mobile.twitter.com/NatlParkService/status/1630653487825526786)\n\n\n<img src=\"uploads/2023/7980dd5a5c.jpg\" width=\"600\" height=\"205\" alt=\"Don’t push your friend down to get away from a bear\">\n",
+				"content_text": "The only reason to post something like this is because it happened and someone admitted to it. \n\n[National Park Service on Twitter](https://mobile.twitter.com/NatlParkService/status/1630653487825526786)\n\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/7980dd5a5c.jpg\" width=\"600\" height=\"205\" alt=\"Don’t push your friend down to get away from a bear\">\n",
 				"date_published": "2023-03-04T09:36:48-04:00",
 				"url": "https://scottw.com/2023/03/04/the-only-reason.html"
 			},
@@ -776,7 +785,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/03/day-of-mbmar.html",
 				
 				"content_html": "<p>Day 3 of mbmar challenge - Zamboni at Rockefeller Center (Solitude)</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Day 3 of mbmar challenge - Zamboni at Rockefeller Center (Solitude)\n\n<img src=\"uploads/2023/24e1ece0a4.jpg\" width=\"600\" height=\"449\" alt=\"Zamboni at Rockefeller Center as a photo of solitude. \">\n",
+				"content_text": "Day 3 of mbmar challenge - Zamboni at Rockefeller Center (Solitude)\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/24e1ece0a4.jpg\" width=\"600\" height=\"449\" alt=\"Zamboni at Rockefeller Center as a photo of solitude. \">\n",
 				"date_published": "2023-03-03T08:38:10-04:00",
 				"url": "https://scottw.com/2023/03/03/day-of-mbmar.html"
 			},
@@ -784,7 +793,7 @@
 				"id": "http://scottwater.micro.blog/2023/03/02/day-of-mbmar.html",
 				
 				"content_html": "<p>Day 2 of #mbmar - weather.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Day 2 of #mbmar - weather. \n\n<img src=\"uploads/2023/4b9b31bd51.jpg\" width=\"495\" height=\"600\" alt=\"\">\n",
+				"content_text": "Day 2 of #mbmar - weather. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/4b9b31bd51.jpg\" width=\"495\" height=\"600\" alt=\"\">\n",
 				"date_published": "2023-03-02T11:51:57-04:00",
 				"url": "https://scottw.com/2023/03/02/day-of-mbmar.html"
 			},
@@ -824,7 +833,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/06/i-started-a.html",
 				
 				"content_html": "<p>I started a new stretching routine (6 in total). One stretch involves sitting cross-legged and working towards getting your face to the floor. Another involves working towards raising your hands to 120 degrees behind your back.</p>\n<p>I still have quite a bit of work myself to do, but 7-year-old decided to do 2 of them perfectly at the same time right next to me.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I started a new stretching routine (6 in total). One stretch involves sitting cross-legged and working towards getting your face to the floor. Another involves working towards raising your hands to 120 degrees behind your back.\r\n\r\nI still have quite a bit of work myself to do, but 7-year-old decided to do 2 of them perfectly at the same time right next to me. \n\n<img src=\"uploads/2023/1d08c5d621.jpg\" width=\"600\" height=\"580\" alt=\"Seven Year Olds are Flexibile\">\n",
+				"content_text": "I started a new stretching routine (6 in total). One stretch involves sitting cross-legged and working towards getting your face to the floor. Another involves working towards raising your hands to 120 degrees behind your back.\r\n\r\nI still have quite a bit of work myself to do, but 7-year-old decided to do 2 of them perfectly at the same time right next to me. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/1d08c5d621.jpg\" width=\"600\" height=\"580\" alt=\"Seven Year Olds are Flexibile\">\n",
 				"date_published": "2023-02-06T11:06:55-04:00",
 				"url": "https://scottw.com/2023/02/06/i-started-a.html"
 			},
@@ -832,7 +841,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/02/lets-go.html",
 				
 				"content_html": "<p>Let’s Go!</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Let’s Go!\n\n<img src=\"uploads/2023/b567f31029.jpg\" width=\"461\" height=\"600\" alt=\"Pain in stocks \">\n",
+				"content_text": "Let’s Go!\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/b567f31029.jpg\" width=\"461\" height=\"600\" alt=\"Pain in stocks \">\n",
 				"date_published": "2023-02-02T10:48:39-04:00",
 				"url": "https://scottw.com/2023/02/02/lets-go.html"
 			},
@@ -840,7 +849,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/02/on-my-desk.html",
 				
 				"content_html": "<p>On my desk - The beautify J-01 decked out in GMK Dracula.</p>\n<p>As much as I love the look of this board, the layout isn&rsquo;t for me. 😢</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "On my desk - The beautify J-01 decked out in GMK Dracula.\r\n\r\nAs much as I love the look of this board, the layout isn't for me. 😢\n\n<img src=\"uploads/2023/20ab63412d.jpg\" width=\"600\" height=\"450\" alt=\"J-01 with GMK Dracula\">\n",
+				"content_text": "On my desk - The beautify J-01 decked out in GMK Dracula.\r\n\r\nAs much as I love the look of this board, the layout isn't for me. 😢\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/20ab63412d.jpg\" width=\"600\" height=\"450\" alt=\"J-01 with GMK Dracula\">\n",
 				"date_published": "2023-02-02T10:37:56-04:00",
 				"url": "https://scottw.com/2023/02/02/on-my-desk.html"
 			},
@@ -848,7 +857,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/01/hit-my-first.html",
 				
 				"content_html": "<p>Hit my first fitness goal of the year by climbing 33K feet on the treadmill in January. Technically there were another 900 feet that my watch could not sync.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Hit my first fitness goal of the year by climbing 33K feet on the treadmill in January. Technically there were another 900 feet that my watch could not sync.\n\n<img src=\"uploads/2023/a50dbfee41.jpg\" width=\"297\" height=\"600\" alt=\"Climbed 34,286 feet\">\n",
+				"content_text": "Hit my first fitness goal of the year by climbing 33K feet on the treadmill in January. Technically there were another 900 feet that my watch could not sync.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/a50dbfee41.jpg\" width=\"297\" height=\"600\" alt=\"Climbed 34,286 feet\">\n",
 				"date_published": "2023-02-01T12:55:14-04:00",
 				"url": "https://scottw.com/2023/02/01/hit-my-first.html"
 			},
@@ -856,7 +865,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/01/in-the-voice.html",
 				
 				"content_html": "<p>In the voice of Paul Hogan (Crocodile Dundee) - &ldquo;You call that a macropad? This is a macropad.&rdquo;</p>\n<p>A bit trashy today, but will look great when filled with GMK Mictlán novelties and artisans.</p>\n<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>\n",
-				"content_text": "In the voice of Paul Hogan (Crocodile Dundee) - \"You call that a macropad? This is a macropad.\"\r\n\r\nA bit trashy today, but will look great when filled with GMK Mictlán novelties and artisans.\n\n<video controls=\"controls\" playsinline=\"playsinline\" src=\"https://scottw.com/uploads/2023/4e6b16b551.mov\" width=\"640\" height=\"360\" poster=\"https://scottw.com/uploads/2023/bd717981dd.png\" preload=\"none\"></video>\n",
+				"content_text": "In the voice of Paul Hogan (Crocodile Dundee) - \"You call that a macropad? This is a macropad.\"\r\n\r\nA bit trashy today, but will look great when filled with GMK Mictlán novelties and artisans.\n\n<video controls=\"controls\" playsinline=\"playsinline\" src=\"https://cdn.uploads.micro.blog/92902/2023/4e6b16b551.mov\" width=\"640\" height=\"360\" poster=\"https://scottw.com/uploads/2023/bd717981dd.png\" preload=\"none\"></video>\n",
 				"date_published": "2023-02-01T11:18:42-04:00",
 				"url": "https://scottw.com/2023/02/01/in-the-voice.html"
 			},
@@ -864,7 +873,7 @@
 				"id": "http://scottwater.micro.blog/2023/02/01/why-can-i.html",
 				
 				"content_html": "<p>Why can I not view staging? Oh yeah, I did this.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Why can I not view staging? Oh yeah, I did this.\n\n<img src=\"uploads/2023/1b9b265e44.jpg\" width=\"600\" height=\"219\" alt=\"Git comment point back at me.\">\n",
+				"content_text": "Why can I not view staging? Oh yeah, I did this.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/1b9b265e44.jpg\" width=\"600\" height=\"219\" alt=\"Git comment point back at me.\">\n",
 				"date_published": "2023-02-01T11:14:39-04:00",
 				"url": "https://scottw.com/2023/02/01/why-can-i.html"
 			},
@@ -897,7 +906,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/27/just-say-no.html",
 				
 				"content_html": "<p>Just say no.</p>\n<p>If you must go off script at WaWa a splash of Irish Cream in the regular or Cuban is acceptable.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Just say no. \n\nIf you must go off script at WaWa a splash of Irish Cream in the regular or Cuban is acceptable. \n\n<img src=\"uploads/2023/6ed9cce314.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
+				"content_text": "Just say no. \n\nIf you must go off script at WaWa a splash of Irish Cream in the regular or Cuban is acceptable. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/6ed9cce314.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
 				"date_published": "2023-01-27T11:59:06-04:00",
 				"url": "https://scottw.com/2023/01/27/just-say-no.html"
 			},
@@ -954,7 +963,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/24/once-gmk-chaos.html",
 				
 				"content_html": "<p>Once GMK Chaos Theory ships, I may need to pick up this <a href=\"https://keeb.io/products/wtf60-mirrored-60-keyboard-pcb\">PCB</a>.</p>\n<p>If you work in an office, this is a great way to keep others from using your keyboard.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Once GMK Chaos Theory ships, I may need to pick up this [PCB](https://keeb.io/products/wtf60-mirrored-60-keyboard-pcb).\r\n\r\nIf you work in an office, this is a great way to keep others from using your keyboard.\n\n<img src=\"uploads/2023/594ff78db7.jpg\" width=\"600\" height=\"450\" alt=\"a mirrored 60% keyboard PCB.\">\n",
+				"content_text": "Once GMK Chaos Theory ships, I may need to pick up this [PCB](https://keeb.io/products/wtf60-mirrored-60-keyboard-pcb).\r\n\r\nIf you work in an office, this is a great way to keep others from using your keyboard.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/594ff78db7.jpg\" width=\"600\" height=\"450\" alt=\"a mirrored 60% keyboard PCB.\">\n",
 				"date_published": "2023-01-24T15:34:07-04:00",
 				"url": "https://scottw.com/2023/01/24/once-gmk-chaos.html"
 			},
@@ -971,7 +980,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/22/my-playoff-mona.html",
 				
 				"content_html": "<p>My playoff Mona Lisa.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "My playoff Mona Lisa. \n\n<img src=\"uploads/2023/ce57df87ab.jpg\" width=\"386\" height=\"600\" alt=\"\">\n",
+				"content_text": "My playoff Mona Lisa. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/ce57df87ab.jpg\" width=\"386\" height=\"600\" alt=\"\">\n",
 				"date_published": "2023-01-22T22:53:10-04:00",
 				"url": "https://scottw.com/2023/01/22/my-playoff-mona.html"
 			},
@@ -1028,7 +1037,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/18/fun-little-health.html",
 				
 				"content_html": "<p>Fun little health food hack.</p>\n<p>I purchased a couple cheap <a href=\"https://amzn.to/3iLeTsx\">Silicone Air Fryer Liners</a>. They make it very convenient to quickly cook various white fish for lunch with almost zero cleanups (just throw them in the dishwasher).</p>\n<p>Today&rsquo;s flounder below (about 9 minutes at 375)</p>\n<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>\n",
-				"content_text": "Fun little health food hack. \r\n\r\nI purchased a couple cheap [Silicone Air Fryer Liners](https://amzn.to/3iLeTsx). They make it very convenient to quickly cook various white fish for lunch with almost zero cleanups (just throw them in the dishwasher). \r\n\r\nToday's flounder below (about 9 minutes at 375)\n\n<img src=\"uploads/2023/29fc963696.jpg\" width=\"450\" height=\"600\" alt=\"Flounder After\"><img src=\"uploads/2023/f781fe2d63.jpg\" width=\"450\" height=\"600\" alt=\"Flounder Before\">\n",
+				"content_text": "Fun little health food hack. \r\n\r\nI purchased a couple cheap [Silicone Air Fryer Liners](https://amzn.to/3iLeTsx). They make it very convenient to quickly cook various white fish for lunch with almost zero cleanups (just throw them in the dishwasher). \r\n\r\nToday's flounder below (about 9 minutes at 375)\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/29fc963696.jpg\" width=\"450\" height=\"600\" alt=\"Flounder After\"><img src=\"https://cdn.uploads.micro.blog/92902/2023/f781fe2d63.jpg\" width=\"450\" height=\"600\" alt=\"Flounder Before\">\n",
 				"date_published": "2023-01-18T14:58:34-04:00",
 				"url": "https://scottw.com/2023/01/18/fun-little-health.html"
 			},
@@ -1045,7 +1054,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/18/on-my-desk.html",
 				
 				"content_html": "<p>On my desk, the last week or so has been the excellent Bauer 2 sporting some APL keycaps.</p>\n<p>Hidden below is a full brass bottom&hellip;why? Just because.</p>\n<p>All this board really needs is a POM plate.</p>\n<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>\n",
-				"content_text": "On my desk, the last week or so has been the excellent Bauer 2 sporting some APL keycaps. \r\n\r\nHidden below is a full brass bottom...why? Just because.\r\n\r\nAll this board really needs is a POM plate.\n\n<img src=\"uploads/2023/1c3af5155d.jpg\" width=\"600\" height=\"450\" alt=\"Bauer 2 with APL Keycaps\"><img src=\"uploads/2023/14164b09d8.jpg\" width=\"600\" height=\"450\" alt=\"Bauer Brass Bottom\">\n",
+				"content_text": "On my desk, the last week or so has been the excellent Bauer 2 sporting some APL keycaps. \r\n\r\nHidden below is a full brass bottom...why? Just because.\r\n\r\nAll this board really needs is a POM plate.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/1c3af5155d.jpg\" width=\"600\" height=\"450\" alt=\"Bauer 2 with APL Keycaps\"><img src=\"https://cdn.uploads.micro.blog/92902/2023/14164b09d8.jpg\" width=\"600\" height=\"450\" alt=\"Bauer Brass Bottom\">\n",
 				"date_published": "2023-01-18T10:39:06-04:00",
 				"url": "https://scottw.com/2023/01/18/on-my-desk.html"
 			},
@@ -1069,7 +1078,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/17/i-rearranged-my.html",
 				"title": "I rearranged my office over the long weekend",
 				"content_html": "<ul>\n<li>Back to a multi-monitor setup. I have been team one larger monitor for the last few years, but I felt like some of the work I have been doing benefits from having more fixed windows.</li>\n<li>I moved my desk back against the wall. It had been floating in the room for the last couple of years. I prefer not to stare at a wall in the background, but a floating desk that can also be stood at gets messy on the backside. In addition, the internet speed is nearly 1 Gbps when plugged in vs. 300/400 MPs over wifi.</li>\n<li>Removed the XLR mic and went with an <a href=\"https://amzn.to/3iHxFB3\">Elgato Wave 3 USB</a> mic. In quick testing, it seems more than adequate for my needs and does not require a Cloud booster, Focusrite Scarlett, extra cables, etc.</li>\n<li>Moved my Anker camera to the top of my MBP instead of the separate arm. Minor change, but one less thing on my desk. I still find it pathetic that Apple has not shipped a better laptop camera. It is cute I can use my iPhone, but who wants to go through all that effort every day.</li>\n<li>Semi-related, I disabled &ldquo;Displays have separate spaces.&rdquo; I heavily use spaces and typically have a space for specific tasks with keyboard shortcuts. Once each display has its own space, this gets messy. The downside is I cannot just dock a window in a display across all spaces.</li>\n</ul>\n<!-- raw HTML omitted -->\n",
-				"content_text": "- Back to a multi-monitor setup. I have been team one larger monitor for the last few years, but I felt like some of the work I have been doing benefits from having more fixed windows. \r\n- I moved my desk back against the wall. It had been floating in the room for the last couple of years. I prefer not to stare at a wall in the background, but a floating desk that can also be stood at gets messy on the backside. In addition, the internet speed is nearly 1 Gbps when plugged in vs. 300/400 MPs over wifi.  \r\n- Removed the XLR mic and went with an [Elgato Wave 3 USB](https://amzn.to/3iHxFB3) mic. In quick testing, it seems more than adequate for my needs and does not require a Cloud booster, Focusrite Scarlett, extra cables, etc.\r\n- Moved my Anker camera to the top of my MBP instead of the separate arm. Minor change, but one less thing on my desk. I still find it pathetic that Apple has not shipped a better laptop camera. It is cute I can use my iPhone, but who wants to go through all that effort every day. \r\n- Semi-related, I disabled \"Displays have separate spaces.\" I heavily use spaces and typically have a space for specific tasks with keyboard shortcuts. Once each display has its own space, this gets messy. The downside is I cannot just dock a window in a display across all spaces. \r\n \n\n<img src=\"uploads/2023/06a1fb6f5f.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
+				"content_text": "- Back to a multi-monitor setup. I have been team one larger monitor for the last few years, but I felt like some of the work I have been doing benefits from having more fixed windows. \r\n- I moved my desk back against the wall. It had been floating in the room for the last couple of years. I prefer not to stare at a wall in the background, but a floating desk that can also be stood at gets messy on the backside. In addition, the internet speed is nearly 1 Gbps when plugged in vs. 300/400 MPs over wifi.  \r\n- Removed the XLR mic and went with an [Elgato Wave 3 USB](https://amzn.to/3iHxFB3) mic. In quick testing, it seems more than adequate for my needs and does not require a Cloud booster, Focusrite Scarlett, extra cables, etc.\r\n- Moved my Anker camera to the top of my MBP instead of the separate arm. Minor change, but one less thing on my desk. I still find it pathetic that Apple has not shipped a better laptop camera. It is cute I can use my iPhone, but who wants to go through all that effort every day. \r\n- Semi-related, I disabled \"Displays have separate spaces.\" I heavily use spaces and typically have a space for specific tasks with keyboard shortcuts. Once each display has its own space, this gets messy. The downside is I cannot just dock a window in a display across all spaces. \r\n \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/06a1fb6f5f.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
 				"date_published": "2023-01-17T10:09:10-04:00",
 				"url": "https://scottw.com/2023/01/17/i-rearranged-my.html",
 				"tags": ["Life"]
@@ -1128,7 +1137,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/12/i-enjoy-the.html",
 				
 				"content_html": "<p>I enjoy the three extra clicks it takes to do a traditional call instead of using huddles.  #neverhuddles</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I enjoy the three extra clicks it takes to do a traditional call instead of using huddles.  #neverhuddles\n\n<img src=\"uploads/2023/1e7bb38c84.png\" width=\"533\" height=\"288\" alt=\"\">\n",
+				"content_text": "I enjoy the three extra clicks it takes to do a traditional call instead of using huddles.  #neverhuddles\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/1e7bb38c84.png\" width=\"533\" height=\"288\" alt=\"\">\n",
 				"date_published": "2023-01-12T18:09:49-04:00",
 				"url": "https://scottw.com/2023/01/12/i-enjoy-the.html"
 			},
@@ -1161,7 +1170,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/07/not-bad-for.html",
 				
 				"content_html": "<p>Not bad for midafternoon Saturday. I was planning on just hanging out at a coffee shop most of the morning in NYC, but listened to a large chunk of Dying with Zero and just walked.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Not bad for midafternoon Saturday. I was planning on just hanging out at a coffee shop most of the morning in NYC, but listened to a large chunk of Dying with Zero and just walked. \n\n<img src=\"uploads/2023/da83cbadad.jpg\" width=\"396\" height=\"484\" alt=\"\">\n",
+				"content_text": "Not bad for midafternoon Saturday. I was planning on just hanging out at a coffee shop most of the morning in NYC, but listened to a large chunk of Dying with Zero and just walked. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/da83cbadad.jpg\" width=\"396\" height=\"484\" alt=\"\">\n",
 				"date_published": "2023-01-07T14:59:31-04:00",
 				"url": "https://scottw.com/2023/01/07/not-bad-for.html"
 			},
@@ -1169,7 +1178,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/07/i-could-do.html",
 				
 				"content_html": "<p>I could do the hipster thing.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I could do the hipster thing. \n\n<img src=\"uploads/2023/2cb5b5aee1.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
+				"content_text": "I could do the hipster thing. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/2cb5b5aee1.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
 				"date_published": "2023-01-07T13:35:13-04:00",
 				"url": "https://scottw.com/2023/01/07/i-could-do.html"
 			},
@@ -1212,7 +1221,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/05/my-favorite-christmas.html",
 				
 				"content_html": "<p>My favorite 2022 Christmas present.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "My favorite 2022 Christmas present. \n\n<img src=\"uploads/2023/93ec7da837.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
+				"content_text": "My favorite 2022 Christmas present. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/93ec7da837.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
 				"date_published": "2023-01-05T16:13:11-04:00",
 				"url": "https://scottw.com/2023/01/05/my-favorite-christmas.html"
 			},
@@ -1290,7 +1299,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/01/i-took-this.html",
 				
 				"content_html": "<p>I took this photo on New Year’s Eve.</p>\n<p>Tommy Bahama chairs at Costco is the shopping reminder that Spring is on the way.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I took this photo on New Year’s Eve. \n\nTommy Bahama chairs at Costco is the shopping reminder that Spring is on the way. \n\n<img src=\"uploads/2023/6a9db33118.jpg\" width=\"450\" height=\"600\" alt=\"Tommy Bahama chairs at Costco \">\n",
+				"content_text": "I took this photo on New Year’s Eve. \n\nTommy Bahama chairs at Costco is the shopping reminder that Spring is on the way. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/6a9db33118.jpg\" width=\"450\" height=\"600\" alt=\"Tommy Bahama chairs at Costco \">\n",
 				"date_published": "2023-01-01T21:20:23-04:00",
 				"url": "https://scottw.com/2023/01/01/i-took-this.html"
 			},
@@ -1298,7 +1307,7 @@
 				"id": "http://scottwater.micro.blog/2023/01/01/weird-choice-to.html",
 				
 				"content_html": "<p>Weird choice to use a nickname for Idaho.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Weird choice to use a nickname for Idaho. \n\n<img src=\"uploads/2023/501bcd78f3.jpg\" width=\"600\" height=\"306\" alt=\"Why “Gem State” instead of Iday\">\n",
+				"content_text": "Weird choice to use a nickname for Idaho. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2023/501bcd78f3.jpg\" width=\"600\" height=\"306\" alt=\"Why “Gem State” instead of Iday\">\n",
 				"date_published": "2023-01-01T21:16:25-04:00",
 				"url": "https://scottw.com/2023/01/01/weird-choice-to.html"
 			},
@@ -1306,7 +1315,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/31/fog-was-thick.html",
 				
 				"content_html": "<p>Fog was thick as hell today.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Fog was thick as hell today. \n\n<img src=\"uploads/2022/75df979be9.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
+				"content_text": "Fog was thick as hell today. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/75df979be9.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
 				"date_published": "2022-12-31T12:43:40-04:00",
 				"url": "https://scottw.com/2022/12/31/fog-was-thick.html"
 			},
@@ -1314,7 +1323,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/29/finally-made-the.html",
 				
 				"content_html": "<p>Finally made the autocomplete for IRB in Ruby 3.0 readable with my Dracula color scheme. All it took was changing the terminal&rsquo;s definition of <code>Cyan</code>. Hopefully, this will be configurable in the future.</p>\n<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>\n",
-				"content_text": "Finally made the autocomplete for IRB in Ruby 3.0 readable with my Dracula color scheme. All it took was changing the terminal's definition of `Cyan`. Hopefully, this will be configurable in the future. \n\n<img src=\"uploads/2022/322492403e.png\" width=\"600\" height=\"509\" alt=\"\"><img src=\"uploads/2022/434ff53ec2.png\" width=\"600\" height=\"554\" alt=\"\">\n",
+				"content_text": "Finally made the autocomplete for IRB in Ruby 3.0 readable with my Dracula color scheme. All it took was changing the terminal's definition of `Cyan`. Hopefully, this will be configurable in the future. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/322492403e.png\" width=\"600\" height=\"509\" alt=\"\"><img src=\"https://cdn.uploads.micro.blog/92902/2022/434ff53ec2.png\" width=\"600\" height=\"554\" alt=\"\">\n",
 				"date_published": "2022-12-29T12:10:42-04:00",
 				"url": "https://scottw.com/2022/12/29/finally-made-the.html",
 				"tags": ["Code"]
@@ -1339,7 +1348,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/23/a-cappuccino-cloud.html",
 				
 				"content_html": "<p>A cappuccino cloud.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "A cappuccino cloud. \n\n<img src=\"uploads/2022/f5e8039908.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
+				"content_text": "A cappuccino cloud. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/f5e8039908.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-12-23T11:18:02-04:00",
 				"url": "https://scottw.com/2022/12/23/a-cappuccino-cloud.html"
 			},
@@ -1347,7 +1356,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/22/confused-do-i.html",
 				
 				"content_html": "<p>Confused. Do I not have access to quality conversations today?</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Confused. Do I not have access to quality conversations today?\n\n<img src=\"uploads/2022/b990ceeb04.png\" width=\"600\" height=\"131\" alt=\"Twitter asking if I want to pay for quality conversations\">\n",
+				"content_text": "Confused. Do I not have access to quality conversations today?\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/b990ceeb04.png\" width=\"600\" height=\"131\" alt=\"Twitter asking if I want to pay for quality conversations\">\n",
 				"date_published": "2022-12-22T17:42:47-04:00",
 				"url": "https://scottw.com/2022/12/22/confused-do-i.html"
 			},
@@ -1363,7 +1372,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/21/whats-on-my.html",
 				
 				"content_html": "<p>What&rsquo;s on my desk? - An Onyx with GMK Botanical</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "What's on my desk? - An Onyx with GMK Botanical\r\n\r\n \n\n<img src=\"uploads/2022/9ccb8446cc.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
+				"content_text": "What's on my desk? - An Onyx with GMK Botanical\r\n\r\n \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/9ccb8446cc.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
 				"date_published": "2022-12-21T11:16:31-04:00",
 				"url": "https://scottw.com/2022/12/21/whats-on-my.html"
 			},
@@ -1379,7 +1388,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/20/original-tweet-on.html",
 				
 				"content_html": "<p>Original Tweet on the unoriginal Toot.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Original Tweet on the unoriginal Toot. \n\n<img src=\"uploads/2022/76fb59132d.jpg\" width=\"600\" height=\"444\" alt=\"\">\n",
+				"content_text": "Original Tweet on the unoriginal Toot. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/76fb59132d.jpg\" width=\"600\" height=\"444\" alt=\"\">\n",
 				"date_published": "2022-12-20T22:19:19-04:00",
 				"url": "https://scottw.com/2022/12/20/original-tweet-on.html"
 			},
@@ -1427,7 +1436,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/19/113100.html",
 				
 				"content_html": "<p>I&rsquo;ll be back with Ivory, but for now, it is time to increasingly minimize time on the birdsite.</p>\n<p>Slightly less dramatic with the expiration in April. 🫢</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I'll be back with Ivory, but for now, it is time to increasingly minimize time on the birdsite. \n\nSlightly less dramatic with the expiration in April. 🫢\n\n<img src=\"uploads/2022/cee55fd2b1.jpg\" width=\"277\" height=\"600\" alt=\"Good Bye Tweetbot\">\n",
+				"content_text": "I'll be back with Ivory, but for now, it is time to increasingly minimize time on the birdsite. \n\nSlightly less dramatic with the expiration in April. 🫢\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/cee55fd2b1.jpg\" width=\"277\" height=\"600\" alt=\"Good Bye Tweetbot\">\n",
 				"date_published": "2022-12-19T12:31:00-04:00",
 				"url": "https://scottw.com/2022/12/19/113100.html",
 				"tags": ["Life"]
@@ -1444,7 +1453,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/19/093700.html",
 				
 				"content_html": "<p>Most SaaS apps with a free(mium) tier obscure the free option.</p>\n<p>Interestingly, <a href=\"https://write.as/\">Write.as</a> puts it right in your face.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Most SaaS apps with a free(mium) tier obscure the free option. \n\nInterestingly, [Write.as](https://write.as/) puts it right in your face. \n\n<img src=\"uploads/2022/b5c304db17.jpg\" width=\"600\" height=\"416\" alt=\"\">\n",
+				"content_text": "Most SaaS apps with a free(mium) tier obscure the free option. \n\nInterestingly, [Write.as](https://write.as/) puts it right in your face. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/b5c304db17.jpg\" width=\"600\" height=\"416\" alt=\"\">\n",
 				"date_published": "2022-12-19T10:37:00-04:00",
 				"url": "https://scottw.com/2022/12/19/093700.html",
 				"tags": ["Business"]
@@ -1461,7 +1470,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/18/promotion-of-alternative.html",
 				
 				"content_html": "<p><a href=\"https://help.twitter.com/en/rules-and-policies/social-platforms-policy\">Promotion of Alternative Social Platforms Policy </a></p>\n<blockquote>\n<p>&hellip;going forward, Twitter will no longer allow free promotion of specific social media platforms on Twitter.</p>\n</blockquote>\n<p>It is an absolute clown show at Twitter HQ.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[Promotion of Alternative Social Platforms Policy ](https://help.twitter.com/en/rules-and-policies/social-platforms-policy)\n\n>...going forward, Twitter will no longer allow free promotion of specific social media platforms on Twitter.\n\nIt is an absolute clown show at Twitter HQ.\n\n<img src=\"uploads/2022/fe6905d520.jpg\" width=\"400\" height=\"306\" alt=\"\">\n",
+				"content_text": "[Promotion of Alternative Social Platforms Policy ](https://help.twitter.com/en/rules-and-policies/social-platforms-policy)\n\n>...going forward, Twitter will no longer allow free promotion of specific social media platforms on Twitter.\n\nIt is an absolute clown show at Twitter HQ.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/fe6905d520.jpg\" width=\"400\" height=\"306\" alt=\"\">\n",
 				"date_published": "2022-12-18T16:23:48-04:00",
 				"url": "https://scottw.com/2022/12/18/promotion-of-alternative.html"
 			},
@@ -1469,7 +1478,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/18/a-good-futbol.html",
 				
 				"content_html": "<p>A good futbol start to the football day (weekend with yesterday&rsquo;s three games).</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "A good futbol start to the football day (weekend with yesterday's three games). \n\n<img src=\"uploads/2022/f0b998e694.jpg\" width=\"600\" height=\"222\" alt=\"\">\n",
+				"content_text": "A good futbol start to the football day (weekend with yesterday's three games). \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/f0b998e694.jpg\" width=\"600\" height=\"222\" alt=\"\">\n",
 				"date_published": "2022-12-18T13:59:49-04:00",
 				"url": "https://scottw.com/2022/12/18/a-good-futbol.html"
 			},
@@ -1477,7 +1486,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/16/reason-that-i.html",
 				
 				"content_html": "<p>Reason 8,343 that I hate the Celtics.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Reason 8,343 that I hate the Celtics. \n\n<img src=\"uploads/2022/93c6ad0283.jpg\" width=\"583\" height=\"600\" alt=\"\">\n",
+				"content_text": "Reason 8,343 that I hate the Celtics. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/93c6ad0283.jpg\" width=\"583\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-12-16T23:04:59-04:00",
 				"url": "https://scottw.com/2022/12/16/reason-that-i.html"
 			},
@@ -1485,7 +1494,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/16/the-new-cleanshot.html",
 				
 				"content_html": "<p>The new CleanShot X background feature is such a nice touch for screenshots.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "The new CleanShot X background feature is such a nice touch for screenshots.\n\n<img src=\"uploads/2022/11182a3ae0.jpg\" width=\"600\" height=\"486\" alt=\"\">\n",
+				"content_text": "The new CleanShot X background feature is such a nice touch for screenshots.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/11182a3ae0.jpg\" width=\"600\" height=\"486\" alt=\"\">\n",
 				"date_published": "2022-12-16T22:17:24-04:00",
 				"url": "https://scottw.com/2022/12/16/the-new-cleanshot.html"
 			},
@@ -1493,7 +1502,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/16/it-was-worth.html",
 				
 				"content_html": "<p>It was worth a shot.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "It was worth a shot.\n\n<img src=\"uploads/2022/ef2b9f7fd8.jpg\" width=\"600\" height=\"359\" alt=\"\">\n",
+				"content_text": "It was worth a shot.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/ef2b9f7fd8.jpg\" width=\"600\" height=\"359\" alt=\"\">\n",
 				"date_published": "2022-12-16T22:13:17-04:00",
 				"url": "https://scottw.com/2022/12/16/it-was-worth.html"
 			},
@@ -1551,7 +1560,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/15/rails-dbmigrateredo-the.html",
 				
 				"content_html": "<p><a href=\"https://twitter.com/donnfelker/status/1599070911508119553\">rails db:migrate:redo</a></p>\n<blockquote>\n<p>The db:migrate:redo command is a shortcut for doing a rollback and then migrating back up again.</p>\n</blockquote>\n<p>Very handy. Just used it for the first time.</p>\n<p>P.S. Give <a href=\"https://twitter.com/donnfelker\">Donn</a> a follow. He is always sharing excellent content.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[rails db:migrate:redo](https://twitter.com/donnfelker/status/1599070911508119553)\r\n\r\n> The db:migrate:redo command is a shortcut for doing a rollback and then migrating back up again.\r\n\r\nVery handy. Just used it for the first time.\r\n\r\nP.S. Give [Donn](https://twitter.com/donnfelker) a follow. He is always sharing excellent content.\n\n<img src=\"uploads/2022/ab3f1bd517.png\" width=\"600\" height=\"315\" alt=\"\">\n",
+				"content_text": "[rails db:migrate:redo](https://twitter.com/donnfelker/status/1599070911508119553)\r\n\r\n> The db:migrate:redo command is a shortcut for doing a rollback and then migrating back up again.\r\n\r\nVery handy. Just used it for the first time.\r\n\r\nP.S. Give [Donn](https://twitter.com/donnfelker) a follow. He is always sharing excellent content.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/ab3f1bd517.png\" width=\"600\" height=\"315\" alt=\"\">\n",
 				"date_published": "2022-12-15T16:25:44-04:00",
 				"url": "https://scottw.com/2022/12/15/rails-dbmigrateredo-the.html"
 			},
@@ -1559,7 +1568,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/15/all-my-weather.html",
 				
 				"content_html": "<p>All my weather apps say it is raining.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "All my weather apps say it is raining. \n\n<img src=\"uploads/2022/9c423cde18.jpg\" width=\"450\" height=\"600\" alt=\"Rain my ass\">\n",
+				"content_text": "All my weather apps say it is raining. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/9c423cde18.jpg\" width=\"450\" height=\"600\" alt=\"Rain my ass\">\n",
 				"date_published": "2022-12-15T14:42:22-04:00",
 				"url": "https://scottw.com/2022/12/15/all-my-weather.html"
 			},
@@ -1567,7 +1576,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/15/113100.html",
 				
 				"content_html": "<p><a href=\"https://speed.cloudflare.com\">CloudFlare Speed Test</a></p>\n<p>Wifi is costing me about 600mbps. It might be time to rearrange my office and go back to being hardwired.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[CloudFlare Speed Test](https://speed.cloudflare.com)\n\nWifi is costing me about 600mbps. It might be time to rearrange my office and go back to being hardwired. \n\n<img src=\"uploads/2022/e1fd455b33.png\" width=\"600\" height=\"429\" alt=\"Cloudl Flare Speed Test Results\">\n",
+				"content_text": "[CloudFlare Speed Test](https://speed.cloudflare.com)\n\nWifi is costing me about 600mbps. It might be time to rearrange my office and go back to being hardwired. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/e1fd455b33.png\" width=\"600\" height=\"429\" alt=\"Cloudl Flare Speed Test Results\">\n",
 				"date_published": "2022-12-15T12:31:00-04:00",
 				"url": "https://scottw.com/2022/12/15/113100.html"
 			},
@@ -1601,7 +1610,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/15/let-over-skirt.html",
 				
 				"content_html": "<p>Left over skirt steak and sweet potatoes hash&hellip;.it&rsquo;s what&rsquo;s for breakfast.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Left over skirt steak and sweet potatoes hash....it's what's for breakfast. \n\n<img src=\"uploads/2022/ce8052391b.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
+				"content_text": "Left over skirt steak and sweet potatoes hash....it's what's for breakfast. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/ce8052391b.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
 				"date_published": "2022-12-15T10:01:12-04:00",
 				"url": "https://scottw.com/2022/12/15/let-over-skirt.html"
 			},
@@ -1644,7 +1653,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/13/polar-express.html",
 				
 				"content_html": "<p>Polar Express</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Polar Express \n\n<img src=\"uploads/2022/2ac2fdb50a.jpg\" width=\"600\" height=\"312\" alt=\"\">\n",
+				"content_text": "Polar Express \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/2ac2fdb50a.jpg\" width=\"600\" height=\"312\" alt=\"\">\n",
 				"date_published": "2022-12-13T21:25:27-04:00",
 				"url": "https://scottw.com/2022/12/13/polar-express.html"
 			},
@@ -1652,7 +1661,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/13/its-that-time.html",
 				
 				"content_html": "<p>It&rsquo;s that time of year&hellip;</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "It's that time of year...\n\n<img src=\"uploads/2022/2b8e134b34.jpg\" width=\"600\" height=\"225\" alt=\"\">\n",
+				"content_text": "It's that time of year...\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/2b8e134b34.jpg\" width=\"600\" height=\"225\" alt=\"\">\n",
 				"date_published": "2022-12-13T16:23:12-04:00",
 				"url": "https://scottw.com/2022/12/13/its-that-time.html"
 			},
@@ -1694,7 +1703,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/12/cleanshot-custom-backgrounds.html",
 				"title": "CleanShot Custom Backgrounds",
 				"content_html": "<p><a href=\"http://cleanshot.com\">CleanShot X</a> has a nice update (version 4.5) that allows you to control the background of a screenshot.</p>\n<p>Before this update, you could only apply a background when you did a full screenshot, and there was no option except for your current wallpaper (I think 🤔).</p>\n<p>If you want to use the new background feature with the window screenshot option, you must set the default background as transparent.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[CleanShot X](http://cleanshot.com) has a nice update (version 4.5) that allows you to control the background of a screenshot. \n\nBefore this update, you could only apply a background when you did a full screenshot, and there was no option except for your current wallpaper (I think 🤔). \n\nIf you want to use the new background feature with the window screenshot option, you must set the default background as transparent. \n\n<img src=\"uploads/2022/4ae8ada1ac.png\" width=\"600\" height=\"588\" alt=\"CleanShot Background Options\">\n",
+				"content_text": "[CleanShot X](http://cleanshot.com) has a nice update (version 4.5) that allows you to control the background of a screenshot. \n\nBefore this update, you could only apply a background when you did a full screenshot, and there was no option except for your current wallpaper (I think 🤔). \n\nIf you want to use the new background feature with the window screenshot option, you must set the default background as transparent. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/4ae8ada1ac.png\" width=\"600\" height=\"588\" alt=\"CleanShot Background Options\">\n",
 				"date_published": "2022-12-12T14:00:00-04:00",
 				"url": "https://scottw.com/2022/12/12/cleanshot-custom-backgrounds.html"
 			},
@@ -1702,7 +1711,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/12/120000.html",
 				
 				"content_html": "<p><a href=\"https://www.cakebrew.com\">CakeBrew</a> is an excellent GUI overview of your HomeBrew install.</p>\n<!-- raw HTML omitted -->\n<p><strong>UPDATE</strong>: CakeBrew may not be getting updates anymore. Still works today, but who knows for how much longer.</p>\n",
-				"content_text": "[CakeBrew](https://www.cakebrew.com) is an excellent GUI overview of your HomeBrew install.\n\n\n\n<img src=\"uploads/2022/f80606bf85.png\" width=\"600\" height=\"482\" alt=\"CakeBrew ScreenShot\">\n\n**UPDATE**: CakeBrew may not be getting updates anymore. Still works today, but who knows for how much longer. \n",
+				"content_text": "[CakeBrew](https://www.cakebrew.com) is an excellent GUI overview of your HomeBrew install.\n\n\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/f80606bf85.png\" width=\"600\" height=\"482\" alt=\"CakeBrew ScreenShot\">\n\n**UPDATE**: CakeBrew may not be getting updates anymore. Still works today, but who knows for how much longer. \n",
 				"date_published": "2022-12-12T13:00:00-04:00",
 				"url": "https://scottw.com/2022/12/12/120000.html"
 			},
@@ -1736,7 +1745,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/12/the-codingfont-game.html",
 				
 				"content_html": "<p>The CodingFont game is excellent, but what if you want to do a quick test drive?</p>\n<p>Well, here you go <a href=\"https://www.programmingfonts.org\">Programming Fonts</a>.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "The CodingFont game is excellent, but what if you want to do a quick test drive? \n\nWell, here you go [Programming Fonts](https://www.programmingfonts.org). \n\n<img src=\"uploads/2022/fad395cd8a.png\" width=\"600\" height=\"384\" alt=\"Programming Fonts Screenshot\" />\n",
+				"content_text": "The CodingFont game is excellent, but what if you want to do a quick test drive? \n\nWell, here you go [Programming Fonts](https://www.programmingfonts.org). \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/fad395cd8a.png\" width=\"600\" height=\"384\" alt=\"Programming Fonts Screenshot\" />\n",
 				"date_published": "2022-12-12T10:24:27-04:00",
 				"url": "https://scottw.com/2022/12/12/the-codingfont-game.html",
 				"tags": ["Code"]
@@ -1745,7 +1754,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/11/a-nice-parlay.html",
 				
 				"content_html": "<p>A nice parlay win going into Sunday.</p>\n<p>I should have gone with gut and take the Warriors moneyline.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "A nice parlay win going into Sunday. \n\nI should have gone with gut and take the Warriors moneyline. \n\n<img src=\"uploads/2022/bc83093b00.jpg\" width=\"600\" height=\"512\" alt=\"\">\n",
+				"content_text": "A nice parlay win going into Sunday. \n\nI should have gone with gut and take the Warriors moneyline. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/bc83093b00.jpg\" width=\"600\" height=\"512\" alt=\"\">\n",
 				"date_published": "2022-12-11T09:17:52-04:00",
 				"url": "https://scottw.com/2022/12/11/a-nice-parlay.html"
 			},
@@ -1802,7 +1811,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/09/100000.html",
 				
 				"content_html": "<p><a href=\"https://www.codingfont.com\">CodingFont</a> is a fun bracket game that helps you pick a coding font.</p>\n<p>I recommend checking the <code>Hide Font Names</code> option.</p>\n<p>My winner was Azeret Mono. A younger me would have picked a smaller font, but I will give this one a shot for a couple weeks.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[CodingFont](https://www.codingfont.com) is a fun bracket game that helps you pick a coding font. \n\nI recommend checking the `Hide Font Names` option. \n\nMy winner was Azeret Mono. A younger me would have picked a smaller font, but I will give this one a shot for a couple weeks. \n\n<img src=\"uploads/2022/b589242d7d.png\" width=\"600\" height=\"409\" alt=\"\">\n",
+				"content_text": "[CodingFont](https://www.codingfont.com) is a fun bracket game that helps you pick a coding font. \n\nI recommend checking the `Hide Font Names` option. \n\nMy winner was Azeret Mono. A younger me would have picked a smaller font, but I will give this one a shot for a couple weeks. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/b589242d7d.png\" width=\"600\" height=\"409\" alt=\"\">\n",
 				"date_published": "2022-12-09T11:00:00-04:00",
 				"url": "https://scottw.com/2022/12/09/100000.html",
 				"tags": ["Code"]
@@ -1837,7 +1846,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/08/at-this-point.html",
 				
 				"content_html": "<p>At this point, shouldn&rsquo;t you just were a helmet?</p>\n<p>See <a href=\"https://gizmodo.com/dyson-air-purifying-headphones-filter-price-release-dat-1849831922\">Dyson Zone</a>.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "At this point, shouldn't you just were a helmet?\n\nSee [Dyson Zone](https://gizmodo.com/dyson-air-purifying-headphones-filter-price-release-dat-1849831922).\n\n\n\n<img src=\"uploads/2022/f2636de634.jpg\" width=\"600\" height=\"337\" alt=\"\">\n",
+				"content_text": "At this point, shouldn't you just were a helmet?\n\nSee [Dyson Zone](https://gizmodo.com/dyson-air-purifying-headphones-filter-price-release-dat-1849831922).\n\n\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/f2636de634.jpg\" width=\"600\" height=\"337\" alt=\"\">\n",
 				"date_published": "2022-12-08T07:55:28-04:00",
 				"url": "https://scottw.com/2022/12/08/at-this-point.html"
 			},
@@ -1845,7 +1854,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/08/apple-watch-start.html",
 				"title": "Apple Watch - Start Your Day?",
 				"content_html": "<p>“The Start Your Day” request is now my least favorite watch/iOS feature.</p>\n<p>Apple knows:</p>\n<ol>\n<li>The current time of day</li>\n<li>I recently logged into my watch</li>\n<li>My movements</li>\n<li>Other apps I have opened and used</li>\n<li>I just spent over an hour at the gym.</li>\n<li>I was in a car</li>\n<li>And much more</li>\n</ol>\n<p>A more innovative feature would detect I am at a place where I likely do not want to be disturbed and recommend I “pause my normal day.”</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "“The Start Your Day” request is now my least favorite watch/iOS feature. \n\nApple knows:\n\n1. The current time of day \n2. I recently logged into my watch\n3. My movements \n4. Other apps I have opened and used\n5.  I just spent over an hour at the gym. \n6. I was in a car\n7. And much more \n\nA more innovative feature would detect I am at a place where I likely do not want to be disturbed and recommend I “pause my normal day.”\n\n<img src=\"uploads/2022/faeeff2b86.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
+				"content_text": "“The Start Your Day” request is now my least favorite watch/iOS feature. \n\nApple knows:\n\n1. The current time of day \n2. I recently logged into my watch\n3. My movements \n4. Other apps I have opened and used\n5.  I just spent over an hour at the gym. \n6. I was in a car\n7. And much more \n\nA more innovative feature would detect I am at a place where I likely do not want to be disturbed and recommend I “pause my normal day.”\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/faeeff2b86.jpg\" width=\"450\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-12-08T07:49:13-04:00",
 				"url": "https://scottw.com/2022/12/08/apple-watch-start.html"
 			},
@@ -1853,7 +1862,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/08/an-early-morning.html",
 				
 				"content_html": "<p>An early morning post-workout full moon.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "An early morning post-workout full moon. \n\n<img src=\"uploads/2022/2653e77a66.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
+				"content_text": "An early morning post-workout full moon. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/2653e77a66.jpg\" width=\"600\" height=\"450\" alt=\"\">\n",
 				"date_published": "2022-12-08T07:34:13-04:00",
 				"url": "https://scottw.com/2022/12/08/an-early-morning.html"
 			},
@@ -1861,7 +1870,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/08/i-would-buy.html",
 				
 				"content_html": "<p>I would buy Ratio’s Protein yogurt in buckets if it were available.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I would buy Ratio’s Protein yogurt in buckets if it were available. \n\n<img src=\"uploads/2022/d76306a26c.jpg\" width=\"503\" height=\"600\" alt=\"\">\n",
+				"content_text": "I would buy Ratio’s Protein yogurt in buckets if it were available. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/d76306a26c.jpg\" width=\"503\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-12-08T05:16:49-04:00",
 				"url": "https://scottw.com/2022/12/08/i-would-buy.html"
 			},
@@ -1878,7 +1887,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/07/tot-this-is.html",
 				
 				"content_html": "<p><a href=\"https://tot.rocks/\">Tot</a> - this is one of the few apps I use daily on all my devices.</p>\n<blockquote>\n<p>Tot is a simple app. It lets you collect &amp; edit text on your Mac, iPhone, iPad, and Apple Watch.</p>\n</blockquote>\n<p>In this case, the tagline is 100% accurate.</p>\n<p>I sometimes wish I could change the number of notes available, but otherwise, it is perfect.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[Tot](https://tot.rocks/) - this is one of the few apps I use daily on all my devices. \r\n\r\n> Tot is a simple app. It lets you collect & edit text on your Mac, iPhone, iPad, and Apple Watch.\r\n\r\nIn this case, the tagline is 100% accurate. \r\n\r\nI sometimes wish I could change the number of notes available, but otherwise, it is perfect.\n\n<img src=\"uploads/2022/479a8c00ae.png\" width=\"600\" height=\"248\" alt=\"\">\n",
+				"content_text": "[Tot](https://tot.rocks/) - this is one of the few apps I use daily on all my devices. \r\n\r\n> Tot is a simple app. It lets you collect & edit text on your Mac, iPhone, iPad, and Apple Watch.\r\n\r\nIn this case, the tagline is 100% accurate. \r\n\r\nI sometimes wish I could change the number of notes available, but otherwise, it is perfect.\n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/479a8c00ae.png\" width=\"600\" height=\"248\" alt=\"\">\n",
 				"date_published": "2022-12-07T11:19:45-04:00",
 				"url": "https://scottw.com/2022/12/07/tot-this-is.html"
 			},
@@ -1911,7 +1920,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/06/on-grammarly.html",
 				"title": "On Grammarly",
 				"content_html": "<p><a href=\"https://www.grammarly.com/\">Grammarly</a> is the most essential browser extension I use daily and happily pay for the premium edition.</p>\n<p>It does the small things you expect, like correct spelling and highlighting missing (or unnecessary) commas. However, my favorite feature is calling out words that are not necessary.</p>\n<p>For example, &ldquo;would&rdquo; was originally in the sentence, &ldquo;It does the small things you would expect.&rdquo;</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "[Grammarly](https://www.grammarly.com/) is the most essential browser extension I use daily and happily pay for the premium edition. \r\n\r\nIt does the small things you expect, like correct spelling and highlighting missing (or unnecessary) commas. However, my favorite feature is calling out words that are not necessary. \r\n\r\nFor example, \"would\" was originally in the sentence, \"It does the small things you would expect.\" \n\n<img src=\"uploads/2022/9395c0d022.png\" width=\"600\" height=\"348\" alt=\"\">\n",
+				"content_text": "[Grammarly](https://www.grammarly.com/) is the most essential browser extension I use daily and happily pay for the premium edition. \r\n\r\nIt does the small things you expect, like correct spelling and highlighting missing (or unnecessary) commas. However, my favorite feature is calling out words that are not necessary. \r\n\r\nFor example, \"would\" was originally in the sentence, \"It does the small things you would expect.\" \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/9395c0d022.png\" width=\"600\" height=\"348\" alt=\"\">\n",
 				"date_published": "2022-12-06T11:10:23-04:00",
 				"url": "https://scottw.com/2022/12/06/on-grammarly.html",
 				"tags": ["Life"]
@@ -1938,7 +1947,7 @@
 				"id": "http://scottwater.micro.blog/2022/12/03/anabolic-sky-high.html",
 				
 				"content_html": "<p>Anabolic Sky High French Toast</p>\n<p>My take on the Jersey diner classic breakfast. Roughly 360 calories and 36g of protein.</p>\n<p>About 7x less calories than original and likely 2x the protein. On taste it is a about 85% there.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "Anabolic Sky High French Toast\n\nMy take on the Jersey diner classic breakfast. Roughly 360 calories and 36g of protein. \n\nAbout 7x less calories than original and likely 2x the protein. On taste it is a about 85% there. \n\n<img src=\"uploads/2022/a763c1072b.jpg\" width=\"600\" height=\"600\" alt=\"\">\n",
+				"content_text": "Anabolic Sky High French Toast\n\nMy take on the Jersey diner classic breakfast. Roughly 360 calories and 36g of protein. \n\nAbout 7x less calories than original and likely 2x the protein. On taste it is a about 85% there. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/a763c1072b.jpg\" width=\"600\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-12-03T10:01:10-04:00",
 				"url": "https://scottw.com/2022/12/03/anabolic-sky-high.html",
 				"tags": ["Food"]
@@ -1999,7 +2008,7 @@
 				"id": "http://scottwater.micro.blog/2022/11/30/i-was-convinced.html",
 				
 				"content_html": "<p>I was convinced there was a bug with OS X Spaces on Ventura or <a href=\"https://noteifyapp.com/command-tab-plus/\">Command-Tab Plus</a>. My spaces were constantly not what I remembered.</p>\n<p>Turns out, I forgot to enable this option which keeps them from moving around.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I was convinced there was a bug with OS X Spaces on Ventura or [Command-Tab Plus](https://noteifyapp.com/command-tab-plus/). My spaces were constantly not what I remembered. \n\nTurns out, I forgot to enable this option which keeps them from moving around. \n\n<img src=\"uploads/2022/b0e1f0da03.jpg\" width=\"600\" height=\"540\" alt=\"Option settings for OS X spaces feature\">\n",
+				"content_text": "I was convinced there was a bug with OS X Spaces on Ventura or [Command-Tab Plus](https://noteifyapp.com/command-tab-plus/). My spaces were constantly not what I remembered. \n\nTurns out, I forgot to enable this option which keeps them from moving around. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/b0e1f0da03.jpg\" width=\"600\" height=\"540\" alt=\"Option settings for OS X spaces feature\">\n",
 				"date_published": "2022-11-30T11:13:07-04:00",
 				"url": "https://scottw.com/2022/11/30/i-was-convinced.html"
 			},
@@ -2007,7 +2016,7 @@
 				"id": "http://scottwater.micro.blog/2022/11/30/i-have-seen.html",
 				
 				"content_html": "<p>I have seen and generated plenty of errors over the past 20+ years on software development, but this is the first I have seen this one.</p>\n<!-- raw HTML omitted -->\n",
-				"content_text": "I have seen and generated plenty of errors over the past 20+ years on software development, but this is the first I have seen this one. \n\n<img src=\"uploads/2022/2748f98a46.png\" width=\"276\" height=\"600\" alt=\"\">\n",
+				"content_text": "I have seen and generated plenty of errors over the past 20+ years on software development, but this is the first I have seen this one. \n\n<img src=\"https://cdn.uploads.micro.blog/92902/2022/2748f98a46.png\" width=\"276\" height=\"600\" alt=\"\">\n",
 				"date_published": "2022-11-30T10:40:29-04:00",
 				"url": "https://scottw.com/2022/11/30/i-have-seen.html"
 			},
